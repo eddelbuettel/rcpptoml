@@ -5,7 +5,3 @@ tomlparse <- function(filename) {
     .Call('RcppToml_tomlparse', PACKAGE = 'RcppToml', filename)
 }
 
-rcpp_hello_world <- function() {
-    .Call('RcppToml_rcpp_hello_world', PACKAGE = 'RcppToml')
-}
-
