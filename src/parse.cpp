@@ -36,17 +36,17 @@ void printValue(std::ostream& o, const std::shared_ptr<cpptoml::base>& base) {
 }
 
 // [[Rcpp::export]]
-Rcpp::List tomlparse(std::string filename) {
+Rcpp::List tomlparse(std::string filename, bool verbose=false) {
 
     cpptoml::table g = cpptoml::parse_file(filename);
-    Rcpp::Rcout << "<print method>\n" 
-                << g 
-                << "</print method>\n" 
-                << std::endl;
+    if (verbose) {
+        Rcpp::Rcout << "<print method>\n" 
+                    << g 
+                    << "</print method>\n" 
+                    << std::endl;
+    }
 
     Rcpp::StretchyList sl;
-
-    //for (cpptoml::table::iterator it = g.begin(); it != g.end(); it++) {
     for (auto & p : g) {
 
         if (p.second->is_table_array()) {
@@ -62,8 +62,7 @@ Rcpp::List tomlparse(std::string filename) {
             sl.push_front(p.first); 
         } else if (p.second->is_value()) {
             //std::shared_ptr<cpptoml::base> bp = p.second;
-            Rcpp::Rcout << "Value: " << p.first 
-                        << "\n  :";
+            Rcpp::Rcout << "Value: " << p.first << "\n  :";
             printValue(std::cout, p.second);
             Rcpp::Rcout << std::endl;
             sl.push_front(p.first); 
@@ -72,23 +71,6 @@ Rcpp::List tomlparse(std::string filename) {
             Rcpp::Rcout << "Other: " << p.first << std::endl;
             sl.push_front(p.first); 
         }
-        //     else
-        //     {
-        //         stream << std::string(depth, '\t') << p.first << " = ";
-        //         if (p.second->is_table())
-        //         {
-        //             auto g = static_cast<table*>(p.second.get());
-        //             stream << '\n';
-        //             g->print(stream, depth + 1);
-        //         }
-        //         else
-        //         {
-        //             p.second->print(stream);
-        //             stream << '\n';
-        //         }
-        //     }
-
-
     }
     
     return Rcpp::as<Rcpp::List>(sl);
