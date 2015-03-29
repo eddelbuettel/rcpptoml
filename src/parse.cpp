@@ -93,9 +93,11 @@ Rcpp::List tomlparse(std::string filename, bool verbose=false) {
             Rcpp::Rcout << "Array: " << p.first << std::endl;
             sl.push_front(p.first); 
         } else if (p.second->is_value()) {
-            Rcpp::Rcout << "Value: " << p.first << "\n  :";
-            printValue(std::cout, p.second);
-            Rcpp::Rcout << std::endl;
+            if (verbose) {
+                Rcpp::Rcout << "Value: " << p.first << "\n  :";
+                printValue(std::cout, p.second);
+                Rcpp::Rcout << std::endl;
+            }
             sl.push_front(Rcpp::Named(p.first) = getValue(p.second)); 
             
         } else {
