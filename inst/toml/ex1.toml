@@ -14,8 +14,17 @@ bbb = "2"
 ccc = "3"
 
 [sectionB]
-aaa = "1"
-bbb = "2"
-ccc = "3"
+## NB these don't seem to come in a integers
+aaa = 1
+bbb = 2
+ccc = 3
+
+[sectionC]
+aaa = 1.1
+bbb = 2.2
+ccc = 3.3
+
+[sectionD]
+foo = [ 1, 2, 3 ]
 
 
