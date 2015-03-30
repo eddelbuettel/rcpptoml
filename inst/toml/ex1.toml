@@ -8,23 +8,27 @@ boolval = true
 intnum = 42
 
 
-[sectionA]
+[secA]
 aaa = "1"
 bbb = "2"
 ccc = "3"
 
-[sectionB]
+[secB]
 ## NB these don't seem to come in a integers
 aaa = 1
 bbb = 2
 ccc = 3
 
-[sectionC]
+[secC]
 aaa = 1.1
 bbb = 2.2
 ccc = 3.3
 
-[sectionD]
+[secD]
 foo = [ 1, 2, 3 ]
 
+  [secD.subA]
+  bar = 1
+  biz = 7
+  
 

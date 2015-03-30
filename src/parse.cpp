@@ -66,17 +66,15 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
     }
 }
 
-void printArray(std::ostream& o, cpptoml::array& arr)
-{
+void printArray(std::ostream& o, cpptoml::array& arr) {
     o << "{\"type\":\"array\",\"value\":[";
     auto it = arr.get().begin();
-    while (it != arr.get().end())
-    {
+    while (it != arr.get().end()) {
         if ((*it)->is_array())
             printArray(o, *(*it)->as_array());
         else
             printValue(o, *it);
-
+        
         if (++it != arr.get().end())
             o << ", ";
     }
@@ -106,8 +104,8 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
             //ga->print(stream, depth, p.first);
         } else if (p.second->is_table()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
-            Rcpp::Rcout << "Table: " << p.first << std::endl;
-            sl.push_front(p.first); 
+            if (verbose) Rcpp::Rcout << "Table: " << p.first << std::endl;
+            sl.push_front(Rcpp::Named(p.first) = getTable(ga, verbose));
         } else if (p.second->is_array()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::array>(p.second);
             if (verbose) {
