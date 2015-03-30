@@ -1,6 +1,6 @@
 
 #include <cpptoml.h>
-
+#include <unistd.h>
 #include <Rcpp.h>
 
 std::string escapeString(const std::string& str) {
@@ -136,11 +136,16 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
 // [[Rcpp::export]]
 Rcpp::List tomlparse(std::string filename, bool verbose=false) {
 
+    if (access(filename.c_str(), R_OK)) {
+        Rcpp::stop("Cannot read given file '" + filename + "'.");
+    }
+            
     cpptoml::table g = cpptoml::parse_file(filename);
+
     if (verbose) {
-        Rcpp::Rcout << "<print method>\n" 
+        Rcpp::Rcout << "<default print method>\n" 
                     << g 
-                    << "</print method>\n" 
+                    << "</default print method>\n" 
                     << std::endl;
     }
 
