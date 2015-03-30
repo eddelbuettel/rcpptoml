@@ -85,10 +85,11 @@ SEXP getArray(cpptoml::array& arr) {
     Rcpp::StretchyList sl;
     auto it = arr.get().begin();
     while (it != arr.get().end()) {
-        if ((*it)->is_array())
-            ; //sl.push_front(*(*it)->as_array()); 
-        else
-            sl.push_front(getValue(*it));
+        Rcpp::Rcout << "Array value " << getValue(*it) << std::endl;
+        // if ((*it)->is_array())
+        //     ; //sl.push_front(*(*it)->as_array()); 
+        // else
+        //     sl.push_front(getValue(*it));
     }
     return Rcpp::as<Rcpp::List>(sl);
 }
@@ -112,7 +113,7 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
                 Rcpp::Rcout << "Array: " << p.first << std::endl;
                 printArray(Rcpp::Rcout, *ga);
             }
-            sl.push_front(Rcpp::Named(p.first)= R_NilValue); // = getArray(*ga)); 
+            sl.push_front(Rcpp::Named(p.first) = R_NilValue; // LOOPS: getArray(*ga)); 
         } else if (p.second->is_value()) {
             if (verbose) {
                 Rcpp::Rcout << "Value: " << p.first << "\n  :";
