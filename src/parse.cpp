@@ -66,6 +66,37 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
     }
 }
 
+SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
+    Rcpp::StretchyList sl;
+    for (auto & p : *t) {
+        if (p.second->is_table_array()) {
+            Rcpp::Rcout << "TableArray: " << p.first << std::endl;
+            sl.push_front(p.first); 
+            auto ga = std::dynamic_pointer_cast<cpptoml::table_array>(p.second);
+            //ga->print(stream, depth, p.first);
+        } else if (p.second->is_table()) {
+            auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
+            Rcpp::Rcout << "Table: " << p.first << std::endl;
+            sl.push_front(p.first); 
+        } else if (p.second->is_array()) {
+            Rcpp::Rcout << "Array: " << p.first << std::endl;
+            sl.push_front(p.first); 
+        } else if (p.second->is_value()) {
+            if (verbose) {
+                Rcpp::Rcout << "Value: " << p.first << "\n  :";
+                printValue(std::cout, p.second);
+                Rcpp::Rcout << std::endl;
+            }
+            sl.push_front(Rcpp::Named(p.first) = getValue(p.second)); 
+            
+        } else {
+            Rcpp::Rcout << "Other: " << p.first << std::endl;
+            sl.push_front(p.first); 
+        }
+    }
+    return Rcpp::as<Rcpp::List>(sl);
+}
+
 
 // [[Rcpp::export]]
 Rcpp::List tomlparse(std::string filename, bool verbose=false) {
@@ -87,8 +118,9 @@ Rcpp::List tomlparse(std::string filename, bool verbose=false) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table_array>(p.second);
             //ga->print(stream, depth, p.first);
         } else if (p.second->is_table()) {
-            Rcpp::Rcout << "Table: " << p.first << std::endl;
-            sl.push_front(p.first); 
+            auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
+            if (verbose) Rcpp::Rcout << "Table: " << p.first << std::endl;
+            sl.push_front(Rcpp::Named(p.first) = getTable(ga, verbose));
         } else if (p.second->is_array()) {
             Rcpp::Rcout << "Array: " << p.first << std::endl;
             sl.push_front(p.first); 
