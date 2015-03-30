@@ -41,7 +41,8 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
         return Rcpp::wrap(s);
     } else if (auto v = base->as<int64_t>()) {
         std::int64_t s(v->get());
-        return Rcpp::wrap(s);
+        int t = static_cast<int>(s); // we need int for wrap to work
+        return Rcpp::wrap(t);
     } else if (auto v = base->as<double>()) {
         double s(v->get());
         return Rcpp::wrap(s);
