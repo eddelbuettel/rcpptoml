@@ -85,31 +85,29 @@ void printArray(std::ostream& o, cpptoml::array& arr) {
 SEXP collapsedList(Rcpp::List ll) {
     Rcpp::List::iterator it = ll.begin(); 
     switch(TYPEOF(*it)) {
-    case REALSXP: {
-        Rcpp::NumericVector v(ll.begin(), ll.end());
-        return v;
-        break;
-    }
-    case INTSXP: {
-        Rcpp::IntegerVector v(ll.begin(), ll.end());
-        return v;
-        break;
-    }
-    case STRSXP: {              // minor code smell that this is different :-/
-        int n = ll.size();
-        Rcpp::CharacterVector v(n);
-        for (int i=0; i<n; i++) {
-            std::string s = Rcpp::as<std::string>(ll[i]);
-            v[i] = s;
+        case REALSXP: {
+            Rcpp::NumericVector v(ll.begin(), ll.end());
+            v = rev(Rcpp::clone(v));
+            return v;
+            break;              // not reached ...
         }
-        return v;
-        break;
-    }
-    case LGLSXP: {
-        Rcpp::IntegerVector v(ll.begin(), ll.end());
-        return v;
-        break;
-    }
+        case INTSXP: {
+            Rcpp::IntegerVector v(ll.begin(), ll.end());
+            v = rev(Rcpp::clone(v));
+            return v;
+            break;              // not reached ...
+        }
+        case STRSXP: {              // minor code smell that this is different :-/
+            int n = ll.size();
+            Rcpp::CharacterVector v(n);
+            for (int i=0; i<n; i++) {
+                std::string s = Rcpp::as<std::string>(ll[i]);
+                v[i] = s;
+            }
+            v = rev(Rcpp::clone(v));
+            return v;
+            break;              // not reached ...
+        }
     }
     return ll;
 }
@@ -120,7 +118,7 @@ SEXP getArray(cpptoml::array& arr) {
     auto it = arr.get().begin();
     while (it != arr.get().end()) {
         if ((*it)->is_array()) {
-            ;//sl.push_front(*(*it)->as_array()); 
+            sl.push_front(getArray(*(*it)->as_array())); 
             nonested = false;
         } else {
             sl.push_front(getValue(*it));
