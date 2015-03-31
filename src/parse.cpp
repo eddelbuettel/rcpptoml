@@ -122,6 +122,7 @@ SEXP getArray(cpptoml::array& arr) {
             nonested = false;
         } else {
             sl.push_front(getValue(*it));
+            nonested = true;
         }
         it++;
     } 
