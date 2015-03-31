@@ -82,18 +82,56 @@ void printArray(std::ostream& o, cpptoml::array& arr) {
     o << "]}";
 }
 
+SEXP collapsedList(Rcpp::List ll) {
+    Rcpp::List::iterator it = ll.begin(); 
+    switch(TYPEOF(*it)) {
+    case REALSXP: {
+        Rcpp::NumericVector v(ll.begin(), ll.end());
+        return v;
+        break;
+    }
+    case INTSXP: {
+        Rcpp::IntegerVector v(ll.begin(), ll.end());
+        return v;
+        break;
+    }
+    case STRSXP: {              // minor code smell that this is different :-/
+        int n = ll.size();
+        Rcpp::CharacterVector v(n);
+        for (int i=0; i<n; i++) {
+            std::string s = Rcpp::as<std::string>(ll[i]);
+            v[i] = s;
+        }
+        return v;
+        break;
+    }
+    case LGLSXP: {
+        Rcpp::IntegerVector v(ll.begin(), ll.end());
+        return v;
+        break;
+    }
+    }
+    return ll;
+}
+
 SEXP getArray(cpptoml::array& arr) {
     Rcpp::StretchyList sl;
+    bool nonested = true;       // ie no embedded array
     auto it = arr.get().begin();
     while (it != arr.get().end()) {
         if ((*it)->is_array()) {
             ;//sl.push_front(*(*it)->as_array()); 
+            nonested = false;
         } else {
             sl.push_front(getValue(*it));
         }
         it++;
+    } 
+    if (nonested) {
+        return collapsedList(Rcpp::as<Rcpp::List>(sl));
+    } else {
+        return Rcpp::as<Rcpp::List>(sl);
     }
-    return Rcpp::as<Rcpp::List>(sl);
 }
 
 
@@ -163,8 +201,8 @@ Rcpp::List tomlparse(std::string filename, bool verbose=false) {
             sl.push_front(Rcpp::Named(p.first) = getTable(ga, verbose));
         } else if (p.second->is_array()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::array>(p.second);
-            Rcpp::Rcout << "Array: " << p.first << std::endl;
-            sl.push_front(p.first); 
+            if (verbose) Rcpp::Rcout << "Array: " << p.first << std::endl;
+            sl.push_front(Rcpp::Named(p.first) = getArray(*ga)); 
         } else if (p.second->is_value()) {
             if (verbose) {
                 Rcpp::Rcout << "Value: " << p.first << "\n  :";
@@ -181,4 +219,3 @@ Rcpp::List tomlparse(std::string filename, bool verbose=false) {
     
     return Rcpp::as<Rcpp::List>(sl);
 }
-
