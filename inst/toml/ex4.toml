@@ -1,0 +1,21 @@
+
+[secA]
+foo = [ 1, 2, 3 ]
+bar = [ 1.1, 2.2, 3.3 ]
+biz = [ "1", "2", "3" ]
+# bla = [ 1979-05-27T07:32:00Z, 1979-05-28T07:32:00Z ]
+
+  [secA.subA]
+  bar = 1
+  biz = 7
+
+     [secA.subA.subsubA]
+     bing = 22
+     bong = 33
+
+  [secA.subB]
+  gin = 102
+  fizz = 99
+
+[final]
+allgood = true
