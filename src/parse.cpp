@@ -87,13 +87,11 @@ SEXP collapsedList(Rcpp::List ll) {
     switch(TYPEOF(*it)) {
         case REALSXP: {
             Rcpp::NumericVector v(ll.begin(), ll.end());
-            v = rev(Rcpp::clone(v));
             return v;
             break;              // not reached ...
         }
         case INTSXP: {
             Rcpp::IntegerVector v(ll.begin(), ll.end());
-            v = rev(Rcpp::clone(v));
             return v;
             break;              // not reached ...
         }
@@ -104,7 +102,6 @@ SEXP collapsedList(Rcpp::List ll) {
                 std::string s = Rcpp::as<std::string>(ll[i]);
                 v[i] = s;
             }
-            v = rev(Rcpp::clone(v));
             return v;
             break;              // not reached ...
         }
@@ -118,10 +115,10 @@ SEXP getArray(cpptoml::array& arr) {
     auto it = arr.get().begin();
     while (it != arr.get().end()) {
         if ((*it)->is_array()) {
-            sl.push_front(getArray(*(*it)->as_array())); 
+            sl.push_back(getArray(*(*it)->as_array())); 
             nonested = false;
         } else {
-            sl.push_front(getValue(*it));
+            sl.push_back(getValue(*it));
             nonested = true;
         }
         it++;
@@ -195,7 +192,7 @@ Rcpp::List tomlparse(std::string filename, bool verbose=false) {
             auto ait = arr.begin();
             while (ait != arr.end()) {
                 auto ta = std::dynamic_pointer_cast<cpptoml::table>(*ait);
-                sl.push_back (Rcpp::Named(p.first) = getTable(ta, verbose));
+                sl.push_front (Rcpp::Named(p.first) = getTable(ta, verbose));
                 ++ait;
             }
 
