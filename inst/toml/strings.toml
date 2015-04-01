@@ -1,0 +1,17 @@
+# From https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.4.0.md
+
+# The following strings are byte-for-byte equivalent:
+key1 = "The quick brown fox jumps over the lazy dog."
+
+key2 = """
+The quick brown \
+
+
+  fox jumps over \
+    the lazy dog."""
+
+key3 = """\
+       The quick brown \
+       fox jumps over \
+       the lazy dog.\
+       """
