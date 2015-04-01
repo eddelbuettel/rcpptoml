@@ -137,12 +137,11 @@ SEXP getArray(cpptoml::array& arr) {
 SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
     Rcpp::StretchyList sl;
     for (auto & p : *t) {
-        if (p.second->is_table_array()) {
-            Rcpp::Rcout << "TableArray: " << p.first << std::endl;
-            sl.push_front(p.first); 
-            auto ga = std::dynamic_pointer_cast<cpptoml::table_array>(p.second);
-            //ga->print(stream, depth, p.first);
-        } else if (p.second->is_table()) {
+        // if (p.second->is_table_array()) {
+        //     if (verbose) Rcpp::Rcout << "TableArray: " << p.first << "..." << std::endl;
+        //     Rcpp::Rcout << "]" << std::endl;
+        // } else 
+        if (p.second->is_table()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
             if (verbose) Rcpp::Rcout << "Table: " << p.first << std::endl;
             sl.push_front(Rcpp::Named(p.first) = getTable(ga, verbose));
@@ -190,18 +189,26 @@ Rcpp::List tomlparse(std::string filename, bool verbose=false) {
     for (auto & p : g) {
 
         if (p.second->is_table_array()) {
-            Rcpp::Rcout << "TableArray: " << p.first << std::endl;
-            sl.push_front(p.first); 
-            auto ga = std::dynamic_pointer_cast<cpptoml::table_array>(p.second);
-            // TODO  ga->print(stream, depth, p.first);
+            if (verbose) Rcpp::Rcout << "TableArray: " << p.first << std::endl;
+            //auto ga = std::dynamic_pointer_cast<cpptoml::table_array>(p.second);
+            auto arr = g.get_table_array(p.first)->get();
+            auto ait = arr.begin();
+            while (ait != arr.end()) {
+                auto ta = std::dynamic_pointer_cast<cpptoml::table>(*ait);
+                sl.push_back (Rcpp::Named(p.first) = getTable(ta, verbose));
+                ++ait;
+            }
+
         } else if (p.second->is_table()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
             if (verbose) Rcpp::Rcout << "Table: " << p.first << std::endl;
             sl.push_front(Rcpp::Named(p.first) = getTable(ga, verbose));
+
         } else if (p.second->is_array()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::array>(p.second);
             if (verbose) Rcpp::Rcout << "Array: " << p.first << std::endl;
             sl.push_front(Rcpp::Named(p.first) = getArray(*ga)); 
+
         } else if (p.second->is_value()) {
             if (verbose) {
                 Rcpp::Rcout << "Value: " << p.first << "\n  :";
