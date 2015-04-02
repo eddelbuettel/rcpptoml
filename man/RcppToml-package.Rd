@@ -1,38 +1,33 @@
 \name{RcppToml-package}
 \alias{RcppToml-package}
 \alias{RcppToml}
+\alias{tomlparse}
 \docType{package}
 \title{
-What the package does (short line)
+  R Access to Parser for TOML (Tom's Obvious Markup Language)
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+  TOML (\dQuote{Tom's Obvious Markup Language}) is a configuration file grammar for
+  humans. It is easier to read and edit than the alternatives yet arguably more
+  useful as it is stronly types: values come back as integer, double,
+  (multiline-) character (strings), boolean or Datetime. Moreover, complex
+  nesting and arrays are supported as well.
 }
 \details{
-\tabular{ll}{
-Package: \tab RcppToml\cr
-Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2015-03-27\cr
-License: \tab GPL (>= 2)\cr
-}
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+  At present, a single parsing function \code{tomlparse} is implemented
+  which returns a list object corresponding to the configuration from
+  the supplied file.
 }
 \author{
-Your Name
+  Dirk Eddelbuettel put togther the R package. Charles Geigle wrote the
+  cpptoml parser. Tom Preston-Werner is the Tom behind TOML.
 
-Maintainer: Your Name <your@email.com>
+  Maintainer: Dirk Eddelbuettel <edd@debian.org>
 }
 \references{
-~~ Literature or other references for background information ~~
+  TOML: \url{https://github.com/toml-lang/toml}
 }
-\keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
+\keyword{package}
 \examples{
-%% ~~ simple examples of the most important functions ~~
+  # None yet
 }
