@@ -1,11 +1,15 @@
 Package: RcppToml
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
-Date: 2015-03-27
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: More about what it does (maybe more than one line)
+Title: Rcpp Bindings to Parser for Tom's Obvious Markup Language
+Version: 0.0.1
+Date: 2015-04-02
+Author: Dirk Eddelbuettel
+Maintainer: Dirk Eddelbuettel <edd@debian.org>
+Description: The configuration format defined by TOML (which stands for
+ "Tom's Obvious Markup Language") specifies an excellent format suitable
+ for both human editing and reading as well as the obvious uses of a
+ machine-readable format. This package uses Rcpp to connect the excellent
+ cpptoml parser written by Chase Geigle (in C++11) to R.
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.11.5)
 LinkingTo: Rcpp
