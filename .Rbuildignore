@@ -1,3 +1,5 @@
 parse$
 parse_stdin$
 .travis.yml
+src/
+R/RcppExports.R
