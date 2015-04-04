@@ -1,7 +1,8 @@
 2015-04-04  Dirk Eddelbuettel  <edd@debian.org>
 
-	* tests/toml_example.toml*: Added regression test from toml-lang repo
-	* tests/toml_hard_example.toml*: Ditto
+	* tests/toml_example.toml: Added regression tests from toml-lang repo
+	* tests/toml_hard_example.toml: Ditto
+	* teststoml_example-v0.4.0.toml: Ditto (with line 56 edited)
 	* tests/tomlExamples.R: Added caller for toml examples
 	* tests/tomlExamples.Rout.save: Added reference output
 
