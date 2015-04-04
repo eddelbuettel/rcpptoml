@@ -13,3 +13,24 @@
 	* .travis.yml: Added, later disabled as Travis appears to be
 	currently borked for new projects requiring C++11
 
+2015-04-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp: Simplification / correction to ordering; recursion
+	into table_array
+
+2015-04-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp: Now with nested arrays
+
+2015-04-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp: Arrays are now 'flattened' into vectors
+
+2015-03-31  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp: Basic array functionality; nested tables; basic
+	value types, 'verbose' flag
+
+2015-03-30  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp: Beginnings of package; use StretchyList
