@@ -109,7 +109,7 @@ SEXP collapsedList(Rcpp::List ll) {
     return ll;
 }
 
-SEXP getArray(cpptoml::array& arr) {
+SEXP getArray(const cpptoml::array& arr) {
     Rcpp::StretchyList sl;
     bool nonested = true;       // ie no embedded array
     auto it = arr.get().begin();
@@ -134,10 +134,6 @@ SEXP getArray(cpptoml::array& arr) {
 SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
     Rcpp::StretchyList sl;
     for (auto & p : *t) {
-        // if (p.second->is_table_array()) {
-        //     if (verbose) Rcpp::Rcout << "TableArray: " << p.first << "..." << std::endl;
-        //     Rcpp::Rcout << "]" << std::endl;
-        // } else 
         if (p.second->is_table()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
             if (verbose) Rcpp::Rcout << "Table: " << p.first << std::endl;
@@ -167,7 +163,7 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
 
 
 // [[Rcpp::export]]
-Rcpp::List tomlparse(std::string filename, bool verbose=false) {
+Rcpp::List tomlparse(const std::string filename, bool verbose=false) {
 
     if (access(filename.c_str(), R_OK)) {
         Rcpp::stop("Cannot read given file '" + filename + "'.");
