@@ -1,0 +1,101 @@
+
+R version 3.1.3 (2015-03-09) -- "Smooth Sidewalk"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: i686-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+> print(RcppToml::tomlparse("arrays.toml"))
+Other: variety
+Other: variety
+$array
+$array$key1
+[1] 1 2 3
+
+$array$key2
+[1] "red"    "yellow" "green" 
+
+$array$key3
+$array$key3[[1]]
+[1] 1 2
+
+$array$key3[[2]]
+[1] 3 4 5
+
+
+$array$key4
+$array$key4[[1]]
+[1] 1 2
+
+$array$key4[[2]]
+[1] "a" "b" "c"
+
+
+$array$key5
+[1] 1 2 3
+
+$array$key6
+[1] 1 2
+
+
+$products
+$products$name
+[1] "Nail"
+
+$products$sku
+[1] 284758393
+
+$products$color
+[1] "gray"
+
+
+$products
+list()
+
+$products
+$products$name
+[1] "Hammer"
+
+$products$sku
+[1] 738594937
+
+
+$fruit
+$fruit$name
+[1] "banana"
+
+$fruit[[2]]
+[1] "variety"
+
+
+$fruit
+$fruit$name
+[1] "apple"
+
+$fruit[[2]]
+[1] "variety"
+
+$fruit$physical
+$fruit$physical$color
+[1] "red"
+
+$fruit$physical$shape
+[1] "round"
+
+
+
+> 
+> proc.time()
+   user  system elapsed 
+  0.488   0.436   0.457 

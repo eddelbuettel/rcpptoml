@@ -1,0 +1,38 @@
+################################################################################
+## Table
+
+# Tables (also known as hash tables or dictionaries) are collections of
+# key/value pairs. They appear in square brackets on a line by themselves.
+
+[table]
+
+key = "value" # Yeah, you can do this.
+
+# Nested tables are denoted by table names with dots in them. Name your tables
+# whatever crap you please, just don't use #, ., [ or ].
+
+[table.subtable]
+
+key = "another value"
+
+# You don't need to specify all the super-tables if you don't want to. TOML
+# knows how to do it for you.
+
+# [x] you
+# [x.y] don't
+# [x.y.z] need these
+[x.y.z.w] # for this to work
+
+
+################################################################################
+## Inline Table
+
+# Inline tables provide a more compact syntax for expressing tables. They are
+# especially useful for grouped data that can otherwise quickly become verbose.
+# Inline tables are enclosed in curly braces `{` and `}`. No newlines are
+# allowed between the curly braces unless they are valid within a value.
+
+[table.inline]
+
+name = { first = "Tom", last = "Preston-Werner" }
+point = { x = 1, y = 2 }

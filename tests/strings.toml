@@ -1,0 +1,56 @@
+################################################################################
+## String
+
+# There are four ways to express strings: basic, multi-line basic, literal, and
+# multi-line literal. All strings must contain only valid UTF-8 characters.
+
+[string.basic]
+
+#basic = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+basic = "I'm a string. \"You can quote me\". Name\tJose\nLocation\tSF."
+
+[string.multiline]
+
+# The following strings are byte-for-byte equivalent:
+key1 = "One\nTwo"
+key2 = """One\nTwo"""
+key3 = """
+One
+Two"""
+
+[string.multiline.continued]
+
+# The following strings are byte-for-byte equivalent:
+key1 = "The quick brown fox jumps over the lazy dog."
+
+key2 = """
+The quick brown \
+
+
+  fox jumps over \
+    the lazy dog."""
+
+key3 = """\
+       The quick brown \
+       fox jumps over \
+       the lazy dog.\
+       """
+
+[string.literal]
+
+# What you see is what you get.
+winpath  = 'C:\Users\nodejs\templates'
+winpath2 = '\\ServerX\admin$\system32\'
+quoted   = 'Tom "Dubs" Preston-Werner'
+regex    = '<\i\c*\s*>'
+
+
+[string.literal.multiline]
+
+regex2 = '''I [dw]on't need \d{2} apples'''
+lines  = '''
+The first newline is
+trimmed in raw strings.
+   All other whitespace
+   is preserved.
+'''

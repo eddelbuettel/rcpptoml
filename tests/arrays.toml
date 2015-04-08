@@ -1,0 +1,69 @@
+
+################################################################################
+## Array
+
+# Arrays are square brackets with other primitives inside. Whitespace is
+# ignored. Elements are separated by commas. Data types may not be mixed.
+
+[array]
+
+key1 = [ 1, 2, 3 ]
+key2 = [ "red", "yellow", "green" ]
+key3 = [ [ 1, 2 ], [3, 4, 5] ]
+key4 = [ [ 1, 2 ], ["a", "b", "c"] ] # this is ok
+
+# Arrays can also be multiline. So in addition to ignoring whitespace, arrays
+# also ignore newlines between the brackets.  Terminating commas are ok before
+# the closing bracket.
+
+key5 = [
+  1, 2, 3
+]
+key6 = [
+  1,
+  2, # this is ok
+]
+
+
+################################################################################
+## Array of Tables
+
+# These can be expressed by using a table name in double brackets. Each table
+# with the same double bracketed name will be an element in the array. The
+# tables are inserted in the order encountered.
+
+[[products]]
+
+name = "Hammer"
+sku = 738594937
+
+[[products]]
+
+[[products]]
+
+name = "Nail"
+sku = 284758393
+color = "gray"
+
+
+# You can create nested arrays of tables as well.
+
+[[fruit]]
+  name = "apple"
+
+  [fruit.physical]
+    color = "red"
+    shape = "round"
+
+  [[fruit.variety]]
+    name = "red delicious"
+
+  [[fruit.variety]]
+    name = "granny smith"
+
+[[fruit]]
+  name = "banana"
+
+  [[fruit.variety]]
+    name = "plantain"
+

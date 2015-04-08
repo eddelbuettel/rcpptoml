@@ -1,0 +1,23 @@
+################################################################################
+## Boolean
+
+# Booleans are just the tokens you're used to. Always lowercase.
+
+[boolean]
+
+True = true
+False = false
+
+
+################################################################################
+## Datetime
+
+# Datetimes are RFC 3339 dates.
+
+[datetime]
+
+key1 = 1979-05-27T07:32:00Z
+key2 = 1979-05-27T00:32:00-07:00
+key3 = 1979-05-27T00:32:00.999999-07:00
+
+

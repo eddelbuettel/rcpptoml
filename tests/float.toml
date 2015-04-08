@@ -1,0 +1,28 @@
+################################################################################
+## Float
+
+# A float consists of an integer part (which may be prefixed with a plus or
+# minus sign) followed by a fractional part and/or an exponent part.
+
+[float.fractional]
+
+key1 = +1.0
+key2 = 3.1415
+key3 = -0.01
+
+[float.exponent]
+
+key1 = 5e+22
+key2 = 1e6
+key3 = -2E-2
+
+[float.both]
+
+key = 6.626e-34
+
+[float.underscores]
+
+key1 = 9_224_617.445_991_228_313
+key2 = 1e1_000
+
+

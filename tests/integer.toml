@@ -1,0 +1,21 @@
+################################################################################
+## Integer
+
+# Integers are whole numbers. Positive numbers may be prefixed with a plus sign.
+# Negative numbers are prefixed with a minus sign.
+
+[integer]
+
+key1 = +99
+key2 = 42
+key3 = 0
+key4 = -17
+
+[integer.underscores]
+
+# For large numbers, you may use underscores to enhance readability. Each
+# underscore must be surrounded by at least one digit.
+key1 = 1_000
+key2 = 5_349_221
+key3 = 1_2_3_4_5     # valid but inadvisable
+

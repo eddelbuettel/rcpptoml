@@ -1,0 +1,60 @@
+
+R version 3.1.3 (2015-03-09) -- "Smooth Sidewalk"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: i686-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+> print(RcppToml::tomlparse("tables.toml"))
+$table
+$table$key
+[1] "value"
+
+$table$subtable
+$table$subtable$key
+[1] "another value"
+
+
+$table$inline
+$table$inline$name
+$table$inline$name$first
+[1] "Tom"
+
+$table$inline$name$last
+[1] "Preston-Werner"
+
+
+$table$inline$point
+$table$inline$point$x
+[1] 1
+
+$table$inline$point$y
+[1] 2
+
+
+
+
+$x
+$x$y
+$x$y$z
+$x$y$z$w
+list()
+
+
+
+
+> 
+> proc.time()
+   user  system elapsed 
+  0.480   0.444   0.450 

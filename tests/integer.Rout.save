@@ -1,0 +1,48 @@
+
+R version 3.1.3 (2015-03-09) -- "Smooth Sidewalk"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: i686-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+> print(RcppToml::tomlparse("integer.toml"))
+$integer
+$integer$key1
+[1] 99
+
+$integer$key2
+[1] 42
+
+$integer$key3
+[1] 0
+
+$integer$key4
+[1] -17
+
+$integer$underscores
+$integer$underscores$key1
+[1] 1000
+
+$integer$underscores$key2
+[1] 5349221
+
+$integer$underscores$key3
+[1] 12345
+
+
+
+> 
+> proc.time()
+   user  system elapsed 
+  0.464   0.456   0.461 
