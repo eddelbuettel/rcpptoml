@@ -2,3 +2,8 @@ parse$
 parse_stdin$
 .travis.yml
 tests/tomlExamples.Rout.save
+tests/arrays.Rout.save
+tests/bool_datetime.Rout.save
+tests/integer.Rout.save
+tests/float.Rout.save
+tests/strings.Rout.save
