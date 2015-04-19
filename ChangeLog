@@ -1,3 +1,9 @@
+2015-04-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/sort.R (.sort): Add internal sort function to recursively sort
+	objects returned as the C++ unordered_hash representation leads to
+	different returns on different platforms (eg 32 vs 64 Linux)
+
 2015-04-04  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (OS_type): Mention need for a genuine C++11 compiler
