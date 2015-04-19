@@ -1,7 +1,7 @@
 
-R version 3.1.3 (2015-03-09) -- "Smooth Sidewalk"
+R version 3.2.0 (2015-04-16) -- "Full of Ingredients"
 Copyright (C) 2015 The R Foundation for Statistical Computing
-Platform: i686-pc-linux-gnu (32-bit)
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -16,23 +16,36 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml::tomlparse("strings.toml"))
+> print(RcppToml:::.sort(RcppToml::tomlparse("strings.toml")))
 $string
 $string$basic
 $string$basic$basic
 [1] "I'm a string. \\\"You can quote me\\\". Name\tJose\\nLocation\tSF."
 
 
+$string$literal
+$string$literal$multiline
+$string$literal$multiline$lines
+[1] "The first newline is\\ntrimmed in raw strings.\\n   All other whitespace\\n   is preserved.\\n"
+
+$string$literal$multiline$regex2
+[1] "I [dw]on't need \\\\d{2} apples"
+
+
+$string$literal$quoted
+[1] "Tom \\\"Dubs\\\" Preston-Werner"
+
+$string$literal$regex
+[1] "<\\\\i\\\\c*\\\\s*>"
+
+$string$literal$winpath
+[1] "C:\\\\Users\\\\nodejs\\\\templates"
+
+$string$literal$winpath2
+[1] "\\\\\\\\ServerX\\\\admin$\\\\system32\\\\"
+
+
 $string$multiline
-$string$multiline$key1
-[1] "One\\nTwo"
-
-$string$multiline$key2
-[1] "One\\nTwo"
-
-$string$multiline$key3
-[1] "One\\nTwo"
-
 $string$multiline$continued
 $string$multiline$continued$key1
 [1] "The quick brown fox jumps over the lazy dog."
@@ -44,31 +57,18 @@ $string$multiline$continued$key3
 [1] "The quick brown fox jumps over the lazy dog."
 
 
+$string$multiline$key1
+[1] "One\\nTwo"
 
-$string$literal
-$string$literal$winpath
-[1] "C:\\\\Users\\\\nodejs\\\\templates"
+$string$multiline$key2
+[1] "One\\nTwo"
 
-$string$literal$winpath2
-[1] "\\\\\\\\ServerX\\\\admin$\\\\system32\\\\"
-
-$string$literal$quoted
-[1] "Tom \\\"Dubs\\\" Preston-Werner"
-
-$string$literal$regex
-[1] "<\\\\i\\\\c*\\\\s*>"
-
-$string$literal$multiline
-$string$literal$multiline$regex2
-[1] "I [dw]on't need \\\\d{2} apples"
-
-$string$literal$multiline$lines
-[1] "The first newline is\\ntrimmed in raw strings.\\n   All other whitespace\\n   is preserved.\\n"
-
+$string$multiline$key3
+[1] "One\\nTwo"
 
 
 
 > 
 > proc.time()
    user  system elapsed 
-  0.476   0.448   0.457 
+  0.338   0.022   0.347 

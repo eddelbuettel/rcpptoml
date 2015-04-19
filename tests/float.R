@@ -1,2 +1,2 @@
 
-print(RcppToml::tomlparse("float.toml"))
+print(RcppToml:::.sort(RcppToml::tomlparse("float.toml")))
