@@ -211,7 +211,7 @@ Rcpp::List tomlparse(const std::string filename, bool verbose=false) {
             sl.push_front(Rcpp::Named(p.first) = getValue(p.second)); 
             
         } else {
-            Rcpp::Rcout << "Other: " << p.first << std::endl;
+            if (verbose) Rcpp::Rcout << "Other: " << p.first << std::endl;
             sl.push_front(p.first); 
         }
     }
