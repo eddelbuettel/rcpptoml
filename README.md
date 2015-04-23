@@ -23,7 +23,7 @@ supported as are all base types.  Still needs testing.
 
 Dirk Eddelbuettel
 
-### Author
+### License
 
 GPL (>= 2)
 
