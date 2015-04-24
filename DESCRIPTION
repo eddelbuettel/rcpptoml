@@ -10,6 +10,7 @@ Description: The configuration format defined by TOML (which stands for
  for both human editing as well as the obvious uses of a machine-readable
  format. This package uses Rcpp to connect the excellent cpptoml parser
  written by Chase Geigle (in modern C++11) to R. 
+OS_type: unix
 SystemRequirements: A genuine C++11 compiler. The version of g++ in Rtools 
  is not sufficient.
 License: GPL (>= 2)

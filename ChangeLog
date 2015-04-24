@@ -1,5 +1,8 @@
 2015-04-24  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (OS_type): Set to unix while Windows still labours
+	along with a non-C++11 compiler
+
 	* src/parse.cpp (getValue): Use timegm() as we are translating a UTC
 	time into time_t, not a local time
 
