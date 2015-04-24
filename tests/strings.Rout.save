@@ -16,59 +16,29 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml:::.sort(RcppToml::tomlparse("strings.toml")))
-$string
-$string$basic
-$string$basic$basic
-[1] "I'm a string. \\\"You can quote me\\\". Name\tJose\\nLocation\tSF."
-
-
-$string$literal
-$string$literal$multiline
-$string$literal$multiline$lines
-[1] "The first newline is\\ntrimmed in raw strings.\\n   All other whitespace\\n   is preserved.\\n"
-
-$string$literal$multiline$regex2
-[1] "I [dw]on't need \\\\d{2} apples"
-
-
-$string$literal$quoted
-[1] "Tom \\\"Dubs\\\" Preston-Werner"
-
-$string$literal$regex
-[1] "<\\\\i\\\\c*\\\\s*>"
-
-$string$literal$winpath
-[1] "C:\\\\Users\\\\nodejs\\\\templates"
-
-$string$literal$winpath2
-[1] "\\\\\\\\ServerX\\\\admin$\\\\system32\\\\"
-
-
-$string$multiline
-$string$multiline$continued
-$string$multiline$continued$key1
-[1] "The quick brown fox jumps over the lazy dog."
-
-$string$multiline$continued$key2
-[1] "The quick brown fox jumps over the lazy dog."
-
-$string$multiline$continued$key3
-[1] "The quick brown fox jumps over the lazy dog."
-
-
-$string$multiline$key1
-[1] "One\\nTwo"
-
-$string$multiline$key2
-[1] "One\\nTwo"
-
-$string$multiline$key3
-[1] "One\\nTwo"
-
-
-
+> print(RcppToml::tomlparse("strings.toml"))
+List of 1
+ $ string:List of 3
+  ..$ basic    :List of 1
+  .. ..$ basic: chr "I'm a string. \\\"You can quote me\\\". Name\tJose\\nLocation\tSF."
+  ..$ literal  :List of 5
+  .. ..$ multiline:List of 2
+  .. .. ..$ lines : chr "The first newline is\\ntrimmed in raw strings.\\n   All other whitespace\\n   is preserved.\\n"
+  .. .. ..$ regex2: chr "I [dw]on't need \\\\d{2} apples"
+  .. ..$ quoted   : chr "Tom \\\"Dubs\\\" Preston-Werner"
+  .. ..$ regex    : chr "<\\\\i\\\\c*\\\\s*>"
+  .. ..$ winpath  : chr "C:\\\\Users\\\\nodejs\\\\templates"
+  .. ..$ winpath2 : chr "\\\\\\\\ServerX\\\\admin$\\\\system32\\\\"
+  ..$ multiline:List of 4
+  .. ..$ continued:List of 3
+  .. .. ..$ key1: chr "The quick brown fox jumps over the lazy dog."
+  .. .. ..$ key2: chr "The quick brown fox jumps over the lazy dog."
+  .. .. ..$ key3: chr "The quick brown fox jumps over the lazy dog."
+  .. ..$ key1     : chr "One\\nTwo"
+  .. ..$ key2     : chr "One\\nTwo"
+  .. ..$ key3     : chr "One\\nTwo"
+NULL
 > 
 > proc.time()
    user  system elapsed 
-  0.338   0.022   0.347 
+  0.337   0.021   0.347 

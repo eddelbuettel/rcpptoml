@@ -1,2 +1,2 @@
 
-print(RcppToml:::.sort(RcppToml::tomlparse("strings.toml")))
+print(RcppToml::tomlparse("strings.toml"))

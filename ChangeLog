@@ -1,3 +1,8 @@
+2015-04-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* tests/*.R: Simplify tests call as we no longer need explicit sorting
+	* tests/*.Rout.save: Update reference output as well
+
 2015-04-23  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/Makevars: Enable compile-time option to use std::map now that

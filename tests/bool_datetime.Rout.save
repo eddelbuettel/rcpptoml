@@ -16,27 +16,17 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml:::.sort(RcppToml::tomlparse("bool_datetime.toml")))
-$boolean
-$boolean$False
-[1] FALSE
-
-$boolean$True
-[1] TRUE
-
-
-$datetime
-$datetime$key1
-[1] "1979-05-27 07:32:00 CDT"
-
-$datetime$key2
-[1] "1979-05-27 00:32:00 CDT"
-
-$datetime$key3
-[1] "1979-05-27 00:32:00 CDT"
-
-
+> print(RcppToml::tomlparse("bool_datetime.toml"))
+List of 2
+ $ boolean :List of 2
+  ..$ False: logi FALSE
+  ..$ True : logi TRUE
+ $ datetime:List of 3
+  ..$ key1: POSIXct[1:1], format: "1979-05-27 08:32:00"
+  ..$ key2: POSIXct[1:1], format: "1979-05-27 00:32:00"
+  ..$ key3: POSIXct[1:1], format: "1979-05-27 00:32:00"
+NULL
 > 
 > proc.time()
    user  system elapsed 
-  0.347   0.025   0.357 
+  0.359   0.023   0.371 

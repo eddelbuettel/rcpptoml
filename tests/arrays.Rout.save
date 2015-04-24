@@ -16,86 +16,40 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml:::.sort(RcppToml::tomlparse("arrays.toml")))
+> print(RcppToml::tomlparse("arrays.toml"))
 Other: variety
 Other: variety
-$array
-$array$key1
-[1] 1 2 3
-
-$array$key2
-[1] "red"    "yellow" "green" 
-
-$array$key3
-$array$key3[[1]]
-[1] 1 2
-
-$array$key3[[2]]
-[1] 3 4 5
-
-
-$array$key4
-$array$key4[[1]]
-[1] 1 2
-
-$array$key4[[2]]
-[1] "a" "b" "c"
-
-
-$array$key5
-[1] 1 2 3
-
-$array$key6
-[1] 1 2
-
-
-$fruit
-$fruit[[1]]
-[1] "variety"
-
-$fruit$name
-[1] "banana"
-
-
-$fruit
-$fruit[[1]]
-[1] "variety"
-
-$fruit$name
-[1] "apple"
-
-$fruit$physical
-$fruit$physical$color
-[1] "red"
-
-$fruit$physical$shape
-[1] "round"
-
-
-
-$products
-$products$color
-[1] "gray"
-
-$products$name
-[1] "Nail"
-
-$products$sku
-[1] 284758393
-
-
-$products
-list()
-
-$products
-$products$name
-[1] "Hammer"
-
-$products$sku
-[1] 738594937
-
-
+List of 6
+ $ array   :List of 6
+  ..$ key1: int [1:3] 1 2 3
+  ..$ key2: chr [1:3] "red" "yellow" "green"
+  ..$ key3:List of 2
+  .. ..$ : int [1:2] 1 2
+  .. ..$ : int [1:3] 3 4 5
+  ..$ key4:List of 2
+  .. ..$ : int [1:2] 1 2
+  .. ..$ : chr [1:3] "a" "b" "c"
+  ..$ key5: int [1:3] 1 2 3
+  ..$ key6: int [1:2] 1 2
+ $ fruit   :List of 3
+  ..$ name    : chr "apple"
+  ..$ physical:List of 2
+  .. ..$ color: chr "red"
+  .. ..$ shape: chr "round"
+  ..$         : chr "variety"
+ $ fruit   :List of 2
+  ..$ name: chr "banana"
+  ..$     : chr "variety"
+ $ products:List of 2
+  ..$ name: chr "Hammer"
+  ..$ sku : int 738594937
+ $ products: list()
+ $ products:List of 3
+  ..$ color: chr "gray"
+  ..$ name : chr "Nail"
+  ..$ sku  : int 284758393
+NULL
 > 
 > proc.time()
    user  system elapsed 
-  0.353   0.026   0.364 
+  0.343   0.021   0.354 

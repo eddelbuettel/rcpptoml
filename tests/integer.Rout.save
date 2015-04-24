@@ -16,33 +16,19 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml:::.sort(RcppToml::tomlparse("integer.toml")))
-$integer
-$integer$key1
-[1] 99
-
-$integer$key2
-[1] 42
-
-$integer$key3
-[1] 0
-
-$integer$key4
-[1] -17
-
-$integer$underscores
-$integer$underscores$key1
-[1] 1000
-
-$integer$underscores$key2
-[1] 5349221
-
-$integer$underscores$key3
-[1] 12345
-
-
-
+> print(RcppToml::tomlparse("integer.toml"))
+List of 1
+ $ integer:List of 5
+  ..$ key1       : int 99
+  ..$ key2       : int 42
+  ..$ key3       : int 0
+  ..$ key4       : int -17
+  ..$ underscores:List of 3
+  .. ..$ key1: int 1000
+  .. ..$ key2: int 5349221
+  .. ..$ key3: int 12345
+NULL
 > 
 > proc.time()
    user  system elapsed 
-  0.335   0.024   0.343 
+  0.336   0.020   0.346 
