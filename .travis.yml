@@ -14,7 +14,6 @@ env:
     - R_BUILD_ARGS="--no-build-vignettes --no-manual"
     - R_CHECK_ARGS="--no-build-vignettes --no-manual"
     - _R_CHECK_FORCE_SUGGESTS_=FALSE
-    - CXX="g++-4.9"
 
 before_install:
   - curl -OL http://raw.github.com/eddelbuettel/r-travis/master/scripts/travis-tool.sh
@@ -26,6 +25,7 @@ before_install:
 
 install:
   - ./travis-tool.sh install_aptget r-cran-rcpp g++-4.9
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
 
 script:
   - ./travis-tool.sh run_tests
