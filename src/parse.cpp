@@ -59,6 +59,7 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
         tm.tm_min  = s.minute;
         tm.tm_sec  = s.second;
         time_t tt = mktime(&tm);
+        tt = tt - s.hour_offset*60*60 - s.minute_offset*60;
         Rcpp::Datetime r(tt + s.microsecond * 1.0e-6);
         return Rcpp::wrap(r);
     } else {
