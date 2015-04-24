@@ -58,9 +58,11 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
         tm.tm_hour = s.hour;
         tm.tm_min  = s.minute;
         tm.tm_sec  = s.second;
-        time_t tt = mktime(&tm);
+        time_t tt = timegm(&tm); // timegm() is not part of POSIX though
         tt = tt - s.hour_offset*60*60 - s.minute_offset*60;
-        Rcpp::Datetime r(tt + s.microsecond * 1.0e-6);
+        Rcpp::NumericVector r(1, tt + s.microsecond * 1.0e-6);
+        r.attr("class") = Rcpp::CharacterVector::create("POSIXct", "POSIXt");
+        r.attr("tzone") = "UTC";
         return Rcpp::wrap(r);
     } else {
         Rcpp::warning("Unparsed value, returning null");
