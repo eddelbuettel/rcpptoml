@@ -2,3 +2,5 @@ parse$
 parse_stdin$
 .travis.yml
 tests/tomlExamples.Rout.save
+^.*\.Rproj$
+^\.Rproj\.user$

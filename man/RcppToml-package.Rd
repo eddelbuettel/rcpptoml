@@ -2,6 +2,7 @@
 \alias{RcppToml-package}
 \alias{RcppToml}
 \alias{tomlparse}
+\alias{parseToml}
 \docType{package}
 \title{
   R Access to Parser for TOML (Tom's Obvious Markup Language)
@@ -14,8 +15,9 @@
   nesting and arrays are supported as well.
 }
 \details{
-  At present, a single parsing function \code{tomlparse} is implemented
-  which returns a list object corresponding to the configuration from
+  At present, a single parsing function \code{parseToml} (with
+  convenience alias \code{tomlparse}) is implemented.
+  It returns a list object corresponding to the configuration from
   the supplied file.
 }
 \author{
