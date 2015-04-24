@@ -137,25 +137,25 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
         if (p.second->is_table()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
             if (verbose) Rcpp::Rcout << "Table: " << p.first << std::endl;
-            sl.push_front(Rcpp::Named(p.first) = getTable(ga, verbose));
+            sl.push_back(Rcpp::Named(p.first) = getTable(ga, verbose));
         } else if (p.second->is_array()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::array>(p.second);
             if (verbose) {
                 Rcpp::Rcout << "Array: " << p.first << std::endl;
                 printArray(Rcpp::Rcout, *ga);
             }
-            sl.push_front(Rcpp::Named(p.first) = getArray(*ga)); 
+            sl.push_back(Rcpp::Named(p.first) = getArray(*ga)); 
         } else if (p.second->is_value()) {
             if (verbose) {
                 Rcpp::Rcout << "Value: " << p.first << "\n  :";
                 printValue(Rcpp::Rcout, p.second);
                 Rcpp::Rcout << std::endl;
             }
-            sl.push_front(Rcpp::Named(p.first) = getValue(p.second)); 
+            sl.push_back(Rcpp::Named(p.first) = getValue(p.second)); 
             
         } else {
             Rcpp::Rcout << "Other: " << p.first << std::endl;
-            sl.push_front(p.first); 
+            sl.push_back(p.first); 
         }
     }
     return Rcpp::as<Rcpp::List>(sl);
@@ -163,7 +163,7 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
 
 
 // [[Rcpp::export]]
-Rcpp::List tomlparse(const std::string filename, bool verbose=false) {
+Rcpp::List tomlparseImpl(const std::string filename, bool verbose=false) {
 
     if (access(filename.c_str(), R_OK)) {
         Rcpp::stop("Cannot read given file '" + filename + "'.");
@@ -188,19 +188,19 @@ Rcpp::List tomlparse(const std::string filename, bool verbose=false) {
             auto ait = arr.begin();
             while (ait != arr.end()) {
                 auto ta = std::dynamic_pointer_cast<cpptoml::table>(*ait);
-                sl.push_front (Rcpp::Named(p.first) = getTable(ta, verbose));
+                sl.push_back (Rcpp::Named(p.first) = getTable(ta, verbose));
                 ++ait;
             }
 
         } else if (p.second->is_table()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
             if (verbose) Rcpp::Rcout << "Table: " << p.first << std::endl;
-            sl.push_front(Rcpp::Named(p.first) = getTable(ga, verbose));
+            sl.push_back(Rcpp::Named(p.first) = getTable(ga, verbose));
 
         } else if (p.second->is_array()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::array>(p.second);
             if (verbose) Rcpp::Rcout << "Array: " << p.first << std::endl;
-            sl.push_front(Rcpp::Named(p.first) = getArray(*ga)); 
+            sl.push_back(Rcpp::Named(p.first) = getArray(*ga)); 
 
         } else if (p.second->is_value()) {
             if (verbose) {
@@ -208,11 +208,11 @@ Rcpp::List tomlparse(const std::string filename, bool verbose=false) {
                 printValue(Rcpp::Rcout, p.second);
                 Rcpp::Rcout << std::endl;
             }
-            sl.push_front(Rcpp::Named(p.first) = getValue(p.second)); 
+            sl.push_back(Rcpp::Named(p.first) = getValue(p.second)); 
             
         } else {
             Rcpp::Rcout << "Other: " << p.first << std::endl;
-            sl.push_front(p.first); 
+            sl.push_back(p.first); 
         }
     }
     

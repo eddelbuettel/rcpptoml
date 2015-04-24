@@ -3,5 +3,5 @@
 CXX_STD = CXX11
 
 ## We need the headers exported via inst/include
-PKG_CPPFLAGS = -I../inst/include/
+PKG_CPPFLAGS = -I../inst/include/ -DCPPTOML_USE_MAP
 
