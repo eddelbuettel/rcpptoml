@@ -19,7 +19,7 @@ print.toml <- function(x, ...) {
     invisible(x) 
 }
 
-summary.toml <- function(object) {
+summary.toml <- function(object, ...) {
     cat("toml object with top-level slots:\n")
     cat(paste(names(object), collapse=", "), "\n")
     cat("# Read from ", attr(object, "file"), "\n")
