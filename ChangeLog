@@ -1,3 +1,14 @@
+2015-04-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/Makevars: Enable compile-time option to use std::map now that
+	out pull request to cpptoml.h has been accepted
+	* R/parseToml.R: Beginnings of an R class wrapper with simple print
+	and summary methods
+
+2015-04-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp (tomlparse): Added one missing if (verbose)
+
 2015-04-19  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/sort.R (.sort): Add internal sort function to recursively sort
