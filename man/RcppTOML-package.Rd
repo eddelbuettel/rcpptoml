@@ -2,6 +2,7 @@
 \alias{RcppTOML-package}
 \alias{RcppTOML}
 \alias{tomlparse}
+\alias{parseTOML}
 \alias{parseToml}
 \docType{package}
 \title{
@@ -15,8 +16,8 @@
   nesting and arrays are supported as well.
 }
 \details{
-  At present, a single parsing function \code{parseToml} (with
-  convenience alias \code{tomlparse}) is implemented.
+  At present, a single parsing function \code{parseTOML} (with
+  convenience aliases \code{tomlparse} and \code{parseToml}) is implemented.
   It returns a list object corresponding to the configuration from
   the supplied file.
 }
@@ -31,5 +32,12 @@
 }
 \keyword{package}
 \examples{
-  # None yet
+  library(RcppTOML)
+
+  file <- system.file("toml", "example.toml", package="RcppTOML")
+
+  toml <- parseTOML(file)  # given file, return parsed object
+
+  summary(toml)            # really sparse summary method
+  print(toml)              # print is a wrapper around str()
 }

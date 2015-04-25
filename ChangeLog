@@ -8,6 +8,8 @@
 
 	* README.md: Update current status, added Travis CI shield
 
+	* man/RcppTOML-package.Rd: Expanded examples section
+
 	* R/parseToml.R: Support verbose argument
 
 	* src/parse.cpp (local_timegm): Add wrapper for timegm() using TZ
