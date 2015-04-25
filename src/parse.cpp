@@ -35,6 +35,27 @@ void printValue(std::ostream& o, const std::shared_ptr<cpptoml::base>& base) {
     }
 }
 
+// cf 'man timegm' for the workaround on non-Linux systems
+inline time_t local_timegm(struct tm *tm) {
+#ifdef __linux__
+    // and there may be more OSs that have timegm() ...
+    return timegm(tm);
+#else
+    char *tz = getenv("TZ");
+    if (tz) tz = strdup(tz);
+    setenv("TZ", "", 1);
+    tzset();
+    time_t ret = mktime(tm);
+    if (tz) {
+        setenv("TZ", tz, 1);
+        free(tz);
+    } else
+        unsetenv("TZ");
+    tzset();
+    return ret;
+#endif
+}
+
 SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
     if (auto v = base->as<std::string>()) {
         std::string s(escapeString(v->get()));
@@ -58,7 +79,7 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
         tm.tm_hour = s.hour;
         tm.tm_min  = s.minute;
         tm.tm_sec  = s.second;
-        time_t tt = timegm(&tm); // timegm() is not part of POSIX though
+        time_t tt = local_timegm(&tm); 
         tt = tt - s.hour_offset*60*60 - s.minute_offset*60;
         Rcpp::NumericVector r(1, tt + s.microsecond * 1.0e-6);
         r.attr("class") = Rcpp::CharacterVector::create("POSIXct", "POSIXt");
