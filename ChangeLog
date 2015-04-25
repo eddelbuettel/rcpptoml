@@ -1,3 +1,10 @@
+2015-04-25  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/parseToml.R: Support verbose argument
+
+	* src/parse.cpp (local_timegm): Add wrapper for timegm() using TZ
+	resetting dance for OSs which do not have timegm()
+
 2015-04-24  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (OS_type): Set to unix while Windows still labours

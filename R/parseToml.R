@@ -1,8 +1,8 @@
 
-parseToml <- function(filename) {
+parseToml <- function(filename, verbose=FALSE) {
     ## TODO tildeexpand filename
     fullfile <- path.expand(filename)
-    toml <- tomlparseImpl(fullfile)
+    toml <- tomlparseImpl(fullfile, verbose)
     class(toml) <- c("toml", "list")
     attr(toml, "file") <- filename
     toml
@@ -21,7 +21,7 @@ print.toml <- function(x, ...) {
 
 summary.toml <- function(object, ...) {
     cat("toml object with top-level slots:\n")
-    cat(paste(names(object), collapse=", "), "\n")
-    cat("# Read from ", attr(object, "file"), "\n")
+    cat("  ", paste(names(object), collapse=", "), "\n")
+    cat("read from", attr(object, "file"), "\n")
     invisible(NULL)
 }
