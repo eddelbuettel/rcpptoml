@@ -1,5 +1,5 @@
 
-R version 3.1.3 (2015-03-09) -- "Smooth Sidewalk"
+R version 3.2.0 (2015-04-16) -- "Full of Ingredients"
 Copyright (C) 2015 The R Foundation for Statistical Computing
 Platform: i686-pc-linux-gnu (32-bit)
 
@@ -19,135 +19,63 @@ Type 'q()' to quit R.
 > library(RcppTOML)
 > 
 > ## basic toml-lang::tests/example.toml
-> print(str(tomlparse("toml_example.toml")))
+> print(tomlparse("toml_example.toml"))
 List of 7
- $ title   : chr "TOML Example"
- $ servers :List of 2
-  ..$ alpha:List of 2
-  .. ..$ ip: chr "10.0.0.1"
-  .. ..$ dc: chr "eqdc10"
-  ..$ beta :List of 3
-  .. ..$ ip     : chr "10.0.0.2"
-  .. ..$ dc     : chr "eqdc10"
-  .. ..$ country: chr "中国"
- $ owner   :List of 4
-  ..$ name        : chr "Tom Preston-Werner"
-  ..$ organization: chr "GitHub"
-  ..$ bio         : chr "GitHub Cofounder & CEO\\nLikes tater tots and beer."
-  ..$ dob         : POSIXct[1:1], format: "1979-05-27 07:32:00"
- $ database:List of 4
-  ..$ server        : chr "192.168.1.1"
-  ..$ ports         : int [1:3] 8001 8001 8002
-  ..$ connection_max: int 5000
-  ..$ enabled       : logi TRUE
  $ clients :List of 2
   ..$ data :List of 2
   .. ..$ : chr [1:2] "gamma" "delta"
   .. ..$ : int [1:2] 1 2
   ..$ hosts: chr [1:2] "alpha" "omega"
- $ products:List of 3
-  ..$ name : chr "Nail"
-  ..$ sku  : int 284758393
-  ..$ color: chr "gray"
+ $ database:List of 4
+  ..$ connection_max: int 5000
+  ..$ enabled       : logi TRUE
+  ..$ ports         : int [1:3] 8001 8001 8002
+  ..$ server        : chr "192.168.1.1"
+ $ owner   :List of 4
+  ..$ bio         : chr "GitHub Cofounder & CEO\\nLikes tater tots and beer."
+  ..$ dob         : POSIXct[1:1], format: "1979-05-27 07:32:00"
+  ..$ name        : chr "Tom Preston-Werner"
+  ..$ organization: chr "GitHub"
  $ products:List of 2
   ..$ name: chr "Hammer"
   ..$ sku : int 738594937
+ $ products:List of 3
+  ..$ color: chr "gray"
+  ..$ name : chr "Nail"
+  ..$ sku  : int 284758393
+ $ servers :List of 2
+  ..$ alpha:List of 2
+  .. ..$ dc: chr "eqdc10"
+  .. ..$ ip: chr "10.0.0.1"
+  ..$ beta :List of 3
+  .. ..$ country: chr "中国"
+  .. ..$ dc     : chr "eqdc10"
+  .. ..$ ip     : chr "10.0.0.2"
+ $ title   : chr "TOML Example"
 NULL
 > 
 > ## harder toml-lang::tests/hard_example.toml
-> print(str(tomlparse("toml_hard_example.toml")))
+> print(tomlparse("toml_hard_example.toml"))
 List of 1
  $ the:List of 2
-  ..$ test_string: chr "You'll hate me after this - #"
   ..$ hard       :List of 5
-  .. ..$ test_array         : chr [1:2] "] " " # "
-  .. ..$ test_array2        : chr [1:2] "Test #11 ]proved that" "Experiment #9 was a success"
-  .. ..$ harder_test_string : chr " And when \\\"'s are in the string, along with # \\\""
   .. ..$ another_test_string: chr " Same thing, but with a string #"
   .. ..$ bit#               :List of 2
-  .. .. ..$ what?           : chr "You don't think some user won't do that?"
   .. .. ..$ multi_line_array: chr "]"
+  .. .. ..$ what?           : chr "You don't think some user won't do that?"
+  .. ..$ harder_test_string : chr " And when \\\"'s are in the string, along with # \\\""
+  .. ..$ test_array         : chr [1:2] "] " " # "
+  .. ..$ test_array2        : chr [1:2] "Test #11 ]proved that" "Experiment #9 was a success"
+  ..$ test_string: chr "You'll hate me after this - #"
 NULL
 > 
 > ## example toml-lang::examples/example-v0.4.0.toml
 > ##
 > ## note that we edited line 56 which cannot be parsed by cpptoml
-> print(str(tomlparse("toml_example-v0.4.0.toml")))
+> print(tomlparse("toml_example-v0.4.0.toml"))
 Other: variety
 Other: variety
 List of 13
- $ table   :List of 3
-  ..$ key     : chr "value"
-  ..$ subtable:List of 1
-  .. ..$ key: chr "another value"
-  ..$ inline  :List of 2
-  .. ..$ name :List of 2
-  .. .. ..$ first: chr "Tom"
-  .. .. ..$ last : chr "Preston-Werner"
-  .. ..$ point:List of 2
-  .. .. ..$ x: int 1
-  .. .. ..$ y: int 2
- $ integer :List of 5
-  ..$ key1       : int 99
-  ..$ key2       : int 42
-  ..$ key3       : int 0
-  ..$ key4       : int -17
-  ..$ underscores:List of 3
-  .. ..$ key1: int 1000
-  .. ..$ key2: int 5349221
-  .. ..$ key3: int 12345
- $ x       :List of 1
-  ..$ y:List of 1
-  .. ..$ z:List of 1
-  .. .. ..$ w: list()
- $ string  :List of 3
-  ..$ basic    :List of 1
-  .. ..$ basic: chr "I'm a string. \\\"You can quote me\\\". Name\tJose\\nLocation\tSF."
-  ..$ multiline:List of 4
-  .. ..$ key1     : chr "One\\nTwo"
-  .. ..$ key2     : chr "One\\nTwo"
-  .. ..$ key3     : chr "One\\nTwo"
-  .. ..$ continued:List of 3
-  .. .. ..$ key1: chr "The quick brown fox jumps over the lazy dog."
-  .. .. ..$ key2: chr "The quick brown fox jumps over the lazy dog."
-  .. .. ..$ key3: chr "The quick brown fox jumps over the lazy dog."
-  ..$ literal  :List of 5
-  .. ..$ winpath  : chr "C:\\\\Users\\\\nodejs\\\\templates"
-  .. ..$ winpath2 : chr "\\\\\\\\ServerX\\\\admin$\\\\system32\\\\"
-  .. ..$ quoted   : chr "Tom \\\"Dubs\\\" Preston-Werner"
-  .. ..$ regex    : chr "<\\\\i\\\\c*\\\\s*>"
-  .. ..$ multiline:List of 2
-  .. .. ..$ regex2: chr "I [dw]on't need \\\\d{2} apples"
-  .. .. ..$ lines : chr "The first newline is\\ntrimmed in raw strings.\\n   All other whitespace\\n   is preserved.\\n"
- $ float   :List of 4
-  ..$ fractional :List of 3
-  .. ..$ key1: num 1
-  .. ..$ key2: num 3.14
-  .. ..$ key3: num -0.01
-  ..$ exponent   :List of 3
-  .. ..$ key1: num 5e+22
-  .. ..$ key2: num 1e+06
-  .. ..$ key3: num -0.02
-  ..$ both       :List of 1
-  .. ..$ key: num 6.63e-34
-  ..$ underscores:List of 2
-  .. ..$ key1: num 9224617
-  .. ..$ key2: num Inf
- $ products:List of 3
-  ..$ name : chr "Nail"
-  ..$ sku  : int 284758393
-  ..$ color: chr "gray"
- $ products: list()
- $ products:List of 2
-  ..$ name: chr "Hammer"
-  ..$ sku : int 738594937
- $ boolean :List of 2
-  ..$ True : logi TRUE
-  ..$ False: logi FALSE
- $ datetime:List of 3
-  ..$ key1: POSIXct[1:1], format: "1979-05-27 07:32:00"
-  ..$ key2: POSIXct[1:1], format: "1979-05-27 00:32:00"
-  ..$ key3: POSIXct[1:1], format: "1979-05-27 00:32:00"
  $ array   :List of 6
   ..$ key1: int [1:3] 1 2 3
   ..$ key2: chr [1:3] "red" "yellow" "green"
@@ -159,17 +87,89 @@ List of 13
   .. ..$ : chr [1:3] "a" "b" "c"
   ..$ key5: int [1:3] 1 2 3
   ..$ key6: int [1:2] 1 2
- $ fruit   :List of 2
-  ..$ name: chr "banana"
-  ..$     : chr "variety"
+ $ boolean :List of 2
+  ..$ False: logi FALSE
+  ..$ True : logi TRUE
+ $ datetime:List of 3
+  ..$ key1: POSIXct[1:1], format: "1979-05-27 07:32:00"
+  ..$ key2: POSIXct[1:1], format: "1979-05-27 07:32:00"
+  ..$ key3: POSIXct[1:1], format: "1979-05-27 07:32:00"
+ $ float   :List of 4
+  ..$ both       :List of 1
+  .. ..$ key: num 6.63e-34
+  ..$ exponent   :List of 3
+  .. ..$ key1: num 5e+22
+  .. ..$ key2: num 1e+06
+  .. ..$ key3: num -0.02
+  ..$ fractional :List of 3
+  .. ..$ key1: num 1
+  .. ..$ key2: num 3.14
+  .. ..$ key3: num -0.01
+  ..$ underscores:List of 2
+  .. ..$ key1: num 9224617
+  .. ..$ key2: num Inf
  $ fruit   :List of 3
   ..$ name    : chr "apple"
-  ..$         : chr "variety"
   ..$ physical:List of 2
   .. ..$ color: chr "red"
   .. ..$ shape: chr "round"
+  ..$         : chr "variety"
+ $ fruit   :List of 2
+  ..$ name: chr "banana"
+  ..$     : chr "variety"
+ $ integer :List of 5
+  ..$ key1       : int 99
+  ..$ key2       : int 42
+  ..$ key3       : int 0
+  ..$ key4       : int -17
+  ..$ underscores:List of 3
+  .. ..$ key1: int 1000
+  .. ..$ key2: int 5349221
+  .. ..$ key3: int 12345
+ $ products:List of 2
+  ..$ name: chr "Hammer"
+  ..$ sku : int 738594937
+ $ products: list()
+ $ products:List of 3
+  ..$ color: chr "gray"
+  ..$ name : chr "Nail"
+  ..$ sku  : int 284758393
+ $ string  :List of 3
+  ..$ basic    :List of 1
+  .. ..$ basic: chr "I'm a string. \\\"You can quote me\\\". Name\tJose\\nLocation\tSF."
+  ..$ literal  :List of 5
+  .. ..$ multiline:List of 2
+  .. .. ..$ lines : chr "The first newline is\\ntrimmed in raw strings.\\n   All other whitespace\\n   is preserved.\\n"
+  .. .. ..$ regex2: chr "I [dw]on't need \\\\d{2} apples"
+  .. ..$ quoted   : chr "Tom \\\"Dubs\\\" Preston-Werner"
+  .. ..$ regex    : chr "<\\\\i\\\\c*\\\\s*>"
+  .. ..$ winpath  : chr "C:\\\\Users\\\\nodejs\\\\templates"
+  .. ..$ winpath2 : chr "\\\\\\\\ServerX\\\\admin$\\\\system32\\\\"
+  ..$ multiline:List of 4
+  .. ..$ continued:List of 3
+  .. .. ..$ key1: chr "The quick brown fox jumps over the lazy dog."
+  .. .. ..$ key2: chr "The quick brown fox jumps over the lazy dog."
+  .. .. ..$ key3: chr "The quick brown fox jumps over the lazy dog."
+  .. ..$ key1     : chr "One\\nTwo"
+  .. ..$ key2     : chr "One\\nTwo"
+  .. ..$ key3     : chr "One\\nTwo"
+ $ table   :List of 3
+  ..$ inline  :List of 2
+  .. ..$ name :List of 2
+  .. .. ..$ first: chr "Tom"
+  .. .. ..$ last : chr "Preston-Werner"
+  .. ..$ point:List of 2
+  .. .. ..$ x: int 1
+  .. .. ..$ y: int 2
+  ..$ key     : chr "value"
+  ..$ subtable:List of 1
+  .. ..$ key: chr "another value"
+ $ x       :List of 1
+  ..$ y:List of 1
+  .. ..$ z:List of 1
+  .. .. ..$ w: list()
 NULL
 > 
 > proc.time()
    user  system elapsed 
-  0.548   0.444   0.530 
+  0.492   0.440   0.454 
