@@ -12,6 +12,8 @@
 
 	* man/RcppTOML-package.Rd: Expanded examples section and aliases
 
+	* man/parseTOML.Rd: New manual page for main function
+
 	* R/parseToml.R: Support verbose argument
 
 	* src/parse.cpp (local_timegm): Add wrapper for timegm() using TZ

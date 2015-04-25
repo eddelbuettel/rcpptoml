@@ -1,9 +1,6 @@
 \name{RcppTOML-package}
 \alias{RcppTOML-package}
 \alias{RcppTOML}
-\alias{tomlparse}
-\alias{parseTOML}
-\alias{parseToml}
 \docType{package}
 \title{
   R Access to Parser for TOML (Tom's Obvious Markup Language)
