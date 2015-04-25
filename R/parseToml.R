@@ -1,6 +1,5 @@
 
-parseToml <- function(filename, verbose=FALSE) {
-    ## TODO tildeexpand filename
+parseTOML <- function(filename, verbose=FALSE) {
     fullfile <- path.expand(filename)
     toml <- tomlparseImpl(fullfile, verbose)
     class(toml) <- c("toml", "list")
@@ -9,7 +8,11 @@ parseToml <- function(filename, verbose=FALSE) {
 }
 
 ## alias for now, to be renamed
-tomlparse <- function(...) parseToml(...)
+tomlparse <- function(...) parseTOML(...)
+
+## alias for now, to be renamed
+parseToml <- function(...) parseTOML(...)
+
 
 print.toml <- function(x, ...) {
     print(str(x, give.attr=FALSE))           # convenient shortcut

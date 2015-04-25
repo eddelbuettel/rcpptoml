@@ -6,9 +6,11 @@
 	* man/RcppTOML-package.Rd: Ditto
 	* tests/*: Ditto
 
+	* R/parseToml.R: Main function is parseTOML() now, keep aliases
+
 	* README.md: Update current status, added Travis CI shield
 
-	* man/RcppTOML-package.Rd: Expanded examples section
+	* man/RcppTOML-package.Rd: Expanded examples section and aliases
 
 	* R/parseToml.R: Support verbose argument
 

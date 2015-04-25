@@ -1,5 +1,5 @@
 useDynLib(RcppTOML)
-export(parseToml, tomlparse)
+export(parseToml, parseTOML, tomlparse)
 S3method(print, toml)
 S3method(summary, toml)
 importFrom(Rcpp, evalCpp)
