@@ -1,6 +1,6 @@
-\name{RcppToml-package}
-\alias{RcppToml-package}
-\alias{RcppToml}
+\name{RcppTOML-package}
+\alias{RcppTOML-package}
+\alias{RcppTOML}
 \alias{tomlparse}
 \alias{parseToml}
 \docType{package}

@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml::tomlparse("bool_datetime.toml"))
+> print(RcppTOML::tomlparse("bool_datetime.toml"))
 List of 2
  $ boolean :List of 2
   ..$ False: logi FALSE

@@ -1,5 +1,5 @@
 
-library(RcppToml)
+library(RcppTOML)
 
 ## basic toml-lang::tests/example.toml
 print(tomlparse("toml_example.toml"))

@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml::tomlparse("strings.toml"))
+> print(RcppTOML::tomlparse("strings.toml"))
 List of 1
  $ string:List of 3
   ..$ basic    :List of 1

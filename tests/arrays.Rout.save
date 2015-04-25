@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml::tomlparse("arrays.toml"))
+> print(RcppTOML::tomlparse("arrays.toml"))
 Other: variety
 Other: variety
 List of 6

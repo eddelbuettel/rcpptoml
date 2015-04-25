@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // tomlparseImpl
 Rcpp::List tomlparseImpl(const std::string filename, bool verbose);
-RcppExport SEXP RcppToml_tomlparseImpl(SEXP filenameSEXP, SEXP verboseSEXP) {
+RcppExport SEXP RcppTOML_tomlparseImpl(SEXP filenameSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;

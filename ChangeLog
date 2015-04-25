@@ -1,5 +1,13 @@
 2015-04-25  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION: Renamed to RcppTOML, rolled Version and Date
+	* NAMESPACE: Renamed to RcppTOML
+	* README.md: Ditto
+	* man/RcppTOML-package.Rd: Ditto
+	* tests/*: Ditto
+
+	* README.md: Update current status, added Travis CI shield
+
 	* R/parseToml.R: Support verbose argument
 
 	* src/parse.cpp (local_timegm): Add wrapper for timegm() using TZ
@@ -15,6 +23,8 @@
 
 	* tests/*.R: Simplify tests call as we no longer need explicit sorting
 	* tests/*.Rout.save: Update reference output as well
+
+	* .travis.yml: Set g++-4.9 via update-alternatives
 
 2015-04-23  Dirk Eddelbuettel  <edd@debian.org>
 

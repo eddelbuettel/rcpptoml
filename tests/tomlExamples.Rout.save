@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> library(RcppToml)
+> library(RcppTOML)
 > 
 > ## basic toml-lang::tests/example.toml
 > print(str(tomlparse("toml_example.toml")))

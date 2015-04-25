@@ -1,4 +1,4 @@
-useDynLib(RcppToml)
+useDynLib(RcppTOML)
 export(parseToml, tomlparse)
 S3method(print, toml)
 S3method(summary, toml)

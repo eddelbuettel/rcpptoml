@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml::tomlparse("integer.toml"))
+> print(RcppTOML::tomlparse("integer.toml"))
 List of 1
  $ integer:List of 5
   ..$ key1       : int 99

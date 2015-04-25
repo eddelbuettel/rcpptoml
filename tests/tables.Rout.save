@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml::tomlparse("tables.toml"))
+> print(RcppTOML::tomlparse("tables.toml"))
 List of 2
  $ table:List of 3
   ..$ inline  :List of 2

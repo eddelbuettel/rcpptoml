@@ -1,4 +1,4 @@
-## RcppToml [![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
+## RcppTOML [![Build Status](https://travis-ci.org/eddelbuettel/rcpptoml.png)](https://travis-ci.org/eddelbuettel/rcpptoml) [![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
 
 Rcpp bindings for [TOML](https://github.com/toml-lang/toml)
 
@@ -16,8 +16,10 @@ R.
 
 ### Status
 
-Still work in progress but getting close.  Nested tables and arrays are
-supported as are all base types.  Still needs testing.
+Pretty feaature-complete, see the unit tests.
+
+Does not work on Windows for R as the `g++-4.6.2` compiler in Rtools is way
+too old for the C++11 used by [cpptoml](https://github.com/skystrife/cpptoml).
 
 ### Author
 

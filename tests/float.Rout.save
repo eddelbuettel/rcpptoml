@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > 
-> print(RcppToml::tomlparse("float.toml"))
+> print(RcppTOML::tomlparse("float.toml"))
 List of 1
  $ float:List of 4
   ..$ both       :List of 1

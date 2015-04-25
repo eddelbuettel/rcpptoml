@@ -1,2 +1,2 @@
 
-print(RcppToml::tomlparse("integer.toml"))
+print(RcppTOML::tomlparse("integer.toml"))
