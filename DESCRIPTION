@@ -12,7 +12,7 @@ Description: The configuration format defined by 'TOML' (which expands to
  connect the 'cpptoml' parser written by Chase Geigle (in modern C++11) to R. 
 OS_type: unix
 SystemRequirements: A C++11 compiler. Version 4.6.* of g++ (as currently in
- Rtools) is insufficient; versions 4.8.*, 4.9.* or latter will be fine.
+ Rtools) is insufficient; versions 4.8.*, 4.9.* or later will be fine.
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.11.5)
 LinkingTo: Rcpp
