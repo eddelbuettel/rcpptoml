@@ -1,3 +1,9 @@
+2015-04-27  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: More quoting of terms, rolled Version and Date, added URL
+
+	* src/parse.cpp (local_timegm): Expand if defined() to Apple and BSDs
+
 2015-04-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Renamed to RcppTOML, rolled Version and Date
