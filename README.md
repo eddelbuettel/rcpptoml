@@ -14,11 +14,33 @@ This package uses the C++11 implementation written by Chase Geigle in
 [cpptoml](https://github.com/skystrife/cpptoml) to implement a parser used by
 R.
 
+### Installtion
+
+The package is now on [CRAN](http://cran.r-project.org) and can be installed
+from every mirror via
+
+```{.r}
+install.packages("RcppTOML")
+```
+
+Development releases will continue to be provided by the
+[ghrr](http://ghrr.github.io/drat) repository which can accessed using via
+
+```{.r}
+## if needed, first do:  install.packages("drat")
+drat::addRepo("ghrr")
+```
+
 ### Status
 
-Pretty feaature-complete, see the unit tests.
+Feature-complete with
+[TOML v0.4.0](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.4.0.md),
+see the [tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests)
+directory.  It parses everything that the underlying 
+[cpptoml](https://github.com/skystrife/cpptoml) parses with the same (sole)
+exception of unicode escape characters in strings.
 
-Does not work on Windows for R as the `g++-4.6.2` compiler in Rtools is way
+It does not work on Windows for R as the `g++-4.6.2` compiler in Rtools is way
 too old for the C++11 used by [cpptoml](https://github.com/skystrife/cpptoml).
 
 ### Author
