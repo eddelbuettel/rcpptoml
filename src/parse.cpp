@@ -37,7 +37,7 @@ void printValue(std::ostream& o, const std::shared_ptr<cpptoml::base>& base) {
 
 // cf 'man timegm' for the workaround on non-Linux systems
 inline time_t local_timegm(struct tm *tm) {
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
     // and there may be more OSs that have timegm() ...
     return timegm(tm);
 #else
