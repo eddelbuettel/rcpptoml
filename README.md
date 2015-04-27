@@ -14,7 +14,7 @@ This package uses the C++11 implementation written by Chase Geigle in
 [cpptoml](https://github.com/skystrife/cpptoml) to implement a parser used by
 R.
 
-### Installtion
+### Installation
 
 The package is now on [CRAN](http://cran.r-project.org) and can be installed
 from every mirror via
