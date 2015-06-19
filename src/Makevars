@@ -2,6 +2,6 @@
 ## This is a C++11 package
 CXX_STD = CXX11
 
-## We need the headers exported via inst/include
+## We need the header in inst/include, and a define
 PKG_CPPFLAGS = -I../inst/include/ -DCPPTOML_USE_MAP
 
