@@ -107,6 +107,7 @@ void printArray(std::ostream& o, cpptoml::array& arr) {
 }
 
 SEXP collapsedList(Rcpp::List ll) {
+a    if (ll.length() == 0) return R_NilValue;
     Rcpp::List::iterator it = ll.begin(); 
     switch(TYPEOF(*it)) {
         case REALSXP: {
