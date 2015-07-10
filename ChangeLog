@@ -1,3 +1,8 @@
+2015-07-09  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp (collapsedList): Ensure list has content before
+	iterating over it
+
 2015-04-27  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: More quoting of terms, rolled Version and Date, added URL
