@@ -15,7 +15,7 @@ parseToml <- function(...) parseTOML(...)
 
 
 print.toml <- function(x, ...) {
-    print(str(x, give.attr=FALSE))           # convenient shortcut
+    print(utils::str(x, give.attr=FALSE))           # convenient shortcut
     #klass <- oldClass(x)
     #oldClass(x) <- klass[klass != "toml"]
     #NextMethod("print")
