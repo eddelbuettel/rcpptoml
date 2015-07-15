@@ -1,6 +1,6 @@
 Package: RcppTOML
 Type: Package
-Title: Rcpp Bindings to Parser for Tom's Obvious Markup Language
+Title: 'Rcpp' Bindings to Parser for Tom's Obvious Markup Language
 Version: 0.0.3.2
 Date: 2015-07-15
 Author: Dirk Eddelbuettel
