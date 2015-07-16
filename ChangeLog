@@ -1,9 +1,23 @@
+2015-07-16  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.0.4
+
+2015-07-15  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/cpptoml.h: Minor update to upstream version
+
+	* R/parseToml.R: Use utils::str() instead of str()
+
+	* DESCRIPTION: More quoting of terms, rolled Version and Date
+
 2015-07-09  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/parse.cpp (collapsedList): Ensure list has content before
 	iterating over it
 
 2015-04-27  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.0.3
 
 	* DESCRIPTION: More quoting of terms, rolled Version and Date, added URL
 
