@@ -1,3 +1,7 @@
+2015-12-17  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/cpptoml.h: Sync'ed with cpptoml upstream
+
 2015-07-16  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Release 0.0.4
