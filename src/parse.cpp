@@ -29,9 +29,10 @@ void printValue(std::ostream& o, const std::shared_ptr<cpptoml::base>& base) {
     } else if (auto v = base->as<cpptoml::datetime>()) {
         o << "{\"type\":\"datetime\",\"value\":\"" << v->get() << "\"}";
     } else if (auto v = base->as<bool>()) {
-        o << "{\"type\":\"bool\",\"value\":\"";
-        v->print(o);
-        o << "\"}";
+        o << "{\"type\":\"bool\",\"value\":\""
+        //v->print(o);
+          << v.get()
+          << "\"}";
     }
 }
 
@@ -193,23 +194,23 @@ Rcpp::List tomlparseImpl(const std::string filename, bool verbose=false) {
     if (access(filename.c_str(), R_OK)) {
         Rcpp::stop("Cannot read given file '" + filename + "'.");
     }
-            
-    cpptoml::table g = cpptoml::parse_file(filename);
+
+    std::shared_ptr<cpptoml::table> g = cpptoml::parse_file(filename.c_str());
 
     if (verbose) {
         Rcpp::Rcout << "<default print method>\n" 
-                    << g 
+                    << (*g)
                     << "</default print method>\n" 
                     << std::endl;
     }
 
     Rcpp::StretchyList sl;
-    for (auto & p : g) {
+    for (auto & p : (*g)) {
 
         if (p.second->is_table_array()) {
             if (verbose) Rcpp::Rcout << "TableArray: " << p.first << std::endl;
             //auto ga = std::dynamic_pointer_cast<cpptoml::table_array>(p.second);
-            auto arr = g.get_table_array(p.first)->get();
+            auto arr = g->get_table_array(p.first)->get();
             auto ait = arr.begin();
             while (ait != arr.end()) {
                 auto ta = std::dynamic_pointer_cast<cpptoml::table>(*ait);
