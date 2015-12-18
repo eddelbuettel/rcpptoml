@@ -29,9 +29,8 @@ List of 1
   .. ..$ key1: num 1
   .. ..$ key2: num 3.14
   .. ..$ key3: num -0.01
-  ..$ underscores:List of 2
+  ..$ underscores:List of 1
   .. ..$ key1: num 9224617
-  .. ..$ key2: num Inf
 NULL
 > 
 > proc.time()
