@@ -1,8 +1,18 @@
+2015-12-19  Dirk Eddelbuettel  <edd@debian.org>
+
+ 	* DESCRIPTION: Release 0.0.5
+
 2015-12-17  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/cpptoml.h: Sync'ed with cpptoml upstream
 
 	* src/parse.cpp: Small accomodations for changed cpptoml.h
+
+	* tests/float.toml: No longer attempt to parse double number which
+	previously overflowed and is now rejected by cpptoml
+	* tests/toml_example-v0.4.0.toml: Ditto
+	* tests/float.Rout.save: Ditto
+	* tests/tomlExamples.Rout.save: Ditto
 
 2015-07-16  Dirk Eddelbuettel  <edd@debian.org>
 
