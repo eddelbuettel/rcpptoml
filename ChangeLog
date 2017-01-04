@@ -1,3 +1,10 @@
+2017-01-04  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): New minor version
+	(BugReports, URK): Added
+
+	* src/parse.cpp (local_timegm): On Windows, use Rcpp::mktime00
+
 2015-12-19  Dirk Eddelbuettel  <edd@debian.org>
 
  	* DESCRIPTION: Release 0.0.5
