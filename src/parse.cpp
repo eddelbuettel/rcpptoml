@@ -1,4 +1,3 @@
-
 #include <cpptoml.h>
 #include <unistd.h>
 #include <Rcpp.h>
@@ -42,17 +41,7 @@ inline time_t local_timegm(struct tm *tm) {
     // and there may be more OSs that have timegm() ...
     return timegm(tm);
 #else
-    char *tz = getenv("TZ");
-    if (tz) tz = strdup(tz);
-    setenv("TZ", "", 1);
-    tzset();
-    time_t ret = mktime(tm);
-    if (tz) {
-        setenv("TZ", tz, 1);
-        free(tz);
-    } else
-        unsetenv("TZ");
-    tzset();
+    time_t ret = Rcpp::mktime00(*tm);
     return ret;
 #endif
 }
