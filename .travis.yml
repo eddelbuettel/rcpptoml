@@ -9,6 +9,8 @@ language: c
 # cf http://blog.travis-ci.com/2015-03-31-docker-default-on-the-way/
 sudo: required
 
+dist: trusty
+
 env:
   global:
     - R_BUILD_ARGS="--no-build-vignettes --no-manual"
@@ -29,6 +31,9 @@ install:
 
 script:
   - ./travis-tool.sh run_tests
+
+after_failure:
+  - ./run.sh dump_logs
 
 notifications:
   email:
