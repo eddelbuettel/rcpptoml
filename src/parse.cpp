@@ -1,3 +1,5 @@
+// -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
+
 #include <cpptoml.h>
 #include <unistd.h>
 #include <Rcpp.h>
@@ -41,7 +43,19 @@ inline time_t local_timegm(struct tm *tm) {
     // and there may be more OSs that have timegm() ...
     return timegm(tm);
 #elif defined(__MINGW32__) || defined(__MINGW64__)
-    time_t ret = Rcpp::mktime00(*tm);
+    return Rcpp::mktime00(*tm);  // Rcpp exports a copy of the R-internal function
+#else
+    char *tz = getenv("TZ");
+    if (tz) tz = strdup(tz);
+    setenv("TZ", "", 1);
+    tzset();
+    time_t ret = mktime(tm);
+    if (tz) {
+        setenv("TZ", tz, 1);
+        free(tz);
+    } else
+        unsetenv("TZ");
+    tzset();
     return ret;
 #endif
 }
