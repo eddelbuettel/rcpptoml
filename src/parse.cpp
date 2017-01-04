@@ -1,4 +1,3 @@
-
 #include <cpptoml.h>
 #include <unistd.h>
 #include <Rcpp.h>
@@ -39,21 +38,23 @@ void printValue(std::ostream& o, const std::shared_ptr<cpptoml::base>& base) {
 // cf 'man timegm' for the workaround on non-Linux systems
 inline time_t local_timegm(struct tm *tm) {
 #if defined(__linux__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-    // and there may be more OSs that have timegm() ...
-    return timegm(tm);
-#else
-    char *tz = getenv("TZ");
-    if (tz) tz = strdup(tz);
-    setenv("TZ", "", 1);
-    tzset();
-    time_t ret = mktime(tm);
-    if (tz) {
-        setenv("TZ", tz, 1);
-        free(tz);
-    } else
-        unsetenv("TZ");
-    tzset();
-    return ret;
+  // and there may be more OSs that have timegm() ...
+  return timegm(tm);
+#elif defined(__MINGW32__) || defined(__MINGW64__)
+  return Rcpp::mktime00(*tm);  // Rcpp exports a copy of the R-internal function
+#else 
+  char *tz = getenv("TZ");
+  if (tz) tz = strdup(tz);
+  setenv("TZ", "", 1);
+  tzset();
+  time_t ret = mktime(tm);
+  if (tz) {
+    setenv("TZ", tz, 1);
+    free(tz);
+  } else
+    unsetenv("TZ");
+  tzset();
+  return ret;
 #endif
 }
 
