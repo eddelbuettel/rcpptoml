@@ -1,3 +1,4 @@
+// -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 
 #include <cpptoml.h>
 #include <unistd.h>
@@ -41,6 +42,8 @@ inline time_t local_timegm(struct tm *tm) {
 #if defined(__linux__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
     // and there may be more OSs that have timegm() ...
     return timegm(tm);
+#elif defined(__MINGW32__) || defined(__MINGW64__)
+    return Rcpp::mktime00(*tm);  // Rcpp exports a copy of the R-internal function
 #else
     char *tz = getenv("TZ");
     if (tz) tz = strdup(tz);
