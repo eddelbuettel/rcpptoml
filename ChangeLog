@@ -3,8 +3,15 @@
 	* DESCRIPTION (Version, Date): New minor version
 	(BugReports, URK): Added
 
-	* src/parse.cpp (local_timegm): On Windows, use Rcpp::mktime00
+	* src/parse.cpp (local_timegm): Restore parts of old behaviour
 
+	* src/Makevars.win: Added
+
+2017-01-03  Devin Pastoor  <devin.pastoor@gmail.com>
+
+	* src/parse.cpp (local_timegm): On Windows, use Rcpp::mktime00 (as
+	suggested by Dirk in GitHub Issue #5)
+	
 2015-12-19  Dirk Eddelbuettel  <edd@debian.org>
 
  	* DESCRIPTION: Release 0.0.5
