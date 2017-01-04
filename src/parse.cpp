@@ -40,7 +40,7 @@ inline time_t local_timegm(struct tm *tm) {
 #if defined(__linux__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
     // and there may be more OSs that have timegm() ...
     return timegm(tm);
-#else
+#elif defined(__MINGW32__) || defined(__MINGW64__)
     time_t ret = Rcpp::mktime00(*tm);
     return ret;
 #endif
