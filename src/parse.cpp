@@ -1,9 +1,29 @@
 // -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
+//
+//  RcppTOML -- Rcpp bindings to TOML via cpptoml
+//
+//  Copyright (C) 2015 - 2017  Dirk Eddelbuettel 
+//
+//  This file is part of RcppTOML
+//
+//  RcppTOML is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 2 of the License, or
+//  (at your option) any later version.
+//
+//  RcppTOML is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with RcppTOML.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cpptoml.h>
 #include <unistd.h>
 #include <Rcpp.h>
 
+// this function is borrowed with credits from cpptoml :)
 std::string escapeString(const std::string& str) {
     std::string res;
     for (auto it = str.begin(); it != str.end(); ++it) {
