@@ -1,4 +1,4 @@
-## RcppTOML [![Build Status](https://travis-ci.org/eddelbuettel/rcpptoml.svg)](https://travis-ci.org/eddelbuettel/rcpptoml) [![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html) [![CRAN](http://www.r-pkg.org/badges/version/RcppTOML)](http://cran.rstudio.com/package=RcppTOML) [![Downloads](http://cranlogs.r-pkg.org/badges/RcppTOML?color=brightgreen)](http://www.r-pkg.org/pkg/RcppTOML)
+## RcppTOML [![Build Status](https://travis-ci.org/eddelbuettel/rcpptoml.svg)](https://travis-ci.org/eddelbuettel/rcpptoml) [![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html) [![CRAN](http://www.r-pkg.org/badges/version/RcppTOML)](https://cran.r-project.org/package=RcppTOML) [![Downloads](http://cranlogs.r-pkg.org/badges/RcppTOML?color=brightgreen)](http://www.r-pkg.org/pkg/RcppTOML)
 
 Rcpp bindings for [TOML](https://github.com/toml-lang/toml)
 
@@ -16,14 +16,14 @@ R.
 
 ### Installation
 
-The package is now on [CRAN](http://cran.r-project.org) and can be installed
+The package is on [CRAN](https://cran.r-project.org) and can be installed
 from every mirror via
 
 ```{.r}
 install.packages("RcppTOML")
 ```
 
-Development releases will continue to be provided by the
+Development releases may be provided by the
 [ghrr](http://ghrr.github.io/drat) repository which can accessed using via
 
 ```{.r}
@@ -39,9 +39,6 @@ see the [tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests)
 directory.  It parses everything that the underlying 
 [cpptoml](https://github.com/skystrife/cpptoml) parses with the same (sole)
 exception of unicode escape characters in strings.
-
-It does not work on Windows for R as the `g++-4.6.2` compiler in Rtools is way
-too old for the C++11 used by [cpptoml](https://github.com/skystrife/cpptoml).
 
 ### Author
 
