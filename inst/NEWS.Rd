@@ -5,7 +5,7 @@
 
 \section{Changes in version 0.1.0 (2017-01-05)}{
   \itemize{
-    \item Added Windows support by relying on Rcpp::mktime00() (\ghpr{6}
+    \item Added Windows support by relying on \code{Rcpp::mktime00()} (\ghpr{6}
     and \ghpr{8} closing \ghit{5} and \ghit{3})
     \item Synchronized with \code{cpptoml} upstream (\ghpr{9})
     \item Updated Travis CI support via newer \code{run.sh} 
