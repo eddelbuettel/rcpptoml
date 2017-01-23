@@ -1,3 +1,11 @@
+2017-01-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): New minor version
+
+	* src/parse.cpp: Extended to support local_date(time)
+
+	* inst/toml/ex2.toml: Extended for new types
+
 2017-01-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/cpptoml.h: Sync'ed with cpptoml upstream
