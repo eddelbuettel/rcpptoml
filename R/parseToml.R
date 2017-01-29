@@ -17,11 +17,14 @@
 ## You should have received a copy of the GNU General Public License
 ## along with RcppTOML.  If not, see <http://www.gnu.org/licenses/>.
 
-parseTOML <- function(filename, verbose=FALSE) {
-    fullfile <- path.expand(filename)
-    toml <- tomlparseImpl(fullfile, verbose)
+parseTOML <- function(input, verbose=FALSE, fromFile=TRUE) {
+    if (fromFile) {
+        toml <- tomlparseImpl(path.expand(input), verbose, fromFile)
+    } else {
+        toml <- tomlparseImpl(input, verbose, fromFile)
+    }
     class(toml) <- c("toml", "list")
-    attr(toml, "file") <- filename
+    attr(toml, "file") <- input
     toml
 }
 
@@ -34,12 +37,12 @@ parseToml <- function(...) parseTOML(...)
 
 print.toml <- function(x, ...) {
     print(utils::str(x, give.attr=FALSE))           # convenient shortcut
-    invisible(x) 
+    invisible(x)
 }
 
 summary.toml <- function(object, ...) {
     cat("toml object with top-level slots:\n")
     cat("  ", paste(names(object), collapse=", "), "\n")
-    cat("read from", attr(object, "file"), "\n")
+    cat("read from '", attr(object, "file"), "'\n")
     invisible(NULL)
 }

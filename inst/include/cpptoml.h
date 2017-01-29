@@ -8,24 +8,32 @@
 #define _CPPTOML_H_
 
 #include <algorithm>
-#if !CPPTOML_HAS_STD_PUT_TIME
-#include <array>
-#endif
 #include <cassert>
 #include <cstdint>
 #include <cstring>
 #include <fstream>
 #include <iomanip>
-#include <memory>
-#if CPPTOML_HAS_STD_REGEX
-#include <regex>
-#endif
 #include <map>
+#include <memory>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <vector>
+
+#if __cplusplus > 201103L
+#define CPPTOML_DEPRECATED(reason) [[deprecated(reason)]]
+#elif defined(__clang__)
+#define CPPTOML_DEPRECATED(reason) __attribute__((deprecated(reason)))
+#elif defined(__GNUG__)
+#define CPPTOML_DEPRECATED(reason) __attribute__((deprecated))
+#elif defined(_MSC_VER)
+#if _MSC_VER < 1910
+#define CPPTOML_DEPRECATED(reason) __declspec(deprecated)
+#else
+#define CPPTOML_DEPRECATED(reason) [[deprecated(reason)]]
+#endif
+#endif
 
 namespace cpptoml
 {
@@ -83,21 +91,36 @@ class option
     T value_;
 };
 
-struct datetime
+struct local_date
 {
     int year = 0;
     int month = 0;
     int day = 0;
+};
+
+struct local_time
+{
     int hour = 0;
     int minute = 0;
     int second = 0;
     int microsecond = 0;
+};
+
+struct zone_offset
+{
     int hour_offset = 0;
     int minute_offset = 0;
+};
 
-    static inline struct datetime from_local(const struct tm& t)
+struct local_datetime : local_date, local_time
+{
+};
+
+struct offset_datetime : local_datetime, zone_offset
+{
+    static inline struct offset_datetime from_zoned(const struct tm& t)
     {
-        datetime dt;
+        offset_datetime dt;
         dt.year = t.tm_year + 1900;
         dt.month = t.tm_mon + 1;
         dt.day = t.tm_mday;
@@ -114,9 +137,15 @@ struct datetime
         return dt;
     }
 
-    static inline struct datetime from_utc(const struct tm& t)
+    CPPTOML_DEPRECATED("from_local has been renamed to from_zoned")
+    static inline struct offset_datetime from_local(const struct tm& t)
     {
-        datetime dt;
+        return from_zoned(t);
+    }
+
+    static inline struct offset_datetime from_utc(const struct tm& t)
+    {
+        offset_datetime dt;
         dt.year = t.tm_year + 1900;
         dt.month = t.tm_mon + 1;
         dt.day = t.tm_mday;
@@ -127,48 +156,127 @@ struct datetime
     }
 };
 
-inline std::ostream& operator<<(std::ostream& os, const datetime& dt)
+using datetime
+    CPPTOML_DEPRECATED("datetime has been renamed to offset_datetime")
+    = offset_datetime;
+
+class fill_guard
 {
-    using std::setw;
-    auto fill = os.fill();
+  public:
+    fill_guard(std::ostream& os) : os_(os), fill_{os.fill()}
+    {
+        // nothing
+    }
 
+    ~fill_guard()
+    {
+        os_.fill(fill_);
+    }
+
+  private:
+    std::ostream& os_;
+    std::ostream::char_type fill_;
+};
+
+inline std::ostream& operator<<(std::ostream& os, const local_date& dt)
+{
+    fill_guard g{os};
     os.fill('0');
+
+    using std::setw;
     os << setw(4) << dt.year << "-" << setw(2) << dt.month << "-" << setw(2)
-       << dt.day << "T" << setw(2) << dt.hour << ":" << setw(2) << dt.minute
-       << ":" << setw(2) << dt.second;
-
-    if (dt.microsecond > 0)
-    {
-        os << "." << setw(6) << dt.microsecond;
-    }
-
-    if (dt.hour_offset != 0 || dt.minute_offset != 0)
-    {
-        if (dt.hour_offset > 0)
-            os << "+";
-        else
-            os << "-";
-        os << setw(2) << std::abs(dt.hour_offset) << ":" << setw(2)
-           << std::abs(dt.minute_offset);
-    }
-    else
-        os << "Z";
-
-    os.fill(fill);
+       << dt.day;
 
     return os;
 }
+
+inline std::ostream& operator<<(std::ostream& os, const local_time& ltime)
+{
+    fill_guard g{os};
+    os.fill('0');
+
+    using std::setw;
+    os << setw(2) << ltime.hour << ":" << setw(2) << ltime.minute << ":"
+       << setw(2) << ltime.second;
+
+    if (ltime.microsecond > 0)
+    {
+        os << ".";
+        int power = 100000;
+        for (int curr_us = ltime.microsecond; curr_us; power /= 10)
+        {
+            auto num = curr_us / power;
+            os << num;
+            curr_us -= num * power;
+        }
+    }
+
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const zone_offset& zo)
+{
+    fill_guard g{os};
+    os.fill('0');
+
+    using std::setw;
+
+    if (zo.hour_offset != 0 || zo.minute_offset != 0)
+    {
+        if (zo.hour_offset > 0)
+        {
+            os << "+";
+        }
+        else
+        {
+            os << "-";
+        }
+        os << setw(2) << std::abs(zo.hour_offset) << ":" << setw(2)
+           << std::abs(zo.minute_offset);
+    }
+    else
+    {
+        os << "Z";
+    }
+
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const local_datetime& dt)
+{
+    return os << static_cast<const local_date&>(dt) << "T"
+              << static_cast<const local_time&>(dt);
+}
+
+inline std::ostream& operator<<(std::ostream& os, const offset_datetime& dt)
+{
+    return os << static_cast<const local_datetime&>(dt)
+              << static_cast<const zone_offset&>(dt);
+}
+
+template <class T, class... Ts>
+struct is_one_of;
+
+template <class T, class V>
+struct is_one_of<T, V> : std::is_same<T, V>
+{
+};
+
+template <class T, class V, class... Ts>
+struct is_one_of<T, V, Ts...>
+{
+    const static bool value
+        = std::is_same<T, V>::value || is_one_of<T, Ts...>::value;
+};
 
 template <class T>
 class value;
 
 template <class T>
 struct valid_value
+    : is_one_of<T, std::string, int64_t, double, bool, local_date, local_time,
+                local_datetime, offset_datetime>
 {
-    const static bool value
-        = std::is_same<T, std::string>::value || std::is_same<T, int64_t>::value
-          || std::is_same<T, double>::value || std::is_same<T, bool>::value
-          || std::is_same<T, datetime>::value;
 };
 
 template <class T, class Enable = void>
@@ -1700,7 +1808,10 @@ class parser
     enum class parse_type
     {
         STRING = 1,
-        DATE,
+        LOCAL_TIME,
+        LOCAL_DATE,
+        LOCAL_DATETIME,
+        OFFSET_DATETIME,
         INT,
         FLOAT,
         BOOL,
@@ -1716,7 +1827,11 @@ class parser
         {
             case parse_type::STRING:
                 return parse_string(it, end);
-            case parse_type::DATE:
+            case parse_type::LOCAL_TIME:
+                return parse_time(it, end);
+            case parse_type::LOCAL_DATE:
+            case parse_type::LOCAL_DATETIME:
+            case parse_type::OFFSET_DATETIME:
                 return parse_date(it, end);
             case parse_type::INT:
             case parse_type::FLOAT:
@@ -1739,9 +1854,13 @@ class parser
         {
             return parse_type::STRING;
         }
-        else if (is_date(it, end))
+        else if (is_time(it, end))
         {
-            return parse_type::DATE;
+            return parse_type::LOCAL_TIME;
+        }
+        else if (auto dtype = date_type(it, end))
+        {
+            return *dtype;
         }
         else if (is_number(*it) || *it == '-' || *it == '+')
         {
@@ -1832,13 +1951,14 @@ class parser
 
                   while (it != end)
                   {
-                      auto check = it;
                       // handle escaped characters
                       if (delim == '"' && *it == '\\')
                       {
+                          auto check = it;
                           // check if this is an actual escape sequence or a
                           // whitespace escaping backslash
                           ++check;
+                          consume_whitespace(check, end);
                           if (check == end)
                           {
                               consuming = true;
@@ -1964,8 +2084,8 @@ class parser
     std::shared_ptr<base> parse_number(std::string::iterator& it,
                                        const std::string::iterator& end)
     {
-        // determine if we are an integer or a float
         auto check_it = it;
+        auto check_end = find_end_of_number(it, end);
 
         auto eat_sign = [&]() {
             if (check_it != end && (*check_it == '-' || *check_it == '+'))
@@ -1991,6 +2111,15 @@ class parser
                 throw_parse_exception("Malformed number");
         };
 
+        auto check_no_leading_zero = [&]() {
+            if (check_it != end && *check_it == '0' && check_it + 1 != check_end
+                && check_it[1] != '.')
+            {
+                throw_parse_exception("Numbers may not have leading zeros");
+            }
+        };
+
+        check_no_leading_zero();
         eat_numbers();
 
         if (check_it != end
@@ -2002,17 +2131,22 @@ class parser
             if (check_it == end)
                 throw_parse_exception("Floats must have trailing digits");
 
-            if (is_exp)
+            auto eat_exp = [&]() {
                 eat_sign();
+                check_no_leading_zero();
+                eat_numbers();
+            };
 
-            eat_numbers();
+            if (is_exp)
+                eat_exp();
+            else
+                eat_numbers();
 
             if (!is_exp && check_it != end
                 && (*check_it == 'e' || *check_it == 'E'))
             {
                 ++check_it;
-                eat_sign();
-                eat_numbers();
+                eat_exp();
             }
 
             return parse_float(it, check_it);
@@ -2083,6 +2217,15 @@ class parser
             throw_parse_exception("Attempted to parse invalid boolean value");
     }
 
+    std::string::iterator find_end_of_number(std::string::iterator it,
+                                             std::string::iterator end)
+    {
+        return std::find_if(it, end, [this](char c) {
+            return !is_number(c) && c != '_' && c != '.' && c != 'e' && c != 'E'
+                   && c != '-' && c != '+';
+        });
+    }
+
     std::string::iterator find_end_of_date(std::string::iterator it,
                                            std::string::iterator end)
     {
@@ -2092,8 +2235,69 @@ class parser
         });
     }
 
-    std::shared_ptr<value<datetime>>
-    parse_date(std::string::iterator& it, const std::string::iterator& end)
+    std::string::iterator find_end_of_time(std::string::iterator it,
+                                           std::string::iterator end)
+    {
+        return std::find_if(it, end, [this](char c) {
+            return !is_number(c) && c != ':' && c != '.';
+        });
+    }
+
+    local_time read_time(std::string::iterator& it,
+                         const std::string::iterator& end)
+    {
+        auto time_end = find_end_of_time(it, end);
+
+        auto eat = [&](char c) {
+            if (it == time_end || *it != c)
+                throw_parse_exception("Malformed time");
+            ++it;
+        };
+
+        auto eat_digits = [&](int len) {
+            int val = 0;
+            for (int i = 0; i < len; ++i)
+            {
+                if (!is_number(*it) || it == time_end)
+                    throw_parse_exception("Malformed time");
+                val = 10 * val + (*it++ - '0');
+            }
+            return val;
+        };
+
+        local_time ltime;
+
+        ltime.hour = eat_digits(2);
+        eat(':');
+        ltime.minute = eat_digits(2);
+        eat(':');
+        ltime.second = eat_digits(2);
+
+        int power = 100000;
+        if (it != time_end && *it == '.')
+        {
+            ++it;
+            while (it != time_end && is_number(*it))
+            {
+                ltime.microsecond += power * (*it++ - '0');
+                power /= 10;
+            }
+        }
+
+        if (it != time_end)
+            throw_parse_exception("Malformed time");
+
+        return ltime;
+    }
+
+    std::shared_ptr<value<local_time>>
+    parse_time(std::string::iterator& it, const std::string::iterator& end)
+    {
+        return make_value(read_time(it, end));
+    }
+
+    std::shared_ptr<base> parse_date(std::string::iterator& it,
+                                     const std::string::iterator& end)
     {
         auto date_end = find_end_of_date(it, end);
 
@@ -2114,29 +2318,27 @@ class parser
             return val;
         };
 
-        datetime dt;
-
-        dt.year = eat_digits(4);
+        local_date ldate;
+        ldate.year = eat_digits(4);
         eat('-');
-        dt.month = eat_digits(2);
+        ldate.month = eat_digits(2);
         eat('-');
-        dt.day = eat_digits(2);
-        eat('T');
-        dt.hour = eat_digits(2);
-        eat(':');
-        dt.minute = eat_digits(2);
-        eat(':');
-        dt.second = eat_digits(2);
-
-        if (*it == '.')
-        {
-            ++it;
-            while (it != date_end && is_number(*it))
-                dt.microsecond = 10 * dt.microsecond + (*it++ - '0');
-        }
+        ldate.day = eat_digits(2);
 
         if (it == date_end)
-            throw_parse_exception("Malformed date");
+            return make_value(ldate);
+
+        eat('T');
+
+        local_datetime ldt;
+        static_cast<local_date&>(ldt) = ldate;
+        static_cast<local_time&>(ldt) = read_time(it, date_end);
+
+        if (it == date_end)
+            return make_value(ldt);
+
+        offset_datetime dt;
+        static_cast<local_datetime&>(dt) = ldt;
 
         int hoff = 0;
         int moff = 0;
@@ -2190,12 +2392,18 @@ class parser
         {
             case parse_type::STRING:
                 return parse_value_array<std::string>(it, end);
+            case parse_type::LOCAL_TIME:
+                return parse_value_array<local_time>(it, end);
+            case parse_type::LOCAL_DATE:
+                return parse_value_array<local_date>(it, end);
+            case parse_type::LOCAL_DATETIME:
+                return parse_value_array<local_datetime>(it, end);
+            case parse_type::OFFSET_DATETIME:
+                return parse_value_array<offset_datetime>(it, end);
             case parse_type::INT:
                 return parse_value_array<int64_t>(it, end);
             case parse_type::FLOAT:
                 return parse_value_array<double>(it, end);
-            case parse_type::DATE:
-                return parse_value_array<datetime>(it, end);
             case parse_type::BOOL:
                 return parse_value_array<bool>(it, end);
             case parse_type::ARRAY:
@@ -2318,9 +2526,9 @@ class parser
                         const std::string::iterator& end)
     {
         if (it != end && *it != '#')
-            throw_parse_exception("Unidentified trailing character "
+            throw_parse_exception("Unidentified trailing character '"
                                   + std::string{*it}
-                                  + "---did you forget a '#'?");
+                                  + "'---did you forget a '#'?");
     }
 
     bool is_number(char c)
@@ -2328,29 +2536,57 @@ class parser
         return c >= '0' && c <= '9';
     }
 
-    bool is_date(const std::string::iterator& it,
+    bool is_time(const std::string::iterator& it,
                  const std::string::iterator& end)
     {
+        auto time_end = find_end_of_time(it, end);
+        auto len = std::distance(it, time_end);
+
+        if (len < 8)
+            return false;
+
+        if (it[2] != ':' || it[5] != ':')
+            return false;
+
+        if (len > 8)
+            return it[8] == '.' && len > 9;
+
+        return true;
+    }
+
+    option<parse_type> date_type(const std::string::iterator& it,
+                                 const std::string::iterator& end)
+    {
         auto date_end = find_end_of_date(it, end);
-        std::string to_match{it, date_end};
-#if CPPTOML_HAS_STD_REGEX
-        return std::regex_match(to_match, date_pattern_);
-#else
-        // this can be approximate; we just need a lookahead
-        return to_match.length() >= 20 && to_match[4] == '-'
-               && to_match[7] == '-' && to_match[10] == 'T'
-               && to_match[13] == ':' && to_match[16] == ':';
-#endif
+        auto len = std::distance(it, date_end);
+
+        if (len < 10)
+            return {};
+
+        if (it[4] != '-' || it[7] != '-')
+            return {};
+
+        if (len >= 19 && it[10] == 'T' && is_time(it + 11, date_end))
+        {
+            // datetime type
+            auto time_end = find_end_of_time(it + 11, date_end);
+            if (time_end == date_end)
+                return {parse_type::LOCAL_DATETIME};
+            else
+                return {parse_type::OFFSET_DATETIME};
+        }
+        else if (len == 10)
+        {
+            // just a regular date
+            return {parse_type::LOCAL_DATE};
+        }
+
+        return {};
     }
 
     std::istream& input_;
     std::string line_;
     std::size_t line_number_ = 0;
-#if CPPTOML_HAS_STD_REGEX
-    std::regex date_pattern_{
-        "(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{"
-        "2})(\\.\\d+)?(Z|(\\+|-)(\\d{2}):(\\d{2}))"};
-#endif
 };
 
 /**
@@ -2372,6 +2608,37 @@ inline std::shared_ptr<table> parse_file(const std::string& filename)
     return p.parse();
 }
 
+template <class... Ts>
+struct value_accept;
+
+template <>
+struct value_accept<>
+{
+    template <class Visitor, class... Args>
+    static void accept(const base&, Visitor&&, Args&&...)
+    {
+        // nothing
+    }
+};
+
+template <class T, class... Ts>
+struct value_accept<T, Ts...>
+{
+    template <class Visitor, class... Args>
+    static void accept(const base& b, Visitor&& visitor, Args&&... args)
+    {
+        if (auto v = b.as<T>())
+        {
+            visitor.visit(*v, std::forward<Args>(args)...);
+        }
+        else
+        {
+            value_accept<Ts...>::accept(b, std::forward<Visitor>(visitor),
+                                        std::forward<Args>(args)...);
+        }
+    }
+};
+
 /**
  * base implementation of accept() that calls visitor.visit() on the concrete
  * class.
@@ -2381,26 +2648,11 @@ void base::accept(Visitor&& visitor, Args&&... args) const
 {
     if (is_value())
     {
-        if (auto v = as<std::string>())
-        {
-            visitor.visit(*v, std::forward<Args>(args)...);
-        }
-        else if (auto v = as<int64_t>())
-        {
-            visitor.visit(*v, std::forward<Args>(args)...);
-        }
-        else if (auto v = as<double>())
-        {
-            visitor.visit(*v, std::forward<Args>(args)...);
-        }
-        else if (auto v = as<cpptoml::datetime>())
-        {
-            visitor.visit(*v, std::forward<Args>(args)...);
-        }
-        else if (auto v = as<bool>())
-        {
-            visitor.visit(*v, std::forward<Args>(args)...);
-        }
+        using value_acceptor
+            = value_accept<std::string, int64_t, double, bool, local_date,
+                           local_time, local_datetime, offset_datetime>;
+        value_acceptor::accept(*this, std::forward<Visitor>(visitor),
+                               std::forward<Args>(args)...);
     }
     else if (is_table())
     {
@@ -2429,48 +2681,18 @@ class toml_writer
     /**
      * Construct a toml_writer that will write to the given stream
      */
-    toml_writer(std::ostream& s) : stream_(s), has_naked_endline_(false)
+    toml_writer(std::ostream& s, const std::string& indent_space = "\t")
+        : stream_(s), indent_(indent_space), has_naked_endline_(false)
     {
         // nothing
     }
 
   public:
     /**
-     * Output a string element of the TOML tree
+     * Output a base value of the TOML tree.
      */
-    void visit(const value<std::string>& v, bool = false)
-    {
-        write(v);
-    }
-
-    /**
-     * Output an integer element of the TOML tree
-     */
-    void visit(const value<int64_t>& v, bool = false)
-    {
-        write(v);
-    }
-
-    /**
-     * Output a double element of the TOML tree
-     */
-    void visit(const value<double>& v, bool = false)
-    {
-        write(v);
-    }
-
-    /**
-     * Output a datetime element of the TOML tree
-     */
-    void visit(const value<datetime>& v, bool = false)
-    {
-        write(v);
-    }
-
-    /**
-     * Output a boolean element of the TOML tree
-     */
-    void visit(const value<bool>& v, bool = false)
+    template <class T>
+    void visit(const value<T>& v, bool = false)
     {
         write(v);
     }
@@ -2576,14 +2798,6 @@ class toml_writer
     }
 
     /**
-     * Write out an integer.
-     */
-    void write(const value<int64_t>& v)
-    {
-        write(v.get());
-    }
-
-    /**
      * Write out a double.
      */
     void write(const value<double>& v)
@@ -2597,9 +2811,14 @@ class toml_writer
     }
 
     /**
-     * Write out a datetime.
+     * Write out an integer, local_date, local_time, local_datetime, or
+     * offset_datetime.
      */
-    void write(const value<datetime>& v)
+    template <class T>
+    typename std::enable_if<is_one_of<T, int64_t, local_date, local_time,
+                                      local_datetime,
+                                      offset_datetime>::value>::type
+    write(const value<T>& v)
     {
         write(v.get());
     }
@@ -2695,7 +2914,7 @@ class toml_writer
     void indent()
     {
         for (std::size_t i = 1; i < path_.size(); ++i)
-            write("\t");
+            write(indent_);
     }
 
     /**
@@ -2742,6 +2961,7 @@ class toml_writer
 
   private:
     std::ostream& stream_;
+    const std::string indent_;
     std::vector<std::string> path_;
     bool has_naked_endline_;
 };

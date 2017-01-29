@@ -21,6 +21,9 @@
 
 #include <cpptoml.h>
 #include <unistd.h>
+
+// use the new vector which will be default by late 2017
+#define RCPP_NEW_DATE_DATETIME_VECTORS 1
 #include <Rcpp.h>
 
 // this function is borrowed with credits from cpptoml :)
@@ -47,8 +50,12 @@ void printValue(std::ostream& o, const std::shared_ptr<cpptoml::base>& base) {
         o << "{\"type\":\"integer\",\"value\":\"" << v->get() << "\"}";
     } else if (auto v = base->as<double>()) {
         o << "{\"type\":\"float\",\"value\":\"" << v->get() << "\"}";
-    } else if (auto v = base->as<cpptoml::datetime>()) {
-        o << "{\"type\":\"datetime\",\"value\":\"" << v->get() << "\"}";
+    } else if (auto v = base->as<cpptoml::offset_datetime>()) {
+        o << "{\"type\":\"offset_datetime\",\"value\":\"" << v->get() << "\"}";
+    } else if (auto v = base->as<cpptoml::local_datetime>()) {
+        o << "{\"type\":\"local_datetime\",\"value\":\"" << v->get() << "\"}";
+    } else if (auto v = base->as<cpptoml::local_date>()) {
+        o << "{\"type\":\"local_date\",\"value\":\"" << v->get() << "\"}";
     } else if (auto v = base->as<bool>()) {
         o << "{\"type\":\"bool\",\"value\":\""
         //v->print(o);
@@ -94,8 +101,26 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
     } else if (auto v = base->as<bool>()) {
         bool s(v->get());
         return Rcpp::wrap(s);
-    } else if (auto v = base->as<cpptoml::datetime>()) {
-        cpptoml::datetime s(v->get());
+    } else if (auto v = base->as<cpptoml::local_date>()) {
+        cpptoml::local_date s(v->get());
+        Rcpp::Date d(s.year,s.month,s.day);
+        return Rcpp::wrap(d);
+    } else if (auto v = base->as<cpptoml::local_datetime>()) {
+        cpptoml::local_datetime s(v->get());
+        struct tm tm;
+        tm.tm_year = s.year - 1900;
+        tm.tm_mon  = s.month - 1;
+        tm.tm_mday = s.day;
+        tm.tm_hour = s.hour;
+        tm.tm_min  = s.minute;
+        tm.tm_sec  = s.second;
+        time_t tt = local_timegm(&tm); 
+        //tt = tt - s.hour_offset*60*60 - s.minute_offset*60;
+        Rcpp::DatetimeVector dt(1, "UTC");
+        dt[0] = tt + s.microsecond * 1.0e-6;
+        return Rcpp::wrap(dt);
+    } else if (auto v = base->as<cpptoml::offset_datetime>()) {
+        cpptoml::offset_datetime s(v->get());
         struct tm tm;
         tm.tm_year = s.year - 1900;
         tm.tm_mon  = s.month - 1;
@@ -105,10 +130,9 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
         tm.tm_sec  = s.second;
         time_t tt = local_timegm(&tm); 
         tt = tt - s.hour_offset*60*60 - s.minute_offset*60;
-        Rcpp::NumericVector r(1, tt + s.microsecond * 1.0e-6);
-        r.attr("class") = Rcpp::CharacterVector::create("POSIXct", "POSIXt");
-        r.attr("tzone") = "UTC";
-        return Rcpp::wrap(r);
+        Rcpp::DatetimeVector dt(1, "UTC");
+        dt[0] =  tt + s.microsecond * 1.0e-6;
+        return Rcpp::wrap(dt);
     } else {
         Rcpp::warning("Unparsed value, returning null");
         return R_NilValue;
@@ -212,14 +236,22 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
 
 
 // [[Rcpp::export]]
-Rcpp::List tomlparseImpl(const std::string filename, bool verbose=false) {
+Rcpp::List tomlparseImpl(const std::string input, bool verbose=false, bool fromfile=true) {
 
-    if (access(filename.c_str(), R_OK)) {
-        Rcpp::stop("Cannot read given file '" + filename + "'.");
+    if (fromfile && access(input.c_str(), R_OK)) {
+        Rcpp::stop("Cannot read given file '" + input + "'.");
     }
 
-    std::shared_ptr<cpptoml::table> g = cpptoml::parse_file(filename.c_str());
+    std::shared_ptr<cpptoml::table> g;
 
+    if (fromfile) {
+        g = cpptoml::parse_file(input.c_str());
+    } else {
+        std::stringstream strstream(input);
+        cpptoml::parser p(strstream);
+        g = p.parse();
+    }
+    
     if (verbose) {
         Rcpp::Rcout << "<default print method>\n" 
                     << (*g)

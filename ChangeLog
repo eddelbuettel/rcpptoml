@@ -1,8 +1,33 @@
+2017-01-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp (tomlparseImpl): Suppport TOML parsing from a
+	character variable (with thanks to Charles for a hint in #7)
+
+	* R/parseToml.R (parseTOML): Additional argument to select
+	filemode (default) or parse from character
+
+	* man/parseTOML.Rd: Document new argument
+
+2017-01-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): New minor version
+
+	* src/parse.cpp: Extended to support local_date(time)
+
+	* inst/toml/ex2.toml: Extended for new types
+
+2017-01-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/cpptoml.h: Sync'ed with cpptoml upstream
+
 2017-01-05  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.1.0
 
 	* inst/include/cpptoml.h: Sync'ed with cpptoml upstream
 
 	* src/parse.cpp: Added copyright header
+	* R/parseToml.R: Idem
 
 	* .travis.yml: Switch to using run.sh for Travis CI
 
