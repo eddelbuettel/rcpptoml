@@ -15,16 +15,22 @@
   allows everything similar configuration languages permit.
 }
 \usage{
-  parseTOML(filename, verbose = FALSE)
+  parseTOML(input, verbose = FALSE, fromFile=TRUE)
 
   \S3method{print}{toml} (x, ...)
   \S3method{summary}{toml} (object, ...)
 }
 \arguments{
-  \item{filename}{A character object denoting a path and
-    file (where tilde-expansion is performed as well).}
+  \item{input}{A character object either denoting a path and
+    file (where tilde-expansion is performed as well) from parsing from
+    file, or a containing a suitable \sQuote{TOML} expression that is
+    parsed from this expression.}
   \item{verbose}{A logical switch to turn on (very) verbose operation
     which can be useful in debugging a parsing issue in a file.}
+  \item{fromFile}{A logical switch indicating whether \code{input} is 
+    interpreted as a filename (with path) which is to be parsed, or a
+    whether the \sQuote{TOML} expression in the string is parsed;
+    default is file mode.}
   \item{x}{A toml object.}
   \item{object}{A toml object.}
   \item{...}{Furter arguments.}

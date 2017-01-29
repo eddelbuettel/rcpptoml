@@ -1,3 +1,13 @@
+2017-01-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp (tomlparseImpl): Suppport TOML parsing from a
+	character variable (with thanks to Charles for a hint in #7)
+
+	* R/parseToml.R (parseTOML): Additional argument to select
+	filemode (default) or parse from character
+
+	* man/parseTOML.Rd: Document new argument
+
 2017-01-23  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): New minor version

@@ -6,14 +6,15 @@
 using namespace Rcpp;
 
 // tomlparseImpl
-Rcpp::List tomlparseImpl(const std::string filename, bool verbose);
-RcppExport SEXP RcppTOML_tomlparseImpl(SEXP filenameSEXP, SEXP verboseSEXP) {
+Rcpp::List tomlparseImpl(const std::string input, bool verbose, bool fromfile);
+RcppExport SEXP RcppTOML_tomlparseImpl(SEXP inputSEXP, SEXP verboseSEXP, SEXP fromfileSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const std::string >::type filename(filenameSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type input(inputSEXP);
     Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
-    rcpp_result_gen = Rcpp::wrap(tomlparseImpl(filename, verbose));
+    Rcpp::traits::input_parameter< bool >::type fromfile(fromfileSEXP);
+    rcpp_result_gen = Rcpp::wrap(tomlparseImpl(input, verbose, fromfile));
     return rcpp_result_gen;
 END_RCPP
 }

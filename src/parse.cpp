@@ -236,14 +236,22 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
 
 
 // [[Rcpp::export]]
-Rcpp::List tomlparseImpl(const std::string filename, bool verbose=false) {
+Rcpp::List tomlparseImpl(const std::string input, bool verbose=false, bool fromfile=true) {
 
-    if (access(filename.c_str(), R_OK)) {
-        Rcpp::stop("Cannot read given file '" + filename + "'.");
+    if (fromfile && access(input.c_str(), R_OK)) {
+        Rcpp::stop("Cannot read given file '" + input + "'.");
     }
 
-    std::shared_ptr<cpptoml::table> g = cpptoml::parse_file(filename.c_str());
+    std::shared_ptr<cpptoml::table> g;
 
+    if (fromfile) {
+        g = cpptoml::parse_file(input.c_str());
+    } else {
+        std::stringstream strstream(input);
+        cpptoml::parser p(strstream);
+        g = p.parse();
+    }
+    
     if (verbose) {
         Rcpp::Rcout << "<default print method>\n" 
                     << (*g)
