@@ -1,3 +1,15 @@
+2017-01-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/parseToml.R: Output from print.toml() method without final NULL
+
+        * tests/arrays.Rout.save: Updated reference output
+        * tests/bool_datetime.Rout.save: Idem
+        * tests/float.Rout.save: Idem
+        * tests/integer.Rout.save: Idem
+        * tests/strings.Rout.save: Idem
+        * tests/tables.Rout.save: Idem
+        * tests/tomlExamples.Rout.save: Idem
+
 2017-01-24  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/parse.cpp (tomlparseImpl): Suppport TOML parsing from a

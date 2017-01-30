@@ -36,7 +36,7 @@ parseToml <- function(...) parseTOML(...)
 
 
 print.toml <- function(x, ...) {
-    print(utils::str(x, give.attr=FALSE))           # convenient shortcut
+    cat(utils::str(x, give.attr=FALSE))		           # convenient shortcut
     invisible(x)
 }
 
