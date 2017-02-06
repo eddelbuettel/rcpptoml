@@ -6,7 +6,7 @@
 \section{Changes in version 0.1.1 (2017-xx-yy)}{
   \itemize{
     \item Synchronized with ccptoml upstream adding support for local
-    datetime and local date (PR \ghpr{10})
+    datetime and local date as well as parse from strings (PR \ghpr{10})
   }
 }
 
