@@ -1,3 +1,7 @@
+2017-02-08  Dirk Eddelbuettel  <edd@max.eddelbuettel.com>
+
+	* inst/include/cpptoml.h: Sync'ed with cpptoml upstream
+
 2017-01-29  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/parseToml.R: Output from print.toml() method without final NULL
