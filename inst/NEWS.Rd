@@ -5,8 +5,13 @@
 
 \section{Changes in version 0.1.1 (2017-xx-yy)}{
   \itemize{
-    \item Synchronized with ccptoml upstream adding support for local
-    datetime and local date as well as parse from strings (PR \ghpr{10})
+    \item Synchronized multiple times with ccptoml upstream adding
+    support for local datetime and local date and more (PR \ghpr{9},
+    \ghpr{10}, PR \ghpr{11})
+    \item Dates are now first class types, some support for local versus
+    UTC times was added (though it may be adviseable to stick with UTC)
+    \item Parsing from (R) character variables is now supported as well
+    \item Output from \code{print.toml} no longer prints extra newlines
   }
 }
 
