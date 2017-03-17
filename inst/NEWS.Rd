@@ -3,7 +3,14 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
-\section{Changes in version 0.1.1 (2017-xx-yy)}{
+\section{Changes in version 0.1.2 (2017-xx-yy)}{
+  \itemize{
+    \item Dates and Datetimes in arrays in the input now preserve their
+    types instead of converting to numeric vectors (\ghit{13})
+  }
+}
+
+\section{Changes in version 0.1.1 (2017-02-12)}{
   \itemize{
     \item Synchronized multiple times with ccptoml upstream adding
     support for local datetime and local date and more (PR \ghpr{9},

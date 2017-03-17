@@ -160,6 +160,18 @@ SEXP collapsedList(Rcpp::List ll) {
     switch(TYPEOF(*it)) {
         case REALSXP: {
             Rcpp::NumericVector v(ll.begin(), ll.end());
+            Rcpp::RObject ro = ll[0];
+            if (ro.hasAttribute("class")) {
+                Rcpp::CharacterVector cv = ro.attr("class");
+                if ((cv.size() == 1) && std::string(cv[0]) == "Date") {
+                    Rcpp::DateVector dv(v);
+                    return dv;
+                }
+                if ((cv.size() == 2) && std::string(cv[1]) == "POSIXt") {
+                    Rcpp::DatetimeVector dtv(v);
+                    return dtv;
+                }
+            }
             return v;
             break;              // not reached ...
         }
