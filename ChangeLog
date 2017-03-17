@@ -3,7 +3,7 @@
 	* DESCRIPTION (Version, Date): Roll minor version
 
 	* src/parse.cpp (collapsedList): Preserve type for Date and
-	Datetime vectors
+	Datetime vectors as well as boolean vectors
 
 2017-02-12  Dirk Eddelbuettel  <edd@debian.org>
 

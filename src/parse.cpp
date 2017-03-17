@@ -180,6 +180,11 @@ SEXP collapsedList(Rcpp::List ll) {
             return v;
             break;              // not reached ...
         }
+        case LGLSXP: {
+            Rcpp::LogicalVector v(ll.begin(), ll.end());
+            return v;
+            break;              // not reached ...
+        }
         case STRSXP: {              // minor code smell that this is different :-/
             int n = ll.size();
             Rcpp::CharacterVector v(n);

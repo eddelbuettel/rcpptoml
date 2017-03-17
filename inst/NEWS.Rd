@@ -7,6 +7,7 @@
   \itemize{
     \item Dates and Datetimes in arrays in the input now preserve their
     types instead of converting to numeric vectors (\ghit{13})
+    \item Boolean vectors are also correctly handled (\ghit{14})
   }
 }
 
