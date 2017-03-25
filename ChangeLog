@@ -1,3 +1,9 @@
+2017-03-25  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): Roll minor version
+
+	* src/parse.cpp (tomlparseImpl): Correct TableArray type assignment
+
 2017-03-17  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version

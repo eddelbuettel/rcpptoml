@@ -282,13 +282,15 @@ Rcpp::List tomlparseImpl(const std::string input, bool verbose=false, bool fromf
         if (p.second->is_table_array()) {
             if (verbose) Rcpp::Rcout << "TableArray: " << p.first << std::endl;
             //auto ga = std::dynamic_pointer_cast<cpptoml::table_array>(p.second);
+            Rcpp::StretchyList l;
             auto arr = g->get_table_array(p.first)->get();
             auto ait = arr.begin();
             while (ait != arr.end()) {
                 auto ta = std::dynamic_pointer_cast<cpptoml::table>(*ait);
-                sl.push_back (Rcpp::Named(p.first) = getTable(ta, verbose));
+                l.push_back (getTable(ta, verbose));
                 ++ait;
             }
+            sl.push_back(Rcpp::Named(p.first) = l);
 
         } else if (p.second->is_table()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
