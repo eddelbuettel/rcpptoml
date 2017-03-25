@@ -4,6 +4,12 @@
 
 	* src/parse.cpp (tomlparseImpl): Correct TableArray type assignment
 
+	* tests/arrays.Rout.save: Update reference output
+	* tests/tomlExamples.Rout.save: Ditto
+
+	* .codecov.yml (comment): Add coverage support
+	* .travis.yml: Ditto
+	
 2017-03-17  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version

@@ -1,5 +1,6 @@
 parse$
 parse_stdin$
-.travis.yml
+^\.travis\.yml$
+^\.codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
