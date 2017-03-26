@@ -1,5 +1,9 @@
 2017-03-26  Dirk Eddelbuettel  <edd@debian.org>
 
+	* src/init.c (R_init_RcppTOML): all R_registerRoutines()
+	and R_useDynamicSymbols()
+	* NAMESPACE: Use .registration=TRUE on useDynLib
+
         * LICENSE: Added to repository
         * .Rbuildignore: Do not include LICENSE in package
 
