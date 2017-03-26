@@ -7,6 +7,14 @@
         * LICENSE: Added to repository
         * .Rbuildignore: Do not include LICENSE in package
 
+	* inst/toml/ex4.toml (bla): Uncomment Datetimevector
+
+	* inst/toml/example.toml: Updated to upstream README.md version
+
+	* README.md: Expanded with example and screenshot
+	* local/emacsAndTOML.png: Added for README
+        * .Rbuildignore: Do not include local/ in package
+
 2017-03-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version

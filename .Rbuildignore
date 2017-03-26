@@ -5,3 +5,4 @@ parse_stdin$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE$
+^local

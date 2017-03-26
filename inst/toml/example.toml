@@ -1,16 +1,10 @@
-# This is a TOML document. Boom.
-#
-# NB One line changed for the know issue with cpptoml. 
-#    Otherwise pristine TOML 0.4 example
-
+# This is a TOML document.
 
 title = "TOML Example"
 
 [owner]
 name = "Tom Preston-Werner"
-organization = "GitHub"
-bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
-dob = 1979-05-27T07:32:00Z # First class dates? Why not?
+dob = 1979-05-27T07:32:00-08:00 # First class dates
 
 [database]
 server = "192.168.1.1"
@@ -20,7 +14,7 @@ enabled = true
 
 [servers]
 
-  # You can indent as you please. Tabs or spaces. TOML don't care.
+  # Indentation (tabs and/or spaces) is allowed but not required
   [servers.alpha]
   ip = "10.0.0.1"
   dc = "eqdc10"
