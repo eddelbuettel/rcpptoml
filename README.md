@@ -88,7 +88,7 @@ See the other examples and the [upstream documentation](https://github.com/toml-
 Also note that most decent editors have proper [TOML](https://github.com/toml-lang/toml) support
 which makes editing and previewing a breeze:
 
-![]((https://raw.githubusercontent.com/eddelbuettel/rcpptoml/master/local/emacsAndTOML.png)
+![](https://raw.githubusercontent.com/eddelbuettel/rcpptoml/master/local/emacsAndTOML.png)
 
 ### Installation
 
