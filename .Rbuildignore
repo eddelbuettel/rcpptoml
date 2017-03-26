@@ -4,3 +4,4 @@ parse_stdin$
 ^\.codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^LICENSE$

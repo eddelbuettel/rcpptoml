@@ -1,3 +1,8 @@
+2017-03-26  Dirk Eddelbuettel  <edd@debian.org>
+
+        * LICENSE: Added to repository
+        * .Rbuildignore: Do not include LICENSE in package
+
 2017-03-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version
@@ -9,7 +14,7 @@
 
 	* .codecov.yml (comment): Add coverage support
 	* .travis.yml: Ditto
-	
+
 2017-03-17  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version
