@@ -1,4 +1,4 @@
-## RcppTOML: Use Boost Date_Time to convert date(time) data to POSIXt
+## RcppTOML -- Rcpp bindings to TOML via cpptoml
 ##
 ## Copyright (C) 2015 - 2017  Dirk Eddelbuettel
 ##
