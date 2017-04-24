@@ -244,7 +244,7 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
             sl.push_back(Rcpp::Named(p.first) = getValue(p.second)); 
             
         } else {
-            Rcpp::Rcout << "Other: " << p.first << std::endl;
+            if (verbose) Rcpp::Rcout << "Other: " << p.first << std::endl;
             sl.push_back(p.first); 
         }
     }
