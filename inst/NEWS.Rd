@@ -3,6 +3,12 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
+\section{Changes in version 0.1.3 (2017-xx-yy)}{
+  \itemize{
+    \item Nested TableArray types are now correctly handled (\ghit{16})
+  }
+}
+
 \section{Changes in version 0.1.2 (2017-03-26)}{
   \itemize{
     \item Dates and Datetimes in arrays in the input now preserve their

@@ -35,10 +35,16 @@ List of 3
   .. ..$ physical:List of 2
   .. .. ..$ color: chr "red"
   .. .. ..$ shape: chr "round"
-  .. ..$         : chr "variety"
+  .. ..$ variety :Dotted pair list of 2
+  .. .. ..$ :List of 1
+  .. .. .. ..$ name: chr "red delicious"
+  .. .. ..$ :List of 1
+  .. .. .. ..$ name: chr "granny smith"
   ..$ :List of 2
-  .. ..$ name: chr "banana"
-  .. ..$     : chr "variety"
+  .. ..$ name   : chr "banana"
+  .. ..$ variety:Dotted pair list of 1
+  .. .. ..$ :List of 1
+  .. .. .. ..$ name: chr "plantain"
  $ products:Dotted pair list of 3
   ..$ :List of 2
   .. ..$ name: chr "Hammer"
@@ -51,4 +57,4 @@ List of 3
 > 
 > proc.time()
    user  system elapsed 
-  0.312   0.016   0.320 
+  0.300   0.028   0.320 

@@ -2,7 +2,8 @@
 
 	* DESCRIPTION (Version, Date): Roll minor version
 
-	* src/parse.cpp (getTable): Condition print statement on verbose mode
+	* src/parse.cpp (getTable): Nested TableArray types are now
+	recognised; condition print statement on verbose mode
 
 	* tests/arrays.Rout.save: Update reference output
 	* tests/tomlExamples.Rout.save: Idem
