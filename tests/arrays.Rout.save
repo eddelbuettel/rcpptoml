@@ -29,23 +29,23 @@ List of 3
   .. ..$ : chr [1:3] "a" "b" "c"
   ..$ key5: int [1:3] 1 2 3
   ..$ key6: int [1:2] 1 2
- $ fruit   :Dotted pair list of 2
+ $ fruit   :List of 2
   ..$ :List of 3
   .. ..$ name    : chr "apple"
   .. ..$ physical:List of 2
   .. .. ..$ color: chr "red"
   .. .. ..$ shape: chr "round"
-  .. ..$ variety :Dotted pair list of 2
+  .. ..$ variety :List of 2
   .. .. ..$ :List of 1
   .. .. .. ..$ name: chr "red delicious"
   .. .. ..$ :List of 1
   .. .. .. ..$ name: chr "granny smith"
   ..$ :List of 2
   .. ..$ name   : chr "banana"
-  .. ..$ variety:Dotted pair list of 1
+  .. ..$ variety:List of 1
   .. .. ..$ :List of 1
   .. .. .. ..$ name: chr "plantain"
- $ products:Dotted pair list of 3
+ $ products:List of 3
   ..$ :List of 2
   .. ..$ name: chr "Hammer"
   .. ..$ sku : int 738594937
@@ -57,4 +57,4 @@ List of 3
 > 
 > proc.time()
    user  system elapsed 
-  0.300   0.028   0.320 
+  0.332   0.008   0.333 

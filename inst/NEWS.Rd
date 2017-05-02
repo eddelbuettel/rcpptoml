@@ -3,6 +3,13 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
+\section{Changes in version 0.1.4 (2017-xx-yy)}{
+  \itemize{
+    \item Cast from StretchyList to List ensures lists appear as Lists
+    in R 
+  }
+}
+
 \section{Changes in version 0.1.3 (2017-04-25)}{
   \itemize{
     \item Nested TableArray types are now correctly handled (\ghit{16})

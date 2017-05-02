@@ -36,7 +36,7 @@ List of 6
   ..$ dob         : POSIXct[1:1], format: "1979-05-27 07:32:00"
   ..$ name        : chr "Tom Preston-Werner"
   ..$ organization: chr "GitHub"
- $ products:Dotted pair list of 2
+ $ products:List of 2
   ..$ :List of 2
   .. ..$ name: chr "Hammer"
   .. ..$ sku : int 738594937
@@ -104,20 +104,20 @@ List of 10
   .. ..$ key3: num -0.01
   ..$ underscores:List of 1
   .. ..$ key1: num 9224617
- $ fruit   :Dotted pair list of 2
+ $ fruit   :List of 2
   ..$ :List of 3
   .. ..$ name    : chr "apple"
   .. ..$ physical:List of 2
   .. .. ..$ color: chr "red"
   .. .. ..$ shape: chr "round"
-  .. ..$ variety :Dotted pair list of 2
+  .. ..$ variety :List of 2
   .. .. ..$ :List of 1
   .. .. .. ..$ name: chr "red delicious"
   .. .. ..$ :List of 1
   .. .. .. ..$ name: chr "granny smith"
   ..$ :List of 2
   .. ..$ name   : chr "banana"
-  .. ..$ variety:Dotted pair list of 1
+  .. ..$ variety:List of 1
   .. .. ..$ :List of 1
   .. .. .. ..$ name: chr "plantain"
  $ integer :List of 5
@@ -129,7 +129,7 @@ List of 10
   .. ..$ key1: int 1000
   .. ..$ key2: int 5349221
   .. ..$ key3: int 12345
- $ products:Dotted pair list of 3
+ $ products:List of 3
   ..$ :List of 2
   .. ..$ name: chr "Hammer"
   .. ..$ sku : int 738594937
@@ -175,4 +175,4 @@ List of 10
 > 
 > proc.time()
    user  system elapsed 
-  0.380   0.008   0.380 
+  0.368   0.020   0.381 

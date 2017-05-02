@@ -1,3 +1,11 @@
+2017-05-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/parse.cpp (tomlparseImpl): Convert the StretchyList to List
+	when inserting so they are seen as Lists in R (cf discussion in #16)
+
+	* tests/arrays.Rout.save: Update reference output
+	* tests/tomlExamples.Rout.save: Idem
+
 2017-04-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Release 0.1.3

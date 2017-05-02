@@ -252,7 +252,7 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
                 l.push_back (getTable(ta, verbose));
                 ++ait;
             }
-            sl.push_back(Rcpp::Named(p.first) = l);
+            sl.push_back(Rcpp::Named(p.first) = Rcpp::as<Rcpp::List>(l));
         } else {
             if (verbose) Rcpp::Rcout << "Other: " << p.first << std::endl;
             sl.push_back(p.first); 
@@ -300,7 +300,7 @@ Rcpp::List tomlparseImpl(const std::string input, bool verbose=false, bool fromf
                 l.push_back (getTable(ta, verbose));
                 ++ait;
             }
-            sl.push_back(Rcpp::Named(p.first) = l);
+            sl.push_back(Rcpp::Named(p.first) = Rcpp::as<Rcpp::List>(l));
 
         } else if (p.second->is_table()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::table>(p.second);
