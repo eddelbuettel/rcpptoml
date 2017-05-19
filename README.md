@@ -6,7 +6,7 @@ Rcpp bindings for [TOML](https://github.com/toml-lang/toml)
 
 [TOML](https://github.com/toml-lang/toml) is a configuration file grammar for
 humans. It is easier to read and edit than the alternatives yet arguably more
-useful as it is stronly types: values come back as integer, double,
+useful as it is strongly typed: values come back as integer, double,
 (multiline-) character (strings), boolean or Datetime. Moreover, complex
 nesting and arrays are supported as well.
 
@@ -100,7 +100,7 @@ install.packages("RcppTOML")
 ```
 
 Development releases may be provided by the
-[ghrr](http://ghrr.github.io/drat) repository which can accessed using via
+[ghrr](http://ghrr.github.io/drat) repository which can accessed via
 
 ```{.r}
 ## if needed, first do:  install.packages("drat")
