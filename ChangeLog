@@ -10,6 +10,8 @@
 
 	* inst/include/includize.hpp (includize): Do without codecvt
 
+	* .travis.yml: Upgrade gcc and g++ to 4.9
+
 2017-05-02  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/parse.cpp (tomlparseImpl): Convert the StretchyList to List
