@@ -1,3 +1,13 @@
+2017-11-13  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): New minor version
+
+	* src/parse.cpp (tomlparseImpl): Add support for includize
+	pre-processor; add its toml.hpp header
+
+	* inst/include/includize.hpp: Included copy from @dcdillon's repo
+	* inst/include/toml.hpp: Idem
+
 2017-05-02  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/parse.cpp (tomlparseImpl): Convert the StretchyList to List
