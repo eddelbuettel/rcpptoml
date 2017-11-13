@@ -6,7 +6,7 @@
 #include <string>
 #include <regex>
 #include <cassert>
-#include <codecvt>
+//#include <codecvt>
 #include <memory>
 #include <unistd.h>
 
@@ -291,7 +291,8 @@ private:
     {
         s.imbue(stream_.getloc());
     }
-    
+
+#if 0  
     template< typename T, typename TTRAITS >
     typename std::enable_if< sizeof(char) != sizeof(T), std::string >::type
     convert_file_name(const std::basic_string< T, TTRAITS > &file_name)
@@ -300,6 +301,7 @@ private:
             converter;
         return include_spec_type::unescape_filename(converter.to_bytes(file_name));
     }
+#endif
     
     template< typename T, typename TTRAITS >
     typename std::enable_if< sizeof(char) == sizeof(T), std::string >::type
@@ -307,7 +309,7 @@ private:
     {
         return include_spec_type::unescape_filename(file_name);
     }
-    
+  
     std::string get_file_path(const std::string file_name)
     {
         if (file_name.length())
@@ -393,7 +395,8 @@ private:
             
         return path;
     }
-    
+
+#if 0  
     template< typename T, typename TTRAITS >
     static typename std::enable_if< sizeof(char) != sizeof(T), void >::type
     prepare_ifstream(std::basic_ifstream< T, TTRAITS > &s)
@@ -401,13 +404,14 @@ private:
         s.imbue(std::locale(s.getloc(),
             new std::codecvt_utf16< wchar_t, 0x10ffff, std::consume_header >));
     }
-    
+#endif
+  
     template< typename T, typename TTRAITS >
     static typename std::enable_if< sizeof(char) == sizeof(T), void >::type
     prepare_ifstream(std::basic_ifstream< T, TTRAITS > &s)
     {
     }
-    
+
     std::unique_ptr< istream_type > stream_;
     std::unique_ptr< ifstream_type > fstream_;
     std::unique_ptr< streambuf_type > streambuf_;
