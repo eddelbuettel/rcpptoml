@@ -56,6 +56,7 @@
   Maintainer: Dirk Eddelbuettel <edd@debian.org>
 }
 \examples{
+  \dontrun{
   library(RcppTOML)
 
   file <- system.file("toml", "example.toml", package="RcppTOML")
@@ -64,5 +65,6 @@
 
   summary(toml)            # really sparse summary method
   print(toml)              # print is a wrapper around str()
+  }
 }
 \keyword{package}
