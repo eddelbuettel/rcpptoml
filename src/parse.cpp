@@ -22,6 +22,9 @@
 #include <cpptoml.h>
 #include <unistd.h>
 
+// include for the includize stream preprocessor
+#include <toml.hpp>
+
 // use the new vector which will be default by late 2017
 #define RCPP_NEW_DATE_DATETIME_VECTORS 1
 #include <Rcpp.h>
@@ -272,7 +275,9 @@ Rcpp::List tomlparseImpl(const std::string input, bool verbose=false, bool fromf
     std::shared_ptr<cpptoml::table> g;
 
     if (fromfile) {
-        g = cpptoml::parse_file(input.c_str());
+        includize::toml_preprocessor pp(input.c_str());
+        cpptoml::parser included_parser(pp);
+        g = included_parser.parse();
     } else {
         std::stringstream strstream(input);
         cpptoml::parser p(strstream);
