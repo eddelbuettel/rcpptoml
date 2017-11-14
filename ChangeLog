@@ -1,3 +1,17 @@
+2017-11-14  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): New minor version
+
+	* src/parse.cpp (tomlparseImpl): New argument 'includize'
+
+	* R/parseToml.R (parseTOML): Support new argument
+	* man/parseTOML.Rd: Document it
+
+	* tests/misc.R: Added test for parse from string, summary()
+	* tests/misc.Rout.save: Reference output
+
+	* src/init.c: Removed, registration now in src/RcppExports.cpp
+
 2017-11-13  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): New minor version

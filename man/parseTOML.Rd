@@ -15,7 +15,7 @@
   allows everything similar configuration languages permit.
 }
 \usage{
-  parseTOML(input, verbose = FALSE, fromFile=TRUE)
+  parseTOML(input, verbose = FALSE, fromFile=TRUE, includize=FALSE)
 
   \S3method{print}{toml} (x, ...)
   \S3method{summary}{toml} (object, ...)
@@ -31,6 +31,9 @@
     interpreted as a filename (with path) which is to be parsed, or a
     whether the \sQuote{TOML} expression in the string is parsed;
     default is file mode.}
+  \item{includize}{A logical switch indicating whether the
+    \code{includize} stream buffer class for (non-standard but very
+    useful) include statements should be used.}
   \item{x}{A toml object.}
   \item{object}{A toml object.}
   \item{...}{Furter arguments.}

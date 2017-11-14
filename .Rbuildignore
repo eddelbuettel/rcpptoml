@@ -6,3 +6,4 @@ parse_stdin$
 ^\.Rproj\.user$
 ^LICENSE$
 ^local
+.*tar.gz$

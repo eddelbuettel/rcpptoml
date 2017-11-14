@@ -6,15 +6,26 @@
 using namespace Rcpp;
 
 // tomlparseImpl
-Rcpp::List tomlparseImpl(const std::string input, bool verbose, bool fromfile);
-RcppExport SEXP RcppTOML_tomlparseImpl(SEXP inputSEXP, SEXP verboseSEXP, SEXP fromfileSEXP) {
+Rcpp::List tomlparseImpl(const std::string input, bool verbose, bool fromfile, bool includize);
+RcppExport SEXP _RcppTOML_tomlparseImpl(SEXP inputSEXP, SEXP verboseSEXP, SEXP fromfileSEXP, SEXP includizeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string >::type input(inputSEXP);
     Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
     Rcpp::traits::input_parameter< bool >::type fromfile(fromfileSEXP);
-    rcpp_result_gen = Rcpp::wrap(tomlparseImpl(input, verbose, fromfile));
+    Rcpp::traits::input_parameter< bool >::type includize(includizeSEXP);
+    rcpp_result_gen = Rcpp::wrap(tomlparseImpl(input, verbose, fromfile, includize));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_RcppTOML_tomlparseImpl", (DL_FUNC) &_RcppTOML_tomlparseImpl, 4},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_RcppTOML(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
