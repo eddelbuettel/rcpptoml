@@ -30,6 +30,8 @@ struct toml_spec< char >
     }
 };
 
+#if !defined(INCLUDIZE_NO_CODECVT)
+
 template<>
 struct toml_spec< wchar_t >
 {
@@ -48,17 +50,29 @@ struct toml_spec< wchar_t >
     }
 };
 
+#endif
+
 template< typename CHAR_T, typename TRAITS = std::char_traits< CHAR_T > >
 using basic_toml_streambuf = basic_streambuf< toml_spec< CHAR_T >, CHAR_T, TRAITS >;
 
 using toml_streambuf = basic_toml_streambuf< char >;
+
+#if !defined(INCLUDIZE_NO_CODECVT)
+
 using wtoml_streambuf = basic_toml_streambuf< wchar_t >;
+
+#endif
 
 template< typename CHAR_T, typename TRAITS = std::char_traits< CHAR_T > >
 using basic_toml_preprocessor = basic_preprocessor< toml_spec< CHAR_T >, CHAR_T, TRAITS >;
 
 using toml_preprocessor = basic_toml_preprocessor< char >;
+
+#if !defined(INCLUDIZE_NO_CODECVT)
+
 using wtoml_preprocessor = basic_toml_preprocessor< wchar_t >;
+
+#endif
     
 } // namespace includize
 

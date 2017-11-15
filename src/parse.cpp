@@ -23,6 +23,8 @@
 #include <unistd.h>
 
 // include for the includize stream preprocessor
+// but don't use codecvt (g++-5 or later)
+#define INCLUDIZE_NO_CODECVT 1
 #include <toml.hpp>
 
 // use the new vector which will be default by late 2017
