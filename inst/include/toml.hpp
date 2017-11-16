@@ -4,7 +4,7 @@
 #include "includize.hpp"
 #include <regex>
 
-namespace includize
+namespace includize				     	// #nocov start
 {
     
 template< typename CHAR_TYPE >
@@ -74,6 +74,6 @@ using wtoml_preprocessor = basic_toml_preprocessor< wchar_t >;
 
 #endif
     
-} // namespace includize
+} // namespace includize                           		// #nocov end
 
 #endif

@@ -15,7 +15,7 @@
 
 #endif
 
-namespace includize
+namespace includize             				// #nocov start 
 {
 template< typename INCLUDE_SPEC, typename CHAR_T, typename TRAITS = std::char_traits< CHAR_T > >
 class basic_streambuf : public std::basic_streambuf< CHAR_T, TRAITS >
@@ -440,6 +440,6 @@ using wpreprocessor = basic_preprocessor< INCLUDE_SPEC, wchar_t >;
 
 #endif
 
-}
+}                           		// #nocov end
 
 #endif

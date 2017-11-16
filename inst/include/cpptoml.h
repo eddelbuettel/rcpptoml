@@ -35,7 +35,7 @@
 #endif
 #endif
 
-namespace cpptoml
+namespace cpptoml               // #nocov start
 {
 class writer; // forward declaration
 class base;   // forward declaration
@@ -3167,5 +3167,5 @@ inline std::ostream& operator<<(std::ostream& stream, const array& a)
     a.accept(writer);
     return stream;
 }
-}
+} 					// #nocov end
 #endif
