@@ -1,3 +1,9 @@
+2017-11-16  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/cpptoml.h: Added '// #nocov' tags
+	* inst/include/includize.hpp: Idem
+	* inst/include/toml.hpp: Idem
+
 2017-11-14  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): New minor version
