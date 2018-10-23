@@ -3,10 +3,18 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
-\section{Changes in version 0.1.4 (2017-xx-yy)}{
+\section{Changes in version 0.1.4 (2018-10-23)}{
   \itemize{
-    \item Cast from StretchyList to List ensures lists appear as Lists
-    in R 
+    \item Cast from \code{StretchyList} to \code{List} ensures lists
+    appear as \code{List} objects in R
+    \item Support an optional \code{includize} pre-processor for
+    recursive includes contributed by Dan Dillon as header-library
+    \item Support \code{includize} argument in R and C++ parser
+    interface
+    \item Added a few more \code{#nocov} tags for coverage.
+    \item Synchronized with new upstream
+    \href{https://github.com/skystrife/cpptoml}{cpptoml} version supporting the
+    \href{https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.5.0.md}{TOMP v0.5.0} specification.
   }
 }
 
