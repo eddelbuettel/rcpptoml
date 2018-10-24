@@ -92,9 +92,12 @@ inline time_t local_timegm(struct tm *tm) {
 #endif
 }
 
-SEXP getValue(const std::shared_ptr<cpptoml::base>& base) {
+SEXP getValue(const std::shared_ptr<cpptoml::base>& base, bool escape=true) {
     if (auto v = base->as<std::string>()) {
-        std::string s(escapeString(v->get()));
+        std::string s(v->get());
+        if (escape) {
+            s = escapeString(s);   
+        }
         return Rcpp::wrap(s);
     } else if (auto v = base->as<int64_t>()) {
         std::int64_t s(v->get());
@@ -204,7 +207,7 @@ SEXP collapsedList(Rcpp::List ll) {
     return ll;
 }
 
-SEXP getArray(const cpptoml::array& arr) {
+SEXP getArray(const cpptoml::array& arr, bool escape=true) {
     Rcpp::StretchyList sl;
     bool nonested = true;       // ie no embedded array
     auto it = arr.get().begin();
@@ -213,7 +216,7 @@ SEXP getArray(const cpptoml::array& arr) {
             sl.push_back(getArray(*(*it)->as_array())); 
             nonested = false;
         } else {
-            sl.push_back(getValue(*it));
+            sl.push_back(getValue(*it, escape));
             nonested = true;
         }
         it++;
@@ -226,7 +229,7 @@ SEXP getArray(const cpptoml::array& arr) {
 }
 
 
-SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
+SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false, bool escape=true) {
     Rcpp::StretchyList sl;
     for (auto & p : *t) {
         if (p.second->is_table()) {
@@ -246,7 +249,7 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
                 printValue(Rcpp::Rcout, p.second);
                 Rcpp::Rcout << std::endl;
             }
-            sl.push_back(Rcpp::Named(p.first) = getValue(p.second)); 
+            sl.push_back(Rcpp::Named(p.first) = getValue(p.second, escape)); 
         } else if (p.second->is_table_array()) {
             if (verbose) Rcpp::Rcout << "TableArray: " << p.first << std::endl;
             Rcpp::StretchyList l;
@@ -271,7 +274,8 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false) {
 Rcpp::List tomlparseImpl(const std::string input,
                          bool verbose=false,
                          bool fromfile=true,
-                         bool includize=false) {
+                         bool includize=false,
+                         bool escape=true) {
 
     if (fromfile && access(input.c_str(), R_OK)) {
         Rcpp::stop("Cannot read given file '" + input + "'.");
@@ -332,7 +336,7 @@ Rcpp::List tomlparseImpl(const std::string input,
                 printValue(Rcpp::Rcout, p.second);
                 Rcpp::Rcout << std::endl;
             }
-            sl.push_back(Rcpp::Named(p.first) = getValue(p.second)); 
+            sl.push_back(Rcpp::Named(p.first) = getValue(p.second, escape)); 
             
         } else {
             if (verbose) Rcpp::Rcout << "Other: " << p.first << std::endl;
