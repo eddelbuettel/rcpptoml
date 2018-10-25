@@ -7,3 +7,4 @@ parse_stdin$
 ^LICENSE$
 ^local
 .*tar.gz$
+^.editorconfig$
