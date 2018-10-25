@@ -15,7 +15,7 @@
   allows everything similar configuration languages permit.
 }
 \usage{
-  parseTOML(input, verbose = FALSE, fromFile=TRUE, includize=FALSE)
+  parseTOML(input, verbose = FALSE, fromFile=TRUE, includize=FALSE, escape=TRUE)
 
   \S3method{print}{toml} (x, ...)
   \S3method{summary}{toml} (object, ...)
@@ -34,6 +34,7 @@
   \item{includize}{A logical switch indicating whether the
     \code{includize} stream buffer class for (non-standard but very
     useful) include statements should be used.}
+  \item{escape}{A logical switch indicating whether special characters in strings (namely new line, double quotation mark and backslash) should be escaped in both printed output (when verbose = TRUE) and returned values or only in the printed output. Defaults to TRUE for the sake of backward compatibility.}
   \item{x}{A toml object.}
   \item{object}{A toml object.}
   \item{...}{Furter arguments.}
@@ -67,5 +68,8 @@
 
   summary(toml)            # really sparse summary method
   print(toml)              # print is a wrapper around str()
+  
+  parseTOML(input = "value='''\nHello\nWorld!'''", fromFile = FALSE) # new-line char is (doubly) escaped by default
+  parseTOML(input = "value='''\nHello\nWorld!'''", fromFile = FALSE, escape = FALSE) # new-line char kept 'as is'
 }
 \keyword{package}

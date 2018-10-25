@@ -17,11 +17,11 @@
 ## You should have received a copy of the GNU General Public License
 ## along with RcppTOML.  If not, see <http://www.gnu.org/licenses/>.
 
-parseTOML <- function(input, verbose=FALSE, fromFile=TRUE, includize=FALSE) {
+parseTOML <- function(input, verbose=FALSE, fromFile=TRUE, includize=FALSE, escape=TRUE) {
     if (fromFile) {
-        toml <- tomlparseImpl(path.expand(input), verbose, fromFile, includize)
+        toml <- tomlparseImpl(path.expand(input), verbose, fromFile, includize, escape)
     } else {
-        toml <- tomlparseImpl(input, verbose, fromFile, includize)
+        toml <- tomlparseImpl(input, verbose, fromFile, includize, escape)
     }
     class(toml) <- c("toml", "list")
     attr(toml, "file") <- input

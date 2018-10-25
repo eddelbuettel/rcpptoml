@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // tomlparseImpl
-Rcpp::List tomlparseImpl(const std::string input, bool verbose, bool fromfile, bool includize);
-RcppExport SEXP _RcppTOML_tomlparseImpl(SEXP inputSEXP, SEXP verboseSEXP, SEXP fromfileSEXP, SEXP includizeSEXP) {
+Rcpp::List tomlparseImpl(const std::string input, bool verbose, bool fromfile, bool includize, bool escape);
+RcppExport SEXP _RcppTOML_tomlparseImpl(SEXP inputSEXP, SEXP verboseSEXP, SEXP fromfileSEXP, SEXP includizeSEXP, SEXP escapeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -15,13 +15,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
     Rcpp::traits::input_parameter< bool >::type fromfile(fromfileSEXP);
     Rcpp::traits::input_parameter< bool >::type includize(includizeSEXP);
-    rcpp_result_gen = Rcpp::wrap(tomlparseImpl(input, verbose, fromfile, includize));
+    Rcpp::traits::input_parameter< bool >::type escape(escapeSEXP);
+    rcpp_result_gen = Rcpp::wrap(tomlparseImpl(input, verbose, fromfile, includize, escape));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RcppTOML_tomlparseImpl", (DL_FUNC) &_RcppTOML_tomlparseImpl, 4},
+    {"_RcppTOML_tomlparseImpl", (DL_FUNC) &_RcppTOML_tomlparseImpl, 5},
     {NULL, NULL, 0}
 };
 
