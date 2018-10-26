@@ -44,6 +44,8 @@
   Geigle. This requires a recent-enough C++11 compiler which excludes
   one deployed by Rtools on Windows at the time the package was
   initially put together.
+  
+  Following TOML specification this package assumes that any file input is a UTF-8 encoded text file. Any non-file input (when \code{fromFile = FALSE}) is converted to UTF-8 if necessary (using R's \code{enc2utf()}. Note that the conversion to UTF-8 may fail for input with "unknown" declared encoding if the true encoding does not match system's locale. 
 }
 \value{
   A \code{toml} object is returned, which is really just a list object
