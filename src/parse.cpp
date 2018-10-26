@@ -98,7 +98,8 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base, bool escape=true) {
         if (escape) {
             s = escapeString(s);
         }
-        return Rcpp::wrap(s);
+        Rcpp::String se(s, CE_UTF8);
+        return Rcpp::wrap(se);
     } else if (auto v = base->as<int64_t>()) {
         std::int64_t s(v->get());
         int t = static_cast<int>(s); // we need int for wrap to work
