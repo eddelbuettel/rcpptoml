@@ -2,7 +2,7 @@
 //
 //  RcppTOML -- Rcpp bindings to TOML via cpptoml
 //
-//  Copyright (C) 2015 - 2017  Dirk Eddelbuettel 
+//  Copyright (C) 2015 - 2018  Dirk Eddelbuettel
 //
 //  This file is part of RcppTOML
 //
@@ -96,7 +96,7 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base, bool escape=true) {
     if (auto v = base->as<std::string>()) {
         std::string s(v->get());
         if (escape) {
-            s = escapeString(s);   
+            s = escapeString(s);
         }
         return Rcpp::wrap(s);
     } else if (auto v = base->as<int64_t>()) {
@@ -122,7 +122,7 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base, bool escape=true) {
         tm.tm_hour = s.hour;
         tm.tm_min  = s.minute;
         tm.tm_sec  = s.second;
-        time_t tt = local_timegm(&tm); 
+        time_t tt = local_timegm(&tm);
         //tt = tt - s.hour_offset*60*60 - s.minute_offset*60;
         Rcpp::DatetimeVector dt(1, "UTC");
         dt[0] = tt + s.microsecond * 1.0e-6;
@@ -136,11 +136,23 @@ SEXP getValue(const std::shared_ptr<cpptoml::base>& base, bool escape=true) {
         tm.tm_hour = s.hour;
         tm.tm_min  = s.minute;
         tm.tm_sec  = s.second;
-        time_t tt = local_timegm(&tm); 
+        time_t tt = local_timegm(&tm);
         tt = tt - s.hour_offset*60*60 - s.minute_offset*60;
         Rcpp::DatetimeVector dt(1, "UTC");
         dt[0] =  tt + s.microsecond * 1.0e-6;
         return Rcpp::wrap(dt);
+    } else if (auto v = base->as<cpptoml::local_time>()) {
+        cpptoml::local_time t(v->get());
+        char txt[32];
+        if (t.microsecond != 0) {
+            snprintf(txt, 31, "%02d:%02d:%02d.%d",
+                     t.hour, t.minute, t.second, t.microsecond);
+        } else {
+            snprintf(txt, 31, "%02d:%02d:%02d",
+                     t.hour, t.minute, t.second);
+        }
+        std::string s(txt);
+        return Rcpp::wrap(s);
     } else {
         Rcpp::warning("Unparsed value, returning null");
         return R_NilValue;
@@ -155,7 +167,7 @@ void printArray(std::ostream& o, cpptoml::array& arr) {
             printArray(o, *(*it)->as_array());
         else
             printValue(o, *it);
-        
+
         if (++it != arr.get().end())
             o << ", ";
     }
@@ -164,7 +176,7 @@ void printArray(std::ostream& o, cpptoml::array& arr) {
 
 SEXP collapsedList(Rcpp::List ll) {
     if (ll.length() == 0) return R_NilValue;
-    Rcpp::List::iterator it = ll.begin(); 
+    Rcpp::List::iterator it = ll.begin();
     switch(TYPEOF(*it)) {
         case REALSXP: {
             Rcpp::NumericVector v(ll.begin(), ll.end());
@@ -213,14 +225,14 @@ SEXP getArray(const cpptoml::array& arr, bool escape=true) {
     auto it = arr.get().begin();
     while (it != arr.get().end()) {
         if ((*it)->is_array()) {
-            sl.push_back(getArray(*(*it)->as_array())); 
+            sl.push_back(getArray(*(*it)->as_array()));
             nonested = false;
         } else {
             sl.push_back(getValue(*it, escape));
             nonested = true;
         }
         it++;
-    } 
+    }
     if (nonested) {
         return collapsedList(Rcpp::as<Rcpp::List>(sl));
     } else {
@@ -242,14 +254,14 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false, bool
                 Rcpp::Rcout << "Array: " << p.first << std::endl;
                 printArray(Rcpp::Rcout, *ga);
             }
-            sl.push_back(Rcpp::Named(p.first) = getArray(*ga)); 
+            sl.push_back(Rcpp::Named(p.first) = getArray(*ga));
         } else if (p.second->is_value()) {
             if (verbose) {
                 Rcpp::Rcout << "Value: " << p.first << "\n  :";
                 printValue(Rcpp::Rcout, p.second);
                 Rcpp::Rcout << std::endl;
             }
-            sl.push_back(Rcpp::Named(p.first) = getValue(p.second, escape)); 
+            sl.push_back(Rcpp::Named(p.first) = getValue(p.second, escape));
         } else if (p.second->is_table_array()) {
             if (verbose) Rcpp::Rcout << "TableArray: " << p.first << std::endl;
             Rcpp::StretchyList l;
@@ -263,7 +275,7 @@ SEXP getTable(const std::shared_ptr<cpptoml::table>& t, bool verbose=false, bool
             sl.push_back(Rcpp::Named(p.first) = Rcpp::as<Rcpp::List>(l));
         } else {
             if (verbose) Rcpp::Rcout << "Other: " << p.first << std::endl;
-            sl.push_back(p.first); 
+            sl.push_back(p.first);
         }
     }
     return Rcpp::as<Rcpp::List>(sl);
@@ -296,11 +308,11 @@ Rcpp::List tomlparseImpl(const std::string input,
         cpptoml::parser p(strstream);
         g = p.parse();
     }
-    
+
     if (verbose) {
-        Rcpp::Rcout << "<default print method>\n" 
+        Rcpp::Rcout << "<default print method>\n"
                     << (*g)
-                    << "</default print method>\n" 
+                    << "</default print method>\n"
                     << std::endl;
     }
 
@@ -328,7 +340,7 @@ Rcpp::List tomlparseImpl(const std::string input,
         } else if (p.second->is_array()) {
             auto ga = std::dynamic_pointer_cast<cpptoml::array>(p.second);
             if (verbose) Rcpp::Rcout << "Array: " << p.first << std::endl;
-            sl.push_back(Rcpp::Named(p.first) = getArray(*ga)); 
+            sl.push_back(Rcpp::Named(p.first) = getArray(*ga));
 
         } else if (p.second->is_value()) {
             if (verbose) {
@@ -336,13 +348,12 @@ Rcpp::List tomlparseImpl(const std::string input,
                 printValue(Rcpp::Rcout, p.second);
                 Rcpp::Rcout << std::endl;
             }
-            sl.push_back(Rcpp::Named(p.first) = getValue(p.second, escape)); 
-            
+            sl.push_back(Rcpp::Named(p.first) = getValue(p.second, escape));
         } else {
             if (verbose) Rcpp::Rcout << "Other: " << p.first << std::endl;
-            sl.push_front(p.first); 
+            sl.push_front(p.first);
         }
     }
-    
+
     return Rcpp::as<Rcpp::List>(sl);
 }
