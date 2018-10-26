@@ -21,7 +21,7 @@ parseTOML <- function(input, verbose=FALSE, fromFile=TRUE, includize=FALSE, esca
     if (fromFile) {
         toml <- tomlparseImpl(path.expand(input), verbose, fromFile, includize, escape)
     } else {
-        toml <- tomlparseImpl(input, verbose, fromFile, includize, escape)
+        toml <- tomlparseImpl(enc2utf8(input), verbose, fromFile, includize, escape)
     }
     class(toml) <- c("toml", "list")
     attr(toml, "file") <- input
