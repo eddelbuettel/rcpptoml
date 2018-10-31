@@ -3,12 +3,14 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
-\section{Changes in version 0.1.5 (2018-11-xx)}{
+\section{Changes in version 0.1.5 (2018-10-31)}{
   \itemize{
     \item Escape characters treatment now has toggle (Václav Hausenblas
-    in \ghpr{27})
+    in \ghpr{27} fixing \ghpr{26})
     \item The TOML 0.5.0 'time' type is now supported (somewhat) by
-    returning a formatted string (\ghpr{xx})
+    returning a formatted string (\ghpr{29})
+    \item Encodings are now supported by defaulting to UTF-8 (Václav Hausenblas
+    in \ghpr{30} fixing \ghpr{28})
   }
 }
 
@@ -20,11 +22,11 @@
     \item Support optional \code{includize} pre-processor for recursive
     includes by Dan Dillon as a header-only library (\ghpr{21} and \ghpr{22})
     \item Support \code{includize} argument in R and C++ parser interface
-    \item Added a few more \code{#nocov} tags for coverage \ghpr{23}
-    \item Synchronized with new upstream (\ghpr{25})
+    \item Added a few more \code{#nocov} tags for coverage (\ghpr{23})
+    \item Synchronized with new upstream
     \href{https://github.com/skystrife/cpptoml}{cpptoml} version supporting the
     \href{https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.5.0.md}{TOMP v0.5.0}
-    specification.
+    specification. (\ghpr{25})
   }
 }
 

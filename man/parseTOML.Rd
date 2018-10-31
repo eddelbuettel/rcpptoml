@@ -27,14 +27,18 @@
     parsed from this expression.}
   \item{verbose}{A logical switch to turn on (very) verbose operation
     which can be useful in debugging a parsing issue in a file.}
-  \item{fromFile}{A logical switch indicating whether \code{input} is 
+  \item{fromFile}{A logical switch indicating whether \code{input} is
     interpreted as a filename (with path) which is to be parsed, or a
     whether the \sQuote{TOML} expression in the string is parsed;
     default is file mode.}
   \item{includize}{A logical switch indicating whether the
     \code{includize} stream buffer class for (non-standard but very
     useful) include statements should be used.}
-  \item{escape}{A logical switch indicating whether special characters in strings (namely new line, double quotation mark and backslash) should be escaped in both printed output (when verbose = TRUE) and returned values or only in the printed output. Defaults to TRUE for the sake of backward compatibility.}
+  \item{escape}{A logical switch indicating whether special characters
+  in strings (namely new line, double quotation mark and backslash)
+  should be escaped in both printed output (when verbose = TRUE) and
+  returned values or only in the printed output. Defaults to TRUE for
+  the sake of backward compatibility.}
   \item{x}{A toml object.}
   \item{object}{A toml object.}
   \item{...}{Furter arguments.}
@@ -44,12 +48,18 @@
   Geigle. This requires a recent-enough C++11 compiler which excludes
   one deployed by Rtools on Windows at the time the package was
   initially put together.
-  
-  Following TOML specification this package assumes that any file input is a UTF-8 encoded text file. Any non-file input (when \code{fromFile = FALSE}) is converted to UTF-8 if necessary (using R's \code{enc2utf()}. Note that the conversion to UTF-8 may fail for input with "unknown" declared encoding if the true encoding does not match system's locale. 
+
+  Following TOML specification this package assumes that any file input
+  is a UTF-8 encoded text file. Any non-file input (when \code{fromFile
+    = FALSE}) is converted to UTF-8 if necessary (using R's
+  \code{enc2utf()}. Note that the conversion to UTF-8 may fail for input
+  with "unknown" declared encoding if the true encoding does not match
+  system's locale.
 }
 \value{
   A \code{toml} object is returned, which is really just a list object
-  with a class attribute to allow for \code{print} and \code{summary} methods.
+  with a class attribute to allow for \code{print} and \code{summary}
+  methods.
 }
 \references{
   TOML: \url{https://github.com/toml-lang/toml}
@@ -70,8 +80,10 @@
 
   summary(toml)            # really sparse summary method
   print(toml)              # print is a wrapper around str()
-  
-  parseTOML(input = "value='''\nHello\nWorld!'''", fromFile = FALSE) # new-line char is (doubly) escaped by default
-  parseTOML(input = "value='''\nHello\nWorld!'''", fromFile = FALSE, escape = FALSE) # new-line char kept 'as is'
+
+  txt <- "value='''\nHello\nWorld!'''"      # input with \n is ..
+  parseTOML(input = txt, fromFile = FALSE)  # ... (doubly) escaped by default
+  parseTOML(input = txt, fromFile = FALSE, escape = FALSE) # ... kept 'as is'
+
 }
 \keyword{package}

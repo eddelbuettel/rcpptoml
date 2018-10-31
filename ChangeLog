@@ -1,7 +1,15 @@
+2018-10-31  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): Release 0.1.5
+
+	* man/parseTOML.Rd: Reformat example to fit line length
+
 2018-10-26  Václav Hausenblas  <vencahaus@seznam.cz>
 
-	* src/parse.cpp: Encoding of strings returned by the parser declared as UTF-8
-	* R/parseToml.R: non-file text inputs are converted to UTF-8 if necessary
+	* src/parse.cpp: Encoding of strings returned by the parser declared
+	as UTF-8
+	* R/parseToml.R: Non-file text inputs are converted to UTF-8 if
+	necessary
 	* man/parseTOML.Rd: Documentation
 
 2018-10-25  Dirk Eddelbuettel  <edd@debian.org>
