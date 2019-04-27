@@ -211,7 +211,8 @@ SEXP collapsedList(Rcpp::List ll) {
             Rcpp::CharacterVector v(n);
             for (int i=0; i<n; i++) {
                 std::string s = Rcpp::as<std::string>(ll[i]);
-                v[i] = s;
+                Rcpp::String se(s, CE_UTF8);
+                v[i] = se;
             }
             return v;
             break;              // not reached ...
