@@ -110,7 +110,7 @@ drat::addRepo("ghrr")
 ### Status
 
 Feature-complete with
-[TOML v0.4.0](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.4.0.md),
+[TOML v0.5.0](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.5.0.md),
 see the [tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests)
 directory.  It parses everything that the underlying
 [cpptoml](https://github.com/skystrife/cpptoml) parses with the same (sole)
