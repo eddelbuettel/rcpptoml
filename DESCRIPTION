@@ -16,4 +16,5 @@ URL: http://dirk.eddelbuettel.com/code/rcpp.toml.html
 Imports: Rcpp (>= 0.11.5)
 Depends: R (>= 3.3.0)
 LinkingTo: Rcpp
+Suggests: tinytest
 License: GPL (>= 2)
