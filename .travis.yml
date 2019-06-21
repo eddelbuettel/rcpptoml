@@ -16,6 +16,7 @@ install:
   - ./run.sh install_aptget r-cran-rcpp
   - sudo apt-get install -y gcc-4.9 g++-4.9
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
+  - ./run.sh install_r tinytest
   
 script:
   - ./run.sh run_tests

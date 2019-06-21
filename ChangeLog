@@ -1,3 +1,7 @@
+2019-06-21  Dirk Eddelbuettel  <edd@debian.org>
+
+        * .travis.yml (install): Install tinytest
+
 2019-06-20  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/tinytest/test_arrays.R: From tests/arrays.R
