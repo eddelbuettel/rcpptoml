@@ -2,16 +2,25 @@
 
         * .travis.yml (install): Install tinytest
 
+        * inst/tinytest/test_bool_datetime.R: Moved from tests/bool_datetime.R
+	* inst/tinytest/bool_datetime.toml: Moved from tests/bool_datetime.toml
+	* inst/tinytest/test_float.R: Moved from inst/tinytest/float.R
+        * inst/tinytest/float.toml: Moved from tests/float.toml
+        * inst/tinytest/test_integer.R: Moved from tests/integer.R
+        * inst/tinytest/integer.toml: Moved from tests/integer.toml
+
 2019-06-20  Dirk Eddelbuettel  <edd@debian.org>
 
-	* inst/tinytest/test_arrays.R: From tests/arrays.R
+	* inst/tinytest/test_arrays.R: Moved from tests/arrays.R
+	* inst/tinytest/arrays.toml: Moved from tests/arrays.toml
 
 2019-06-19  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Added Suggests: tinytest
 	* tests/tinytest.R: Added
-	
+
 	* inst/tinytest/test_dates_times.R: From tests/dates_and times.R
+	* inst/tinytest/dates_times.toml: Moved from tests/dates_and times.toml
 
 2018-10-31  Dirk Eddelbuettel  <edd@debian.org>
 
