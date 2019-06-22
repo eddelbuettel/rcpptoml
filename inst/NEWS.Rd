@@ -3,6 +3,21 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
+\section{Changes in version 0.1.6 (2019-06-xx)}{
+  \itemize{
+    \item Propagate the \code{escape} switch to calls of
+    \code{getTable()} and \code{getArray()} (Václav Hausenblas in
+    \ghpr{32} completing \ghpr{26}).  
+    Hausenblas in \ghpr{36} completing \ghpr{26}) 
+    \item The \code{README.md} file now mentions TOML v0.5.0 support
+    (Watak Iwasaki in \ghpr{35} addressing \ghit{33}).
+    \item Encodings in arrays is to UTF-8 for character (Václav
+    Hausenblas in \ghpr{36} completing \ghpr{28}) 
+    \item The package now use \pkg{tinytest} (Dirk in \ghpr{38} fixing
+    \ghit{37}).
+  }
+}
+
 \section{Changes in version 0.1.5 (2018-10-31)}{
   \itemize{
     \item Escape characters treatment now has toggle (Václav Hausenblas

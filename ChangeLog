@@ -1,5 +1,7 @@
 2019-06-22  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (Version, Date): Roll minor version
+
         * inst/tinytest/test_misc.R: Added, based on tests/strings.R
         * inst/tinytest/test_strings.R: Added, based on tests/strings.R
 	* inst/tinytest/strings.toml: Moved from tests/tables.toml
@@ -13,8 +15,11 @@
 	  tests/toml_hard_example.toml
 
         * tests/*.Rout.save: Moved old test results to local/old_tests/
-	
+
 	* .codecov.yml (coverage): Make patch behaviour more quiet
+
+	* ChangeLog: Add entries for PRs since last release
+	* inst/NEWS: Idem
 
 2019-06-21  Dirk Eddelbuettel  <edd@debian.org>
 
@@ -43,6 +48,19 @@
 	  tests/dates_and_times.R
 	* inst/tinytest/dates_times.toml: Moved from
 	  tests/dates_and times.toml
+
+2019-05-14  Watal M. Iwasaki  <heavy.watal@gmail.com>
+
+	* README.md: Correct to state v0.5.0 support for TOML standard
+
+2019-04-27  Václav Hausenblas  <vencahaus@seznam.cz>
+
+	* src/parse.cpp: Encoding in arrays ensures all strings are UTF-8
+
+2019-01-23  Václav Hausenblas  <vencahaus@seznam.cz>
+
+	* src/parse.cpp: Escape switch to calls of \code{getTable()} and
+	\code{getArray()}
 
 2018-10-31  Dirk Eddelbuettel  <edd@debian.org>
 
