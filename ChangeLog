@@ -12,6 +12,8 @@
         * inst/tinytest/toml_hard_example.toml: Moved from
 	  tests/toml_hard_example.toml
 
+        * tests/*.Rout.save: Moved old test results to local/old_tests/
+	
 2019-06-21  Dirk Eddelbuettel  <edd@debian.org>
 
         * .travis.yml (install): Install tinytest
