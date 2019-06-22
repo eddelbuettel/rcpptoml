@@ -1,20 +1,28 @@
 2019-06-22  Dirk Eddelbuettel  <edd@debian.org>
 
-        * inst/tinytest/test_misc.R: Moved from tests/strings.R
-        * inst/tinytest/test_strings.R: Moved from tests/strings.R
+        * inst/tinytest/test_misc.R: Added, based on tests/strings.R
+        * inst/tinytest/test_strings.R: Added, based on tests/strings.R
 	* inst/tinytest/strings.toml: Moved from tests/tables.toml
-        * inst/tinytest/test_tables.R: Moved from tests/tables.R
+        * inst/tinytest/test_tables.R: Added, based on tests/tables.R
 	* inst/tinytest/tables.toml: Moved from tests/tables.toml
+	* inst/tinytest/test_examples.R: Added, based on tests/tomlExamples.R
+        * inst/tinytest/toml_example-v0.4.0.toml: Moved from
+	  tests/toml_example-v0.4.0.toml
+        * inst/tinytest/toml_example.toml: Moved from tests/toml_example.toml
+        * inst/tinytest/toml_hard_example.toml: Moved from
+	  tests/toml_hard_example.toml
 
 2019-06-21  Dirk Eddelbuettel  <edd@debian.org>
 
         * .travis.yml (install): Install tinytest
 
-        * inst/tinytest/test_bool_datetime.R: Moved from tests/bool_datetime.R
-	* inst/tinytest/bool_datetime.toml: Moved from tests/bool_datetime.toml
-	* inst/tinytest/test_float.R: Moved from inst/tinytest/float.R
+        * inst/tinytest/test_bool_datetime.R: Added, based on
+	  tests/bool_datetime.R
+	* inst/tinytest/bool_datetime.toml: Moved from
+	  tests/bool_datetime.toml
+	* inst/tinytest/test_float.R: Added, based on inst/tinytest/float.R
         * inst/tinytest/float.toml: Moved from tests/float.toml
-        * inst/tinytest/test_integer.R: Moved from tests/integer.R
+        * inst/tinytest/test_integer.R: Added, based on tests/integer.R
         * inst/tinytest/integer.toml: Moved from tests/integer.toml
 
 2019-06-20  Dirk Eddelbuettel  <edd@debian.org>
@@ -27,8 +35,10 @@
 	* DESCRIPTION: Added Suggests: tinytest
 	* tests/tinytest.R: Added
 
-	* inst/tinytest/test_dates_times.R: From tests/dates_and times.R
-	* inst/tinytest/dates_times.toml: Moved from tests/dates_and times.toml
+	* inst/tinytest/test_dates_times.R: Added, based on
+	  tests/dates_and_times.R
+	* inst/tinytest/dates_times.toml: Moved from
+	  tests/dates_and times.toml
 
 2018-10-31  Dirk Eddelbuettel  <edd@debian.org>
 
