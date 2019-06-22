@@ -15,5 +15,13 @@ enabled = true
 
 ", fromFile=FALSE)
 
-print(cfg)
-print(summary(cfg))
+expect_true(setequal(names(cfg), c("title", "owner", "database")))
+
+expect_true(setequal(names(cfg$owner), c("name", "dob")))
+expect_equal(cfg$owner$name, "Tom Preston-Werner")
+expect_equal(cfg$owner$dob, as.POSIXct("1979-05-27 15:32:00", tz="UTC", usetz=TRUE))
+
+expect_true(setequal(names(cfg$database), c("server", "ports", "connection_max", "enabled")))
+expect_equal(cfg$database$server, "192.168.1.1")
+expect_equal(cfg$database$ports, c(8001L, 8001L, 8002L))
+expect_equal(cfg$database$connection_max, 5000L)
