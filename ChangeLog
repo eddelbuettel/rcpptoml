@@ -1,3 +1,10 @@
+2019-06-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/tinytest/test_bool_datetime.R: Skip some on tests on Solaris
+        * inst/tinytest/test_dates_times.R: Idem
+        * inst/tinytest/test_examples.R: Idem
+        * inst/tinytest/test_misc.R: Idem
+
 2019-06-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version

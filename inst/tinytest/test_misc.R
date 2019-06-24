@@ -1,4 +1,6 @@
 
+isSolaris <- Sys.info()[["sysname"]] == "SunOS"
+
 toml <- RcppTOML::parseToml("
 
 title = \"TOML Example\"
@@ -19,7 +21,7 @@ expect_true(setequal(names(toml), c("title", "owner", "database")))
 
 expect_true(setequal(names(toml$owner), c("name", "dob")))
 expect_equal(toml$owner$name, "Tom Preston-Werner")
-expect_equal(toml$owner$dob, as.POSIXct("1979-05-27 15:32:00", tz="UTC", usetz=TRUE))
+if (!isSolaris) expect_equal(toml$owner$dob, as.POSIXct("1979-05-27 15:32:00", tz="UTC", usetz=TRUE))
 
 expect_true(setequal(names(toml$database), c("server", "ports", "connection_max", "enabled")))
 expect_equal(toml$database$server, "192.168.1.1")
