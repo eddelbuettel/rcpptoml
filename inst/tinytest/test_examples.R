@@ -31,7 +31,7 @@ expect_equal(toml$servers$alpha$dc, "eqdc10")
 expect_true(setequal(names(toml$servers$beta), c("ip", "dc", "country")))
 expect_equal(toml$servers$beta$ip, "10.0.0.2")
 expect_equal(toml$servers$beta$dc, "eqdc10")
-if (!isWindows) expect_equal(toml$servers$beta$country, "中国")
+expect_equal(toml$servers$beta$country, "\u4e2d\u56fd")
 
 expect_true(setequal(names(toml$clients), c("data", "hosts")))
 expect_true(setequal(toml$clients$data, list(c("gamma", "delta"), c(1L, 2L))))
