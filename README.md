@@ -116,6 +116,26 @@ directory.  It parses everything that the underlying
 [cpptoml](https://github.com/skystrife/cpptoml) parses with the same (sole)
 exception of unicode escape characters in strings.
 
+### Installation
+
+The package is on [CRAN](https://cran.r-project.org) and can be installed
+via a standard
+
+```r
+install.packages("RcppTOML")
+```
+
+## Continued Testing
+
+As we rely on the [tinytest](https://cran.r-project.org/package=tinytest) package, the
+already-installed package can also be verified via
+
+```r
+tinytest::test_package("RcppTOML")
+```
+
+at any later point.
+
 ### Author
 
 Dirk Eddelbuettel

@@ -3,7 +3,7 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
-\section{Changes in version 0.1.6 (2019-06-xx)}{
+\section{Changes in version 0.1.6 (2019-06-25)}{
   \itemize{
     \item Propagate the \code{escape} switch to calls of
     \code{getTable()} and \code{getArray()} (Václav Hausenblas in
@@ -14,7 +14,7 @@
     \item Encodings in arrays is to UTF-8 for character (Václav
     Hausenblas in \ghpr{36} completing \ghpr{28}) 
     \item The package now use \pkg{tinytest} (Dirk in \ghpr{38} fixing
-    \ghit{37}).
+    \ghit{37}, also Václav in \ghpr{39}).
   }
 }
 
