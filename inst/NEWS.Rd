@@ -10,7 +10,7 @@
     \ghpr{32} completing \ghpr{26}).  
     Hausenblas in \ghpr{36} completing \ghpr{26}) 
     \item The \code{README.md} file now mentions TOML v0.5.0 support
-    (Watak Iwasaki in \ghpr{35} addressing \ghit{33}).
+    (Watal Iwasaki in \ghpr{35} addressing \ghit{33}).
     \item Encodings in arrays is to UTF-8 for character (Václav
     Hausenblas in \ghpr{36} completing \ghpr{28}) 
     \item The package now use \pkg{tinytest} (Dirk in \ghpr{38} fixing
