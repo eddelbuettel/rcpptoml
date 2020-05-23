@@ -1,5 +1,7 @@
 2020-05-23  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (Version, Date): Roll minor version
+
 	* README.md: Add 'last commit' badge
 
 	* .travis.yml: Updated to 'bionic' and R 4.0.0
