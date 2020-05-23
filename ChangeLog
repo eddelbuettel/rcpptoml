@@ -2,6 +2,8 @@
 
 	* README.md: Add 'last commit' badge
 
+	* .travis.yml: Updated to 'bionic' and R 4.0.0
+
 2019-06-29  Dirk Eddelbuettel  <edd@debian.org>
 
 	* .travis.yml (install): Use r-cran-tinytest from PPA
