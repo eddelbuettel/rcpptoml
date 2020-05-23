@@ -15,14 +15,15 @@ before_install:
   - curl -OLs https://eddelbuettel.github.io/r-travis/run.sh && chmod 0755 run.sh
   # optionally add our launchpad repo, but not needed here
   # - sudo add-apt-repository -y ppa:edd/r-3.5
-  # load gcc-4.9 and make it default below
-  #- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  # no longer needed:  load gcc-4.9 and make it default below
+  # - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - ./run.sh bootstrap
 
 install:
   - ./run.sh install_aptget r-cran-rcpp r-cran-tinytest
-  #- sudo apt-get install -y gcc-4.9 g++-4.9
-  #- sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
+  # no longer needed: opting into g++-4.9
+  # - sudo apt-get install -y gcc-4.9 g++-4.9
+  # - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
 
 script:
   - ./run.sh run_tests
