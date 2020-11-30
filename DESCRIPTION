@@ -1,8 +1,8 @@
 Package: RcppTOML
 Type: Package
 Title: 'Rcpp' Bindings to Parser for Tom's Obvious Markup Language
-Version: 0.1.6.1
-Date: 2020-05-23
+Version: 0.1.6.2
+Date: 2020-11-30
 Author: Dirk Eddelbuettel
 Maintainer: Dirk Eddelbuettel <edd@debian.org>
 Description: The configuration format defined by 'TOML' (which expands to
