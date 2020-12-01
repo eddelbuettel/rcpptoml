@@ -1,3 +1,7 @@
+2020-12-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* .travis.yml: Use r-ci with focal and bspm for CI
+
 2020-11-30  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version
