@@ -3,17 +3,26 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
+\section{Changes in version 0.1.7 (2020-12-01)}{
+  \itemize{
+    \item Add \code{#include <limits>} to header file, also contributed
+    upstream, to permit compilation under the (unreleased) `g++-11`.
+    \item Switch the simple `cleanup` script to `bash`.
+    \item Switch CI use to `r-ci` for focal and \pkg{bspm}.
+    \item Update several TOML URLs to \code{https://toml.io/en/}.
+  }
+}
+
 \section{Changes in version 0.1.6 (2019-06-25)}{
   \itemize{
     \item Propagate the \code{escape} switch to calls of
     \code{getTable()} and \code{getArray()} (Václav Hausenblas in
-    \ghpr{32} completing \ghpr{26}).  
-    Hausenblas in \ghpr{36} completing \ghpr{26}) 
+    \ghpr{32} completing \ghpr{26}).
     \item The \code{README.md} file now mentions TOML v0.5.0 support
     (Watal Iwasaki in \ghpr{35} addressing \ghit{33}).
     \item Encodings in arrays is to UTF-8 for character (Václav
-    Hausenblas in \ghpr{36} completing \ghpr{28}) 
-    \item The package now use \pkg{tinytest} (Dirk in \ghpr{38} fixing
+    Hausenblas in \ghpr{36} completing \ghpr{28})
+    \item The package now uses \pkg{tinytest} (Dirk in \ghpr{38} fixing
     \ghit{37}, also Václav in \ghpr{39}).
   }
 }
@@ -40,8 +49,7 @@
     \item Added a few more \code{#nocov} tags for coverage (\ghpr{23})
     \item Synchronized with new upstream
     \href{https://github.com/skystrife/cpptoml}{cpptoml} version supporting the
-    \href{https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.5.0.md}{TOMP v0.5.0}
-    specification. (\ghpr{25})
+    \href{https://toml.io/en/v0.5.0}{TOML v0.5.0} specification. (\ghpr{25})
   }
 }
 
