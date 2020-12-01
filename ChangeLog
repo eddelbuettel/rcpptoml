@@ -1,5 +1,11 @@
 2020-12-01  Dirk Eddelbuettel  <edd@debian.org>
 
+	* man/parseTOML.Rd: Update URL to https://toml.io/en/
+	* man/RcppTOML-package.Rd: Idem
+	* inst/NEWS.Rd: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem, also update three more URLs
+
 	* .travis.yml: Use r-ci with focal and bspm for CI
 
 2020-11-30  Dirk Eddelbuettel  <edd@debian.org>

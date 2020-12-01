@@ -25,7 +25,7 @@
   Maintainer: Dirk Eddelbuettel <edd@debian.org>
 }
 \references{
-  TOML: \url{https://github.com/toml-lang/toml}
+  TOML: \url{https://toml.io/en/}
 }
 \keyword{package}
 \examples{

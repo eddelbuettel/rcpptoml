@@ -1,15 +1,15 @@
-## RcppTOML: Rcpp bindings for [TOML](https://github.com/toml-lang/toml)
+## RcppTOML: Rcpp bindings for [TOML](https://toml.io/en/)
 
 [![Build Status](https://travis-ci.org/eddelbuettel/rcpptoml.svg)](https://travis-ci.org/eddelbuettel/rcpptoml)
-[![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
-[![CRAN](http://www.r-pkg.org/badges/version/RcppTOML)](https://cran.r-project.org/package=RcppTOML)
+[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![CRAN](https://www.r-pkg.org/badges/version/RcppTOML)](https://cran.r-project.org/package=RcppTOML)
 [![Dependencies](https://tinyverse.netlify.com/badge/RcppTOML)](https://cran.r-project.org/package=RcppTOML)
-[![Downloads](http://cranlogs.r-pkg.org/badges/RcppTOML?color=brightgreen)](http://www.r-pkg.org/pkg/RcppTOML)
+[![Downloads](https://cranlogs.r-pkg.org/badges/RcppTOML?color=brightgreen)](https://www.r-pkg.org/pkg/RcppTOML)
 [![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/rcpptoml)](https://github.com/eddelbuettel/rcpptoml)
 
 ### What is TOML?
 
-[TOML](https://github.com/toml-lang/toml) is a configuration file grammar for
+[TOML](https://toml.io/en/) is a configuration file grammar for
 humans. It is easier to read and edit than the alternatives yet arguably more
 useful as it is strongly typed: values come back as integer, double,
 (multiline-) character (strings), boolean or Datetime. Moreover, complex
@@ -21,7 +21,7 @@ be used by R.
 
 ### Example
 
-Consider the following [TOML](https://github.com/toml-lang/toml) input example input:
+Consider the following [TOML](https://toml.io/en/) input example input:
 
 ```toml
 # This is a TOML document.
@@ -89,8 +89,8 @@ List of 5
 R>
 ```
 
-See the other examples and the [upstream documentation](https://github.com/toml-lang/toml) for more.
-Also note that most decent editors have proper [TOML](https://github.com/toml-lang/toml) support
+See the other examples and the [upstream documentation](https://toml.io/en/) for more.
+Also note that most decent editors have proper [TOML](https://toml.io/en/) support
 which makes editing and previewing a breeze:
 
 ![](https://raw.githubusercontent.com/eddelbuettel/rcpptoml/master/local/emacsAndTOML.png)
@@ -105,7 +105,7 @@ install.packages("RcppTOML")
 ```
 
 Development releases may be provided by the
-[ghrr](http://ghrr.github.io/drat) repository which can accessed via
+[ghrr](https://ghrr.github.io/drat/) repository which can accessed via
 
 ```{.r}
 ## if needed, first do:  install.packages("drat")
@@ -114,9 +114,8 @@ drat::addRepo("ghrr")
 
 ### Status
 
-Feature-complete with
-[TOML v0.5.0](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.5.0.md),
-see the [tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests)
+Feature-complete with [TOML v0.5.0](https://toml.io/en/v0.5.0), see the
+[tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests)
 directory.  It parses everything that the underlying
 [cpptoml](https://github.com/skystrife/cpptoml) parses with the same (sole)
 exception of unicode escape characters in strings.

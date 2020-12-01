@@ -62,7 +62,7 @@
   methods.
 }
 \references{
-  TOML: \url{https://github.com/toml-lang/toml}
+  TOML: \url{https://toml.io/en/}
   cpptoml: \url{https://github.com/skystrife/cpptoml}
 }
 \author{
