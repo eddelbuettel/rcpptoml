@@ -1,3 +1,7 @@
+2020-12-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* .travis.yml: Actually source from r-ci
+
 2020-12-01  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Release 0.1.7
