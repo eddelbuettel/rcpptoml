@@ -8,3 +8,4 @@ parse_stdin$
 ^local
 .*tar.gz$
 ^.editorconfig$
+^\.github
