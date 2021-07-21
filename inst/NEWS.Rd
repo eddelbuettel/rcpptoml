@@ -6,9 +6,10 @@
 \section{Changes in version 0.1.7 (2020-12-01)}{
   \itemize{
     \item Add \code{#include <limits>} to header file, also contributed
-    upstream, to permit compilation under the (unreleased) `g++-11`.
-    \item Switch the simple `cleanup` script to `sh`.
-    \item Switch CI use to `r-ci` for focal and \pkg{bspm}.
+    upstream, to permit compilation under the (unreleased) \code{g++-11}.
+    \item Switch the simple \code{cleanup} script to \code{sh}.
+    \item Switch CI use to \href{https://eddelbuettel.github.io/r-ci/}{r-ci}
+    for focal and \pkg{bspm}.
     \item Update several TOML URLs to \code{https://toml.io/en/}.
   }
 }
