@@ -1,6 +1,5 @@
 ## RcppTOML: Rcpp bindings for [TOML](https://toml.io/en/)
 
-[![Build Status](https://travis-ci.org/eddelbuettel/rcpptoml.svg)](https://travis-ci.org/eddelbuettel/rcpptoml)
 [![CI](https://github.com/eddelbuettel/rcpptoml/workflows/ci/badge.svg)](https://github.com/eddelbuettel/rcpptoml/actions?query=workflow%3Aci)
 [![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![CRAN](https://www.r-pkg.org/badges/version/RcppTOML)](https://cran.r-project.org/package=RcppTOML)
