@@ -20,4 +20,16 @@ key1 = 1979-05-27T07:32:00Z
 key2 = 1979-05-27T00:32:00-07:00
 key3 = 1979-05-27T00:32:00.999999-07:00
 
+## adding a local time in key4
+## it will interpret this as local time, ie the utc will mapped
+## in other words midnight at UTC may be 19:00h the previous day in Chicago
+key4 = 1979-05-27T07:32:00
 
+[date]
+
+dat1 = 1979-05-27
+
+[time]
+
+time1 = 07:32:00
+time2 = 00:32:00.999999
