@@ -1,7 +1,4 @@
 
-## This is a C++11 package
-CXX_STD = CXX11
+CXX_STD = CXX17
 
-## We need the header in inst/include, and a define
-PKG_CPPFLAGS = -I../inst/include/ -DCPPTOML_USE_MAP
-
+PKG_CPPFLAGS = -I../inst/include
