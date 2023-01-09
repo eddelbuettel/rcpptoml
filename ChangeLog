@@ -1,3 +1,7 @@
+2023-01-09  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Update for toml++
+
 2023-01-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version
