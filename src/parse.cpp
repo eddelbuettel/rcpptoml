@@ -80,9 +80,7 @@ SEXP getValue(const toml::node& nod, bool escape=true) {
 
 SEXP getTable(const toml::table& tbl, bool escape = true) {
     Rcpp::StretchyList sl;
-    for (auto it = tbl.cbegin(); it != tbl.cend(); it++) {
-        const toml::key& key = it->first;
-        const toml::node& val = it->second;
+    for (const auto&[key, val] : tbl) {
         if (val.is_array_of_tables()) {
             Rcpp::StretchyList l;
             const toml::array& arr = *tbl.get_as<toml::array>(key);
@@ -106,8 +104,7 @@ SEXP getTable(const toml::table& tbl, bool escape = true) {
 SEXP getArray(const toml::array& arr, bool escape) {
     Rcpp::StretchyList sl;
     bool nonested = true;       // ie no embedded array
-    for (auto it = arr.cbegin(); it != arr.cend(); it++) {
-        const toml::node& val = *it;
+    for (const auto& val: arr) {
         if (val.is_array()) {
             sl.push_back(getArray(*val.as_array(), escape));
             nonested = false;
@@ -131,14 +128,12 @@ Rcpp::List tomlparseImpl(const std::string input, bool fromfile=true, bool escap
     const toml::table tbl = (fromfile) ? toml::parse_file(input) : toml::parse(input);
 
     Rcpp::StretchyList sl;
-    for (auto it = tbl.cbegin(); it != tbl.cend(); it++) {
-        const toml::key& key = it->first;
-        const toml::node& nod = it->second;
+    for (const auto&[key, nod] : tbl) {
         if (nod.is_array_of_tables()) {
             Rcpp::StretchyList l;
             const toml::array& arr = *tbl.get_as<toml::array>(key);
-            for (auto ait = arr.cbegin(); ait != arr.cend(); ait++) {
-                l.push_back(getTable(*ait->as_table(), escape));
+            for (const auto& ait : arr) {
+                l.push_back(getTable(*ait.as_table(), escape));
             }
             sl.push_back(Rcpp::Named(key.data()) = Rcpp::as<Rcpp::List>(l));
         } else if (nod.is_table()) {

@@ -2,6 +2,8 @@
 
 	* README.md: Update for toml++
 
+	* src/parse.cpp: More idiomatic C++17
+
 2023-01-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Roll minor version
