@@ -24,12 +24,12 @@ TOML_DISABLE_SUGGEST_ATTR_WARNINGS;
 #pragma warning(disable : 4251) // dll exports for std lib types
 #endif
 #elif TOML_CLANG
-#pragma clang diagnostic ignored "-Wheader-hygiene"
+//#pragma clang diagnostic ignored "-Wheader-hygiene"
 #if TOML_CLANG >= 12
-#pragma clang diagnostic ignored "-Wc++20-extensions"
+//#pragma clang diagnostic ignored "-Wc++20-extensions"
 #endif
 #if (TOML_CLANG == 13) && !defined(__APPLE__)
-#pragma clang diagnostic ignored "-Wreserved-identifier"
+//#pragma clang diagnostic ignored "-Wreserved-identifier"
 #endif
 #endif
 

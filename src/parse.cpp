@@ -64,7 +64,7 @@ SEXP getValue(const toml::node& nod, bool escape=true) {
             tt = tt - offset->minutes*60;
         }
         Rcpp::DatetimeVector dt(1, "UTC"); // we always set UTC as RcppTOML did
-        dt[0] =  tt + time.nanosecond * 1.0e-9;
+        dt[0] =  static_cast<double>(tt) + time.nanosecond * 1.0e-9;
         return Rcpp::wrap(dt);
     } else if (nodetype == toml::node_type::time) {
         const toml::time val{*nod.as_time()};

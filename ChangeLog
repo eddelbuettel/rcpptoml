@@ -1,3 +1,10 @@
+2023-01-10  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/toml++/toml.h: Comment-out diagnostics suppression for
+	clang which CRAN Policy frowns upon
+	* src/parse.cpp (getValue): Add one explicit cast
+	* src/parse.h (collapsedList): Switch one loop variable to R_xlen_t
+
 2023-01-09  Dirk Eddelbuettel  <edd@debian.org>
 
 	* README.md: Update for toml++

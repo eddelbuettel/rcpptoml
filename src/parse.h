@@ -96,9 +96,9 @@ inline SEXP collapsedList(Rcpp::List ll) {
             break;              // not reached ...
         }
         case STRSXP: {              // minor code smell that this is different :-/
-            int n = ll.size();
+            R_xlen_t n = ll.size();
             Rcpp::CharacterVector v(n);
-            for (int i=0; i<n; i++) {
+            for (R_xlen_t i=0; i<n; i++) {
                 std::string s = Rcpp::as<std::string>(ll[i]);
                 Rcpp::String se(s, CE_UTF8);
                 v[i] = se;
