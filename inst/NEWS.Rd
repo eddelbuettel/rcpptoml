@@ -3,6 +3,14 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
+\section{Changes in version 0.2.0 (2023-01-10)}{
+  \itemize{
+    \item Rewritten in C++17 using \pkg{toml++} for TOML v1.0.0 compliance
+    \item Unchanged interface from R, unchanged (and expanded tests)
+    \item Several small continuous integration upgrades since last release
+  }
+}
+
 \section{Changes in version 0.1.7 (2020-12-01)}{
   \itemize{
     \item Add \code{#include <limits>} to header file, also contributed
