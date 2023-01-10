@@ -9,9 +9,9 @@ Description: The configuration format defined by 'TOML' (which expands to
  "Tom's Obvious Markup Language") specifies an excellent format
  (described at <https://toml.io/en/>) suitable for both human editing
  as well as the common uses of a machine-readable format. This package
- uses 'Rcpp' to connect the 'cpptoml' parser written by Chase Geigle
- (in C++11) to R.
-SystemRequirements: A C++11 compiler; g++ (>= 4.9.*) or newer works.
+ uses 'Rcpp' to connect to the 'toml++' parser written by Mark Gillard
+ to R.
+SystemRequirements: A C++17 compiler
 BugReports: https://github.com/eddelbuettel/rcpptoml/issues
 URL: http://dirk.eddelbuettel.com/code/rcpp.toml.html
 Imports: Rcpp (>= 0.11.5)

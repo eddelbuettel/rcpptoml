@@ -7,6 +7,8 @@
 	* src/parse.cpp (getValue): Add one explicit cast
 	* src/parse.h (collapsedList): Switch one loop variable to R_xlen_t
 
+	* DESCRIPTION (Description,SystemRequirements): Updated
+
 2023-01-09  Dirk Eddelbuettel  <edd@debian.org>
 
 	* README.md: Update for toml++
