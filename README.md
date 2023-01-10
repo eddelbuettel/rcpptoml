@@ -9,15 +9,17 @@
 
 ### What is TOML?
 
-[TOML](https://toml.io/en/) is a configuration file grammar for
-humans. It is easier to read and edit than the alternatives yet arguably more
-useful as it is strongly typed: values come back as integer, double,
-(multiline-) character (strings), boolean or Datetime. Moreover, complex
-nesting and arrays are supported as well.
+[TOML](https://toml.io/en/) is a configuration file grammar for humans. It is easier to read and
+edit than the alternatives yet arguably more useful as it is strongly typed: values come back as
+integer, double, (multiline-) character (strings), boolean or Datetime. Moreover, complex nesting
+and arrays are supported as well.
 
-This package uses the C++11 implementation written by Chase Geigle in
-[cpptoml](https://github.com/skystrife/cpptoml) to provide a parser that can
-be used by R.
+For several years, this package used the C++11 library
+[cpptoml](https://github.com/skystrife/cpptoml) written by [Chase
+Geigle](https://github.com/skystrife).  However, as that library is no longer maintained, current
+versions now use the newer C++17 library [toml++](https://github.com/marzer/tomlplusplus) by [Mark
+Gillard](https://github.com/marzer).
+
 
 ### Example
 
@@ -59,7 +61,8 @@ hosts = [
 ]
 ```
 
-Once parsed, note how R has properly typed input:
+It can be read in _one statement_ and once parsed, R now has properly _typed_ input as shown in
+default print method:
 
 ```r
 R> library(RcppTOML)
@@ -114,20 +117,18 @@ drat::addRepo("ghrr")
 
 ### Status
 
-Feature-complete with [TOML v0.5.0](https://toml.io/en/v0.5.0), see the
-[tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests)
-directory.  It parses everything that the underlying
-[cpptoml](https://github.com/skystrife/cpptoml) parses with the same (sole)
-exception of unicode escape characters in strings.
+When using [cpptoml](https://github.com/skystrife/cpptoml), the library was feature-complete with
+[TOML v0.5.0](https://toml.io/en/v0.5.0), see the
+[tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests) directory.  It parsed
+everything that the underlying [cpptoml](https://github.com/skystrife/cpptoml) parses with the same
+(sole) exception of unicode escape characters in strings.
 
-### Installation
+Given the comprehensive TOML v1.0.0 support by [toml++](https://github.com/marzer/tomlplusplus), the
+package should now be fully 1.0.0 compliant. Some tests were added.
 
-The package is on [CRAN](https://cran.r-project.org) and can be installed
-via a standard
+[toml++](https://github.com/marzer/tomlplusplus) also offers export to JSON and YAML, as well as
+TOML writing which we may add in the future.
 
-```r
-install.packages("RcppTOML")
-```
 
 ### Continued Testing
 
@@ -138,7 +139,7 @@ already-installed package can also be verified via
 tinytest::test_package("RcppTOML")
 ```
 
-at any later point.
+at any point in time.
 
 ### Author
 
