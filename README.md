@@ -100,12 +100,18 @@ which makes editing and previewing a breeze:
 
 ### Installation
 
+Installation from source requires a C++17 compiler, and `g++` versions 8 and onward should suffice.   
+
+#### From CRAN
+
 The package is on [CRAN](https://cran.r-project.org) and can be installed
 from every mirror via
 
 ```{.r}
 install.packages("RcppTOML")
 ```
+
+#### From the ghrr-drat
 
 Development releases may be provided by the
 [ghrr](https://ghrr.github.io/drat/) repository which can accessed via
@@ -115,19 +121,24 @@ Development releases may be provided by the
 drat::addRepo("ghrr")
 ```
 
+after which `install.packages("RcppTOML)` which access this repo. Alternatively use
+
+```r
+install.packages("RcppTOML", repos=c("https://ghrr.github.io/drat", "https://cloud.r-project.org"))
+```
+
 ### Status
 
-When using [cpptoml](https://github.com/skystrife/cpptoml), the library was feature-complete with
-[TOML v0.5.0](https://toml.io/en/v0.5.0), see the
-[tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests) directory.  It parsed
-everything that the underlying [cpptoml](https://github.com/skystrife/cpptoml) parses with the same
+Earlier versions relied upon [cpptoml](https://github.com/skystrife/cpptoml) and were feature-complete with
+[TOML v0.5.0](https://toml.io/en/v0.5.0) (see the
+[tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests) directory).  They already parsed
+everything that the underlying [cpptoml](https://github.com/skystrife/cpptoml) parsed with the same
 (sole) exception of unicode escape characters in strings.
 
-Given the comprehensive TOML v1.0.0 support by [toml++](https://github.com/marzer/tomlplusplus), the
-package should now be fully 1.0.0 compliant. Some tests were added.
+Since switching to [toml++](https://github.com/marzer/tomlplusplus) the package takes advantage of its  comprehensive TOML v1.0.0 support and should now be fully 1.0.0 compliant. Some new tests were added to demonstrate this.
 
-[toml++](https://github.com/marzer/tomlplusplus) also offers export to JSON and YAML, as well as
-TOML writing which we may add in the future.
+As [toml++](https://github.com/marzer/tomlplusplus) also offers export to JSON and YAML as well as
+TOML writing, we may add support to some of these features going forward.
 
 
 ### Continued Testing
