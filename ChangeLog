@@ -1,3 +1,10 @@
+2023-01-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/toml++/impl/preprocessor.h: Updated upstream version
+
+	* src/Makevars (PKG_CPPFLAGS): Define -DTOML_ENABLE_FLOAT16=0 to
+	ensure wider ability to build including arm64 and i386
+
 2023-01-10  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Release 0.2.0
