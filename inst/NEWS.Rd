@@ -3,6 +3,13 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
+\section{Changes in version 0.2.1 (2023-01-25)}{
+  \itemize{
+    \item Explicitly set \code{-DTOML_ENABLE_FLOAT16=0} to permit compilation
+    on some architectures stumbling of the type.
+  }
+}
+
 \section{Changes in version 0.2.0 (2023-01-10)}{
   \itemize{
     \item Rewritten in C++17 using \pkg{toml++} for TOML v1.0.0 compliance
