@@ -100,7 +100,7 @@ which makes editing and previewing a breeze:
 
 ### Installation
 
-Installation from source requires a C++17 compiler, and `g++` versions 8 and onward should suffice.   
+Installation from source requires a C++17 compiler, and `g++` versions 8 and onward should suffice.
 
 #### From CRAN
 
@@ -121,11 +121,17 @@ Development releases may be provided by the
 drat::addRepo("ghrr")
 ```
 
-after which `install.packages("RcppTOML)` which access this repo. Alternatively use
+after which `install.packages("RcppTOML)` which access this repo.
+
+Alternatively, set the repo information on the fly as _e.g._ in
 
 ```r
-install.packages("RcppTOML", repos=c("https://ghrr.github.io/drat", "https://cloud.r-project.org"))
+repos <- c("https://ghrr.github.io/drat", "https://cloud.r-project.org")
+install.packages("RcppTOML", repos=repos)
 ```
+
+which points to the [ghrr](https://ghrr.github.io/drat/) repository as well as a standard CRAN
+mirror, but just for the length of this installation step.
 
 ### Status
 
