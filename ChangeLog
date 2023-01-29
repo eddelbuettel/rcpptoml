@@ -1,3 +1,9 @@
+2023-01-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/toml++/toml.h: Updated upstream for Apple clang issue
+	* inst/include/toml++/impl/std_new.h: Idem
+	* inst/include/toml++/impl/preprocessor.h: Idem
+
 2023-01-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Release 0.2.1
