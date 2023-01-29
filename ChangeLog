@@ -2,8 +2,10 @@
 
 	* DESCRIPTION (Version, Date): Roll minor version
 
-	* inst/include/toml++/toml.h: Updated upstream for Apple clang issue
+	* inst/include/toml++/toml.h: New upstream version 3.3.0
+	* inst/include/toml++/impl/parser.inl: Idem
 	* inst/include/toml++/impl/std_new.h: Idem
+	* inst/include/toml++/impl/version.h: Idem
 	* inst/include/toml++/impl/preprocessor.h: Idem
 
 2023-01-25  Dirk Eddelbuettel  <edd@debian.org>
