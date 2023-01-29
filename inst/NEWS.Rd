@@ -3,6 +3,13 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
+\section{Changes in version 0.2.2 (2023-01-29)}{
+  \itemize{
+    \item New \pkg{toml++} version 3.3.0 with fix to permit compilation on
+    ancient macOS systems as used by CRAN for the Intel-based builds.
+  }
+}
+
 \section{Changes in version 0.2.1 (2023-01-25)}{
   \itemize{
     \item Explicitly set \code{-DTOML_ENABLE_FLOAT16=0} to permit compilation
