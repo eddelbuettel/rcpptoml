@@ -1,3 +1,7 @@
+2023-05-26 Walter Somerville <waltersom@gmail.com>
+
+	* DESCRIPTION (Imports): Updated minimum version of Rcpp
+
 2023-01-29  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Release 0.2.2

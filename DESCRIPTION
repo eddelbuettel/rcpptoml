@@ -14,7 +14,7 @@ Description: The configuration format defined by 'TOML' (which expands to
 SystemRequirements: A C++17 compiler
 BugReports: https://github.com/eddelbuettel/rcpptoml/issues
 URL: http://dirk.eddelbuettel.com/code/rcpp.toml.html
-Imports: Rcpp (>= 0.11.5)
+Imports: Rcpp (>= 1.0.8)
 Depends: R (>= 3.3.0)
 LinkingTo: Rcpp
 Suggests: tinytest
