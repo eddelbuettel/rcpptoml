@@ -1,3 +1,9 @@
+2025-03-07  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/toml++/impl/path.h: Adjust for new clang++-20 nag
+	on 'whitespace in literal operator declaration' deprecation
+	* inst/include/toml++/impl/parser.h: Idem
+
 2024-10-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Authors@R): Added
