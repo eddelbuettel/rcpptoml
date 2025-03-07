@@ -4,6 +4,8 @@
 	on 'whitespace in literal operator declaration' deprecation
 	* inst/include/toml++/impl/parser.h: Idem
 
+	* .github/workflows/ci.yaml: Use r-ci setup with implicit bootstrap
+
 2024-10-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Authors@R): Added
