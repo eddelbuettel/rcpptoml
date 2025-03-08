@@ -3,6 +3,15 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcpptoml/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcpptoml/issues/#1}{##1}}
 
+\section{Changes in version 0.2.3 (2025-03-08)}{
+  \itemize{
+    \item Correct the minimum version of \pkg{Rcpp} to 1.0.8 (Walter Somerville)
+    \item The package now uses Authors@R as mandated by CRAN
+    \item Updated 'whitespace in literal' issue upsetting clang++-20
+    \item Continuous integration updates including simpler r-ci setup
+  }
+}
+
 \section{Changes in version 0.2.2 (2023-01-29)}{
   \itemize{
     \item New \pkg{toml++} version 3.3.0 with fix to permit compilation on
