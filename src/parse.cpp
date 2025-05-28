@@ -111,6 +111,9 @@ SEXP getArray(const toml::array& arr, bool escape) {
         if (val.is_array()) {
             sl.push_back(getArray(*val.as_array(), escape));
             nonested = false;
+        } else if (val.is_table()) {
+            sl.push_back(getTable(*val.as_table(), escape));
+            nonested = false;
         } else if (val.is_value()) {
             sl.push_back(getValue(val, escape));
         } else {
