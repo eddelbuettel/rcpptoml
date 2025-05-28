@@ -4,6 +4,8 @@
 
 	* src/parse.cpp (getArray): Allow for mixed types in array
 
+	* inst/tinytest/test_issue57.R: New tests
+
 2025-03-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): Release 0.2.3
