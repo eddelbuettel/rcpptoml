@@ -103,8 +103,11 @@ SEXP getTable(const toml::table& tbl, bool escape = true) {
 
 SEXP getArray(const toml::array& arr, bool escape) {
     Rcpp::StretchyList sl;
-    bool nonested = true;       // ie no embedded array
+    bool nonested = true;		        // ie no embedded array
+    bool unchanged = true; 				// allow type comparison to notice type change
+    bool first = true;
     for (const auto& val: arr) {
+        toml::node_type prev_type;
         if (val.is_array()) {
             sl.push_back(getArray(*val.as_array(), escape));
             nonested = false;
@@ -113,8 +116,14 @@ SEXP getArray(const toml::array& arr, bool escape) {
         } else {
             Rcpp::Rcout << "unknown type in array: " << val.type() << "\n";
         }
+        if (!first) {           		// check for possible change in type
+            unchanged = val.type() == prev_type;
+        } else {
+            first = false;
+        }
+        prev_type = val.type();
     }
-    if (nonested) {
+    if (nonested && unchanged) {
         return collapsedList(Rcpp::as<Rcpp::List>(sl));
     } else {
         return Rcpp::as<Rcpp::List>(sl);
