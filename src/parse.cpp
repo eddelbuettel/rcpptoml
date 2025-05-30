@@ -105,9 +105,9 @@ SEXP getArray(const toml::array& arr, bool escape) {
     Rcpp::StretchyList sl;
     bool nonested = true;		        // ie no embedded array
     bool unchanged = true; 				// allow type comparison to notice type change
-    bool first = true;
+    bool first = true;                  // first comparison is skipped
+    toml::node_type prev_type = toml::node_type::none;
     for (const auto& val: arr) {
-        toml::node_type prev_type;
         if (val.is_array()) {
             sl.push_back(getArray(*val.as_array(), escape));
             nonested = false;
