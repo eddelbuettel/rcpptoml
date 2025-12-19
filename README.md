@@ -3,6 +3,7 @@
 [![CI](https://github.com/eddelbuettel/rcpptoml/workflows/ci/badge.svg)](https://github.com/eddelbuettel/rcpptoml/actions?query=workflow%3Aci)
 [![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![CRAN](https://www.r-pkg.org/badges/version/RcppTOML)](https://cran.r-project.org/package=RcppTOML)
+[![r-universe](https://eddelbuettel.r-universe.dev/badges/RcppTOML)](https://eddelbuettel.r-universe.dev/RcppTOML)
 [![Dependencies](https://tinyverse.netlify.app/badge/RcppTOML)](https://cran.r-project.org/package=RcppTOML)
 [![Downloads](https://cranlogs.r-pkg.org/badges/RcppTOML?color=brightgreen)](https://www.r-pkg.org/pkg/RcppTOML)
 [![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/rcpptoml)](https://github.com/eddelbuettel/rcpptoml)
@@ -111,35 +112,28 @@ from every mirror via
 install.packages("RcppTOML")
 ```
 
-#### From the ghrr-drat
+#### From r-universe
 
-Development releases may be provided by the
-[ghrr](https://ghrr.github.io/drat/) repository which can accessed via
+Development releases are also provided by r-universe which can accessed via
 
 ```{.r}
-## if needed, first do:  install.packages("drat")
-drat::addRepo("ghrr")
+install.packages('RcppTOML',
+                 repos = c('https://eddelbuettel.r-universe.dev',
+                           'https://cloud.r-project.org'))
 ```
 
-after which `install.packages("RcppTOML)` which access this repo.
+which offers source and binaries releases based on the main `git` branch for the common operating
+systems.  Linux binaries are also available, see the corresponding
+[documentation](https://docs.r-universe.dev/install/binaries.html#binaries-linux).
 
-Alternatively, set the repo information on the fly as _e.g._ in
-
-```r
-repos <- c("https://ghrr.github.io/drat", "https://cloud.r-project.org")
-install.packages("RcppTOML", repos=repos)
-```
-
-which points to the [ghrr](https://ghrr.github.io/drat/) repository as well as a standard CRAN
-mirror, but just for the length of this installation step.
 
 ### Status
 
-Earlier versions relied upon [cpptoml](https://github.com/skystrife/cpptoml) and were feature-complete with
-[TOML v0.5.0](https://toml.io/en/v0.5.0) (see the
-[tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests) directory).  They already parsed
-everything that the underlying [cpptoml](https://github.com/skystrife/cpptoml) parsed with the same
-(sole) exception of unicode escape characters in strings.
+Earlier versions relied upon [cpptoml](https://github.com/skystrife/cpptoml) and were
+feature-complete with [TOML v0.5.0](https://toml.io/en/v0.5.0) (see the
+[tests/](https://github.com/eddelbuettel/rcpptoml/tree/master/tests) directory).  They already
+parsed everything that the underlying [cpptoml](https://github.com/skystrife/cpptoml) parsed with
+the same (sole) exception of unicode escape characters in strings.
 
 Since switching to [toml++](https://github.com/marzer/tomlplusplus) the package takes advantage of its  comprehensive TOML v1.0.0 support and should now be fully 1.0.0 compliant. Some new tests were added to demonstrate this.
 
